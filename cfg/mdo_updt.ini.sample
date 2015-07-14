@@ -1,0 +1,9 @@
+[Main]
+;дублирование вывода консоли в файл
+;LogFile = ..\log\mds3050updt.log.@@date_time@
+;PidFile = mds3050updt.pid
+
+[Mail]
+ErrorSmsAddrList = 
+ErrorAddrList    = mds3050-alerts@googlegroups.com
+

@@ -1,0 +1,110 @@
+Файлы params.xml созданы для создание сценария отображения и работы генератора запросов. Тут прописывается как и общий вид дерева параметров, их тип, так и и собственно параметры запроса. Для того чтоб изменения в файле xml стали видны в ПК Аптека, достаточно переоткрыть форму с генераторов, все приложение перезапукать или перекомпиливтаь не надо.
+
+Общая структура xml-файла выглядит примерно так:
+
+<?xml version="1.0"?>
+<TXMLParamNode IsDocElem="1" ID="" OwnerEntityIID="{107240BF-C984-40C7-92E7-E8F680B77126}" MainTableName="M_MEDICAMENT" MainTableAlias="M" MainKeyFieldName="ID">
+ <TXMLCategoryNode ID="32" Visible="1" Name="ProductProperty" Caption="Характеристики продукции" ParamType="0">
+  <TXMLAttrNode ID="36" Visible="0" Name="SubstanceUnit" Caption="Единица измерения вещества" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="9" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+  <TXMLAttrNode ID="35" Visible="1" Name="SubstanceCount" Caption="Количество вещества" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_DRUG" TrgtFldName="ID_MEDICAMENT" ConditionFldName="" ConditionFldType="1" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+   <TXMLPropertyNode ID="84" Visible="1" Name="SubstanceCount" Caption="СВЯЗКА К M_COMPOSITION" SrcTblName="" SrcFldName="ID_FORM_REG" TrgtTblName="M_COMPOSITION" TrgtFldName="ID_FORM_REG" ConditionFldName="AMOUNT" ConditionFldType="1" SubCondition="" ParamType="2" TreeLike="" DistinctNeeded=""/>
+  </TXMLAttrNode>
+  <TXMLAttrNode ID="33" Visible="1" Name="Classification" Caption="Классификация" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_DRUG" TrgtFldName="ID_MEDICAMENT" ConditionFldName="" ConditionFldType="6" SubCondition="" ParamType="1" TreeLike="1" DistinctNeeded="1">
+   <TXMLPropertyNode ID="64" Visible="1" Name="Classification" Caption="СВЯЗКА В M_CLASS_DRUG" SrcTblName="" SrcFldName="ID" TrgtTblName="M_CLASS_DRUG" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="6" SubCondition="" ParamType="2" TreeLike="0" DistinctNeeded="">
+    <TXMLPropertyNode ID="82" Visible="1" Name="Classification" Caption="СВЯЗКА В M_CLASS" SrcTblName="" SrcFldName="ID_CLASS" TrgtTblName="M_CLASS" TrgtFldName="ID" ConditionFldName="NODE_CODE" ConditionFldType="6" SubCondition="" ParamType="3" TreeLike="0" DistinctNeeded="0"/>
+   </TXMLPropertyNode>
+  </TXMLAttrNode>
+    </TXMLCategoryNode>
+  <!-- ...
+ <TXMLCategoryNode ID="32">
+    </TXMLCategoryNode>      -->
+</TXMLParamNode>
+
+где:
+<TXMLParamNode> - тег параметров
+<TXMLCategoryNode> - тег ветки или категории (исключительно для логического и визульного разделения по веткам Нода. Категория в качестве дочерней может содержать Категорию или Атрибут)
+<TXMLAttrNode> - тег листка или атрибута.содержит конкретизируюущую информацию о параметре. Атрибут формируется условие в where, может быть сформирован join Нода. Атрибут в качестве дочерней может содержать Свойство
+<TXMLPropertyNode> - тег Свойство - описывает дополнительную связь (join). Когда требуется вытягивать данные через 2 таблицы Нода.Свойство в качестве дочерней может содержать ВложенноеСвойство.    
+
+Параметры <XML>:
+IsDocElem="1" - параметр возможно избыточен.
+ID="1"  - идентификатор ветки или листка дерева
+OwnerEntityIID="{107240BF-C984-40C7-92E7-E8F680B77126}"   - GUID компонента на котором расположен генератор
+MainTableName="M_MEDICAMENT"  - имя таблицы по умолчанию
+MainTableAlias="M"  - алиас таблицы по умолчанию
+MainKeyFieldName="ID" - primary key основной таблицы
+Visible="0" - видимость нода 
+Name="NFCClassificationCode3" - Имя нода. В принципе избыточно и можно не писать ничего. Но Виктору нравится с ним ;)
+Caption="NFC классификация код" - название нода в дереве 
+ParamType="0" - Тип нода. значения от 0 до 3 взяты из этого типа: TParamType = (ptCategory, ptAttribute, ptProperty, ptNestedProperty). 
+SrcTblName="M" - Имя таблицы с которой делаем выборку 
+SrcFldName="ID" -  поле таблицы-источника, по которому происходит связывание с целевой таблицей ( on SrcTblName.SrcFldName = TrgtTblName.TrgtFldName) 
+TrgtTblName="M_DRUG" - Имя таблицы, котороую будем джойнить 
+TrgtFldName="ID_MEDICAMENT" - поле по которому джойним 
+ConditionFldName="ID_MORION" - поле, в котором ищется вводимое пользователем значение. 
+пример - /*<G>*/ AND ( M.ID_MORION = 5555 ) /*</G>*/
+пример sql(алиас G_M_DRG2 генерируется автоматически):
+
+    /*</G>*/LEFT JOIN TrgtTblName G_M_DRG2 ON (SrcTblName.SrcFldName = G_M_DRG2.TrgtFldName)/*</G>*/
+    WHERE  SrcTblName.SrcFldName <> 0/*<G>*/ AND ( G_M_DRG2.ID_MORION = 5239 ) /*</G>*/
+    
+ConditionFldType="2" - Тип вводимого значения. константы взяты с этого типа:
+  TFltAttrType = (fatInteger, fatNumber, fatString, fatDate, fatBoolean,
+    fatLookupCity, fatLookupClass, fatLookupSubstance, fatLookupCategory,
+    fatSubstanceUnit, fatLookupCountry, fatLookupLicenseHolder, fatLookupFormIssue,
+    fatLookupSeller, fatLookupDocSeriesType,
+    fatLookupOrgActivityType, fatLookupMDrug, fatLookupCurrency,
+    fatLookupN). 
+    То есть значение 2 это - тип String, значение 0  - Integer.
+    Значение 255 является заглушкой.
+SubCondition=""  - поле всегда пустое. Для чего-то когда регистрировалось, но уже никто не помнит точно зачем оно нужно.
+TreeLike="1" - "1" - вводимое значение имеет структуру дерева 
+DistinctNeeded="1" Добавляет хитрый join. пример:
+ .... 
+FROM 
+( 
+ SELECT G_M_MDCMNT0.ID AS G_SID 
+ FROM M_MEDICAMENT G_M_MDCMNT0 
+ /*<G>*/
+ LEFT JOIN M_DRUG G_M_DRG11 ON (G_M_MDCMNT0.ID = G_M_DRG11.ID_MEDICAMENT)
+ LEFT JOIN M_COMPOSITION G_M_CMPSTN11 ON (G_M_DRG11.ID_FORM_REG = G_M_CMPSTN11.ID_FORM_REG)
+/*</G>*/
+ WHERE ( G_M_CMPSTN11.AMOUNT = 1 )
+ GROUP BY G_M_MDCMNT0.ID
+)
+  LEFT JOIN M_MEDICAMENT M ON (M.ID = G_SID) -- добавленный join
+  LEFT JOIN M_HOLDER H ON M.ID_OWNER = H.ID
+  LEFT JOIN M_CATEGORY C ON M.ID_CATEGORY = C.ID
+WHERE
+  M.ID <> 0
+
+Sql-код, созданный генератором обрамляется для наглядности в теги  /*<G>*/ /*</G>*/.
+Но доверять на 100% этому тегу не стоит, иногда он ошибается. Пример:
+
+SELECT
+  M.ID,
+  M.ID AS ID_MEDICAMENT,
+  M.ID_MORION,
+  M.ID_OWNER,
+  ....
+  M.USER_NAME,
+  M.USER_TIME
+FROM 
+( 
+ SELECT G_M_MDCMNT0.ID AS G_SID 
+ FROM M_MEDICAMENT G_M_MDCMNT0 
+ /*<G>*/
+ LEFT JOIN M_DRUG G_M_DRG11 ON (G_M_MDCMNT0.ID = G_M_DRG11.ID_MEDICAMENT)
+ LEFT JOIN M_COMPOSITION G_M_CMPSTN11 ON (G_M_DRG11.ID_FORM_REG = G_M_CMPSTN11.ID_FORM_REG)
+/*</G>*/
+ WHERE ( G_M_CMPSTN11.AMOUNT = 1 )
+ GROUP BY G_M_MDCMNT0.ID
+)
+  LEFT JOIN M_MEDICAMENT M ON (M.ID = G_SID)
+  LEFT JOIN M_HOLDER H ON M.ID_OWNER = H.ID
+  LEFT JOIN M_CATEGORY C ON M.ID_CATEGORY = C.ID
+WHERE
+  M.ID <> 0
+
+Тут тег выделил только внутрение джойны, хотя можно было выделять весь внутренний запрос.
+    

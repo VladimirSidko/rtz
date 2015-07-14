@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  version="1.0"
+  targetNamespace="http://www.morion.ua/ELO"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+ <xsd:simpleType name="GUID">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+ <xsd:simpleType name="DateTime">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="(\d{2}\.\d{2}\.\d{4}( \d{2}:\d{2}(:\d{2}|)|))|()"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+ <xsd:simpleType name="Date">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="([\d]{2}\.[\d]{2}\.[\d]{4})|()"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="price">
+    <xsd:restriction base="xsd:float">
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="Amount">
+    <xsd:restriction base="xsd:decimal">
+      <xsd:fractionDigits value="0"/>
+      <xsd:maxInclusive   value="4294967296"/>
+      <xsd:minInclusive   value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="quantity">
+    <xsd:restriction base="xsd:float">
+      <xsd:maxInclusive   value="4294967296"/>
+      <xsd:minInclusive   value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <xsd:simpleType name="percent">
+    <xsd:restriction base="xsd:float">
+      <xsd:maxInclusive   value="100"/>
+      <xsd:minInclusive   value="0"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+
+ <xsd:simpleType name="PriceTypeID">
+    <xsd:restriction base="xsd:string">
+      <xsd:minLength value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+ <xsd:simpleType name="OKPO">
+    <xsd:restriction base="xsd:string">
+      <!--<xsd:maxLength value="10"/>-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="DocType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Order"/>
+      <xsd:enumeration value="PurchaseInvoice"/>
+      <xsd:enumeration value="OrderItemsDeficiency"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="BankInfo">
+    <xsd:all>
+      <xsd:element name="Name"           type="xsd:string"/>
+      <xsd:element name="MFO"            type="xsd:string"/>
+      <xsd:element name="AccountCurrent" type="xsd:string"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="ParentDoc" mixed="true">
+    <xsd:attribute name="UID"    type="elo:GUID"     use="required"/>
+    <xsd:attribute name="Number" type="xsd:string"   use="optional"/>
+    <xsd:attribute name="Date"   type="elo:DateTime" use="optional"/>
+  </xsd:complexType>
+
+</xsd:schema>

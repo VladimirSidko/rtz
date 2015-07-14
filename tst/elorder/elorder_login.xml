@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<ElOrder>
+  <LoginInfo>
+    <ClientName>ООО Морион</ClientName>
+    <OKPO>234523452345</OKPO>
+    <HardKey>908ac3d44a7ac2bfaf1d309e7c2975c4</HardKey>
+    <ApplicationVersion>2.13.0 15.12.2009 13 - 2.1.2.18118</ApplicationVersion>
+    <Protocol>1</Protocol>
+    <ActivationKey>26JFND83989DHGGHT</ActivationKey>
+    <InstallKey>983249c234ak4lj324hgw4252</InstallKey>
+    <IsRemoteSession>1</IsRemoteSession>
+    <ExclusiveSupplier>
+      <IsSupplierExclusiveInFavorites>1</IsSupplierExclusiveInFavorites>
+      <Favorites>
+        <f ID="7999" Caption="Альба-Украина(Киев)"/>
+      </Favorites>
+    </ExclusiveSupplier>
+  </LoginInfo>
+</ElOrder>

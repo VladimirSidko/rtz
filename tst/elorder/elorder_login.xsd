@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/> 
+  
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element ref="LoginInfo"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="LoginInfo">
+      <xsd:complexType>
+        <xsd:sequence>                       
+          <xsd:element name="ClientName"         minOccurs="0" maxOccurs="1" type="xsd:string"/>
+          <xsd:element name="OKPO"               minOccurs="1" maxOccurs="1" type="elo:OKPO"/>
+          <xsd:element name="HardKey"            minOccurs="1" maxOccurs="1" type="xsd:string"/>
+          <xsd:element name="ApplicationVersion" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+          <xsd:element name="Protocol"           minOccurs="0" maxOccurs="1" type="xsd:integer"/>
+          <xsd:element name="ActivationKey"      minOccurs="0" maxOccurs="1" type="xsd:string"/>
+          <xsd:element name="InstallKey"         minOccurs="0" maxOccurs="1" type="xsd:string"/>
+          <xsd:element name="IsRemoteSession"    minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+          <xsd:element ref="ExclusiveSupplier"   minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ExclusiveSupplier">
+      <xsd:complexType>
+        <xsd:sequence>                       
+          <xsd:element name="IsSupplierExclusiveInFavorites"    minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+          <xsd:element name="Favorites"                         minOccurs="0" maxOccurs="1" type="SellerList"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="SellerList">
+    <xsd:sequence>                       
+      <xsd:element name="f"    minOccurs="0" maxOccurs="unbounded" type="SellerInfo"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="SellerInfo">
+      <xsd:attribute name="ID"      type="xsd:integer"  use="required"/>
+      <xsd:attribute name="Caption" type="xsd:string"/>
+  </xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,60 @@
+# $Id: mds3050cfg_key.txt 468 2008-09-03 00:34:27Z Smike $
+#
+# MDS3050 shortcut registrations 
+#
+# Copyright (c) 2006 Dmitriy Kovalenko (runningmaster@gmail.com)
+# and all contributors signed below.
+#
+# All Rights Reserved.
+# Contributor(s): ______________________________________.
+#
+#
+
+# Format:
+#
+# <guid_string> = <value>  [#<description>]
+#
+
+# IDE
+{8BBCB795-BB14-491A-94FF-25297723D3F3} = F12             # IIDEActnControlPane
+{BA7CC6D6-CCA7-4D6E-8D8B-50E133BC861D} = Ctrl+N          # IIDEActnCreateDesk
+{FD8462D1-28FA-4F65-9096-5685BBEB0A25} = F1              # IIDEActnManual
+{32F50A7D-8257-498B-BA23-54DE530313ED} = Alt+F4          # IIDEActnExit
+{13E0EBF2-4969-4A0C-AF08-4D6F3DE4AAAA} = Ctrl+Alt+F4     # IIDEActnDeleteDesk
+{A7EBF2A0-5257-45DB-A804-28FA54EA691E} = Ctrl+F4         # IIDEActnCloseComponent
+{193F710D-BB38-4A25-BA53-9E0B0DE4CC92} = F11             # IIDEActnShowHideDesks
+{B1580009-2FAD-4184-BA87-ED7EE4FD64E0} = F12             # IIDEActnPageHomeBack
+{04639E70-7348-4F93-9CEB-511EB549EE24} = Alt+D           # IIDEActnShowComboBox
+{7EDDF669-6B26-4AEE-9A8C-885E0251DB95} = Ctrl+Alt+Ins    # IIDEActnShowHideTrace
+{49649B1C-37A3-4D69-976E-B6CAAE86FE27} = Ctrl+Alt+P      # IIDEActnShowPackageList
+{E7C10EDB-6BDA-467C-A5CB-608592DC1921} = Alt+PgUp        # IIDEActnLevel1NextPage
+{2DCDC65F-44D1-4ED8-A07D-67CE87029479} = Alt+PgDn        # IIDEActnLevel1PrevPage
+{3E76EBB3-2E58-4DFD-B8F4-558DD5E9CE6C} = Ctrl+Right      # IIDEActnLevel2NextPage
+{CBEFDF3B-957F-4232-9E6D-63E9C1ED9C5D} = Ctrl+Left       # IIDEActnLevel2PrevPage
+{A3E09C92-E497-4F79-A323-70A37BF3DD2F} = Alt+Right       # IIDEActnLevel3NextPage
+{847F4542-521E-4300-99DE-A27AD09A54BA} = Alt+Left        # IIDEActnLevel3PrevPage
+
+{30849556-471E-4B05-BB2C-1A1FF8E1F5C0} = Alt+Enter   # IMDSActnInsert
+{49C54AF2-B775-40E3-B7FB-DAB588256186} = Shift+Enter # IMDSActnUpdate
+{66B88B3E-F216-467C-BF90-BCF763E921CC} = Ctrl+Del    # IMDSActnDelete
+{A6890705-7453-4AB9-A53E-4F0B21F8AE1B} = F5          # IMDSActnRefreshAll
+{EE7D2B41-59C9-4B45-B8F1-EDDC94156044} =             # IMDSActnRefreshOne
+#{030134FA-606A-4D90-B328-596CFE103839} = Ctrl+Enter  # IMDSActnPost
+{FFBF0013-E792-44B5-B070-D8BE7BAD1146} = Esc         # IMDSActnCancel
+{B1161370-EAC5-48AC-BE5A-A7AD3A0FFDAE} =             # IMDSActnGetKey
+{44FF8EDD-2D8A-4717-881F-553F4D4B1331} = Ctrl+Enter  # IMDSActnSetKey
+{85BC0EBE-8BDB-44DC-8E00-D1A76BB1CCAE} = F9          # IMDSActnRun
+{38A74D21-5AAA-4BDB-927C-343B613319B0} =             # IMDSActnRecCount
+{F7C48485-EBFA-421F-9EB3-87C674B10DA1} =             # IMDSActnSaveAs
+
+{8BEAD54B-4456-4152-9BDE-432B5C6D272C} = F8          # IMDSActnRunDiscount
+
+{3BECDCDF-9C48-479F-957E-131862E761CC} = Ctrl+L      # IMDSActnLinkMake
+{3B41EC51-6AB5-4CBD-A21D-932BADDDC97B} = Ctrl+U      # IMDSActnLinkRemove
+
+{3571F5FE-2E99-4768-8C4A-D50C6494008B} = Alt+Ins     # IMDSActnShowSelect
+
+{E16BCE73-D114-4297-A8B1-F3541E38F775} = F10         # IMDSActnESale1Insurance
+
+{E824F601-53F5-4F60-875D-6D89788974FF} = Ctrl+B      # IIDEActnCloseComponent
+

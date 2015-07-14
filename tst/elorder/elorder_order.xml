@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<ElOrder>
+    <Document DocType="Order">
+        <Header>
+            <UID>C07E1706-5AA6-4B13-A159-5A9F0F56D45D</UID>
+            <Number>ЗК-00005</Number>
+            <Date>12.05.2009 14:00:00</Date>
+            <Comment>произвольный текст примечания</Comment>
+            <Client>
+                <Name>ООО "Морион"</Name>
+                <Okpo>1324556</Okpo>
+            </Client>
+            <DeliveryAddress UID="AC5BF3AD-FF63-4BB1-BC6E-28558C332441" Address="г. Киев, Бажана 10"/>
+            <IsSupplierExclusive>1</IsSupplierExclusive>
+        </Header>
+        <Body>
+            <Items>
+                <i MorionID="85813"  SellerID="33191" Amount="15" PriceTypeID="00" IsBonus="0"/>
+                <i MorionID="95073"  SellerID="35906" Amount="6"  PriceTypeID="00" IsBonus="1"/>
+        	    <i MorionID="86590"  SellerID="26504" Amount="3"  PriceTypeID="03" IsBonus="0" DrugName="Фиточай Доктор Селезнева №24, от забол. печени " Owner="Селезнева Л.В. (Украина, Донецк)" Price="4.31" PriceSum="12.93" ProposeDate="25.10.2010"/>
+        	    <i MorionID="39520"  SellerID="13244" Amount="1"  PriceTypeID="30" IsBonus="0" DrugName="Солкосерил мазь 2,07 мг/г туба 20 г " Owner="ICN Switzerland (Швейцария)" Price="20.66" PriceSum="20.66" ProposeDate="25.10.2010"/>
+        	    <i MorionID="98164"  SellerID="31472" Amount="1"  PriceTypeID="30" IsBonus="0" DrugName="Лориста Н табл. п/о №60" Owner="KRKA (Словения)" Price="67.6" PriceSum="67.6" ProposeDate="25.10.2010"/>
+        		<i MorionID="107848" SellerID="35214" Amount="1"  PriceTypeID="30" IsBonus="0" DrugName="Назик спрей назал. фл. 10 мл №1" Owner="Cassella-med (Германия)" Price="25.36" PriceSum="25.36" ProposeDate="25.10.2010"/>
+            </Items>
+        </Body>
+    </Document>
+</ElOrder>

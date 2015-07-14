@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xsd:schema 
+  version="1.0"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/>
+
+
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="Document" type="Document"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="Document">
+        <xsd:sequence>
+          <xsd:element name="Header" type="Header"/>
+          <xsd:element name="Body"   type="Body"/>
+        </xsd:sequence>
+        <xsd:attribute name="DocType" type="elo:DocType" fixed="PurchaseInvoice" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Header" >
+    <xsd:all>
+      <xsd:element name="UID"                  type="elo:GUID"/>
+      <xsd:element name="Number"               type="xsd:string"/>
+      <xsd:element name="Date"                 type="elo:DateTime"/>
+
+      <xsd:element name="ParentDoc"            type="elo:ParentDoc"  minOccurs="0"/>
+      <xsd:element name="TaxConsignment"       type="TaxConsignment" minOccurs="0"/>
+      <xsd:element name="Comment"              type="xsd:string"     minOccurs="0"/>
+
+      <xsd:element name="PaymentDate"          type="elo:Date"       minOccurs="0"/>
+      <xsd:element name="PaymentDelay"         type="PaymentDelay"   minOccurs="0"/>
+
+      <xsd:element name="SumTotal"             type="elo:price"/>
+      <xsd:element name="SumVAT"               type="elo:price"/>
+      <xsd:element name="IncludeVAT"           type="xsd:boolean"/>
+
+      <xsd:element name="Supplier"             type="Supplier"/>
+      <xsd:element name="Client"               type="Client"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  
+  <xsd:complexType name="TaxConsignment" mixed="true">
+    <xsd:attribute name="Number"  type="xsd:string"/>
+    <xsd:attribute name="Date"    type="elo:Date" use="optional"/>
+  </xsd:complexType>
+  
+  <xsd:complexType name="PaymentDelay" mixed="true">
+    <xsd:attribute name="ID"    type="elo:PriceTypeID"/>
+    <xsd:attribute name="Days"  type="xsd:integer"/>
+    <xsd:attribute name="Name"  type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Supplier">
+    <xsd:all>
+      <xsd:element name="MorionID"                type="xsd:integer"/>
+      <xsd:element name="Name"                    type="xsd:string"/>
+      <xsd:element name="Okpo"                    type="elo:OKPO"/>
+      <xsd:element name="IndividualTaxNumber"     type="xsd:string"/>
+      <xsd:element name="Address"                 type="xsd:string"/>
+      <xsd:element name="AddressActual"           type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Phone"                   type="xsd:string" minOccurs="0"/>
+      <xsd:element name="License"                                   minOccurs="0">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="Number"   type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Term"     type="elo:Date"   minOccurs="0"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="Bank" minOccurs="0">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="b" type="elo:BankInfo" minOccurs="1" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="Client">
+    <xsd:all>
+      <xsd:element name="ID"                      type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Name"                    type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Okpo"                    type="elo:OKPO"   />
+      <xsd:element name="IndividualTaxNumber"     type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Address"                 type="xsd:string" minOccurs="0"/>
+      <xsd:element name="DeliveryAddressID"       type="xsd:string" minOccurs="0"/>
+      <xsd:element name="DeliveryAddress"         type="xsd:string" />
+    </xsd:all>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="Body">
+    <xsd:sequence>
+      <xsd:element name="Items">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="i" type="RowItemBase" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RowItemBase">
+    <xsd:all>
+      <xsd:element name="RowNum"             type="xsd:integer"   minOccurs="1"/>
+      <xsd:element name="MorionID"           type="xsd:integer"   minOccurs="0"/>
+      <xsd:element name="SellerID"           type="xsd:string"    minOccurs="1"/>
+      <xsd:element name="BarCode"            type="xsd:string"    minOccurs="0"/>
+      <xsd:element name="DrugName"           type="xsd:string"    minOccurs="1"/>
+      <xsd:element name="ProducerName"       type="xsd:string"    minOccurs="1"/>
+      <xsd:element name="ProducerInternalID" type="xsd:string"    minOccurs="0"/>
+      <xsd:element name="RegNumber"          type="xsd:string"    minOccurs="0"/>
+      <xsd:element name="RegDateStart"       type="elo:Date"      minOccurs="0"/>
+      <xsd:element name="RegDateEnd"         type="elo:Date"      minOccurs="0"/>
+      <xsd:element name="ConsignmentNumber"  type="xsd:string"    minOccurs="0"/>
+      <xsd:element name="SerialNumber"       type="xsd:string"    minOccurs="1"/>
+
+      <xsd:element name="ExpirationDate"     type="xsd:string"    minOccurs="0"/>
+
+      <xsd:element name="CertificateNumber"  type="xsd:string"    minOccurs="0"/>
+      <xsd:element name="CertificateDate"    type="elo:Date"      minOccurs="0"/>
+      <xsd:element name="CertificateRequired" type="xsd:boolean"  minOccurs="0"/>
+
+      <xsd:element name="MeasureUnit"        type="xsd:string"    minOccurs="0"/>
+      <xsd:element name="Amount"             type="elo:quantity"  minOccurs="1"/>
+
+      <xsd:element name="PriceWholesale"     type="elo:price"     minOccurs="0"/>
+      <xsd:element name="PriceMarkupPercent" type="elo:price"     minOccurs="0"/>
+      <xsd:element name="Price"              type="elo:price"     minOccurs="1"/>
+      <xsd:element name="VATPercent"         type="elo:percent"   minOccurs="1"/>
+      <xsd:element name="SumTotal"           type="elo:price"     minOccurs="1"/>
+      <xsd:element name="SumTotalVat"        type="elo:price"     minOccurs="1"/>
+      <xsd:element name="IsBonus"            type="xsd:boolean"   minOccurs="0"/>
+      <xsd:element name="Comment"            type="xsd:string"    minOccurs="0"/>
+    </xsd:all>
+  </xsd:complexType>
+</xsd:schema>

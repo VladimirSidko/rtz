@@ -1,0 +1,282 @@
+# Images...
+# Format:
+# <guid_string> = <file_name>  [#<description>]
+# Example:
+# {00000000-0000-0000-C000-000000000046} = picture.bmp # comment
+#
+
+# System
+{456B5FE2-F4C0-4A45-AB3F-052442EFEF05} =                   # if image not registered
+
+{30849556-471E-4B05-BB2C-1A1FF8E1F5C0} = mds_insert.bmp    # IMDSActnInsert
+{49C54AF2-B775-40E3-B7FB-DAB588256186} = mds_update.bmp    # IMDSActnUpdate
+{B1161370-EAC5-48AC-BE5A-A7AD3A0FFDAE} = mds_getkey.bmp    # IMDSActnGetKey
+{66B88B3E-F216-467C-BF90-BCF763E921CC} = mds_delete.bmp    # IMDSActnDelete
+{A6890705-7453-4AB9-A53E-4F0B21F8AE1B} = mds_refresh.bmp   # IMDSActnRefreshAll
+{EE7D2B41-59C9-4B45-B8F1-EDDC94156044} = mds_refresh.bmp   # IMDSActnRefreshOne
+{030134FA-606A-4D90-B328-596CFE103839} = mds_post.bmp      # IMDSActnPost
+{44FF8EDD-2D8A-4717-881F-553F4D4B1331} = mds_arrowleft.bmp # IMDSActnSetKey
+{FFBF0013-E792-44B5-B070-D8BE7BAD1146} = mds_cancel.bmp    # IMDSActnCancel
+{38A74D21-5AAA-4BDB-927C-343B613319B0} = mds_count.bmp     # IMDSActnRecCount
+{F7C48485-EBFA-421F-9EB3-87C674B10DA1} = mds_save.bmp      # IMDSActnSaveAs
+
+{85BC0EBE-8BDB-44DC-8E00-D1A76BB1CCAE} = mds_run.bmp       # IMDSActnRun
+{8BEAD54B-4456-4152-9BDE-432B5C6D272C} = mds_arrowdown.bmp # IMDSActnRunDiscount
+
+{BF1D19AE-2130-4B95-88E8-78AFF37312FD} = mds_arrow_btn.bmp # IMDSActnGroup
+
+{587103BC-5A1B-4C6B-8158-D7373E470FE1} = ide_preferences.bmp # IMDSActnCPanelTest4
+{E7E71353-850D-4E7B-9F4C-5B19FEC0FB8F} = ide_preferences.bmp # IMDSCompTest4
+
+{6FE4407C-C1D9-4458-853F-28F814547DA0} = ide_package2.bmp # IMDSActnCPanelGCity
+{F6A76FC1-DD8F-4407-ACAA-25E170B1BF4C} = ide_package2.bmp # IMDSActnCPanelGCountry
+{1458A05C-AF33-499F-8752-4FFDE92B85A3} = ide_package2.bmp # IMDSActnCPanelGProvince
+
+{F16B2E7C-CBF2-442C-A3D2-5A967CEAAC35} = ide_package2.bmp # IMDSActnCPanelCCustomer
+{8AC528C8-2B48-4B54-82B1-B8B0CB326BE9} = ide_package2.bmp # IMDSActnCPanelICompany
+{9C711E9F-08AF-4865-A75D-A67D01B5C462} = ide_package2.bmp # IMDSActnCPanelCLocation
+{F2C92E7B-8D39-48C2-B3B7-1E5E856D3C90} = ide_package2.bmp # IMDSActnCPanelCSupplier
+{57D9CED1-D0AB-4F78-8433-7D21C597C788} = ide_package2.bmp # IMDSActnCPanelFBank
+{E933AE93-A531-4239-9F21-489189C2E04D} = ide_package2.bmp # IMDSActnCPanelFVat
+{7B1FE0E9-8EC0-4065-BD13-885465A97D39} = ide_package2.bmp # IMDSActnCPanelMAtc
+{B74A51AC-4F4F-4436-AD1A-F7BB38A48AA5} = ide_package2.bmp # IMDSActnCPanelMNfc
+{6937EA20-04D2-4E45-BDD6-7EAC70C02BB6} = ide_package2.bmp # IMDSActnCPanelMCategory
+{858E35A1-CF54-40B6-AC7F-36EB4A92E3D0} = ide_package2.bmp # IMDSActnCPanelMDrug
+{A434AA66-3C75-4E62-A52D-E56966F606FB} = ide_package2.bmp # IMDSActnCPanelMGroup
+{B3141B78-F7AB-446C-9E8A-575A5624469F} = ide_package2.bmp # IMDSActnCPanelMInn
+{996C9629-B531-4490-89E4-EBB95EC884DD} = ide_package2.bmp # IMDSActnCPanelMIssue
+{2F4195E7-7765-4E7B-8D1A-860F7F3ED52E} = ide_package2.bmp # IMDSActnCPanelMMaker
+{A3824ADD-1CAE-4A49-8BFB-2AE3B5EBD384} = ide_package2.bmp # IMDSActnCPanelMPlace
+{50C719B9-6E58-4ABB-AA61-9D538D513FBC} = ide_package2.bmp # IMDSActnCPanelMAlias
+{28489C82-B5F7-4441-B276-DFD151D08B8E} = ide_package2.bmp # IMDSActnCPanelMUnit
+{74F105EF-884F-47D6-AC3B-33423CA9CF79} = ide_package2.bmp # IMDSActnCPanelXStock
+{5AA14936-89A8-4B33-9A4E-655F4A3639CA} = ide_package2.bmp # IMDSActnCPanelMarkup
+{09DC9291-DD80-4F1C-98A2-FF4A8002E6A3} = ide_package2.bmp # IMDSActnCPanelMMorion
+{21A2EE46-79CE-43D5-9C23-3D6CDE0D3A08} = ide_package2.bmp # IMDSActnCPanelCashCode
+{6AA4EE87-B68D-49FC-B6B3-3083B14690D5} = ide_package2.bmp # IMDSActnCPanelMDoctor
+{5F829F44-239C-451A-B292-29F5BE225418} = ide_package2.bmp # IMDSActnCPanelMarkupControl
+{91803AEA-2BD9-4776-A67B-56F0449333A9} = ide_package2.bmp # IMDSActnCPanelRefIncrease
+{A1A74E8A-BFFC-438D-B37F-78E4393D7300} = ide_package1.bmp # IMDSActnCPanelCert
+
+{DBEA8E57-F16F-4C9A-9121-0C6029DD6881} = ide_package2.bmp # IMDSCompCCustomer
+{B872C579-553F-431B-A0FE-451CB06F946F} = ide_package2.bmp # IMDSCompCLocation
+{D07336D7-49F3-4F42-B767-BE86BB2C844A} = ide_package2.bmp # IMDSCompCSupplier
+{15CC6597-00E4-4B9A-8CD6-B43F9D063334} = ide_package2.bmp # IMDSCompFBank
+{00809E96-7EF4-46C4-A598-ED04C79529C0} = ide_package2.bmp # IMDSCompFVat
+{B94A255A-93AF-4021-B610-D346888D843B} = ide_package2.bmp # IMDSCompGCity
+{72048F81-265E-4659-87AA-CA5CB24CF057} = ide_package2.bmp # IMDSCompGCountry
+{19CF2C3C-7069-45FF-B88E-66C5C1565953} = ide_package2.bmp # IMDSCompGProvince
+{49C6423D-D090-4338-A451-A2879FFAEE2C} = ide_package2.bmp # IMDSCompMAtc
+{20A4C29F-011F-44CF-B6AB-41994B78FE3D} = ide_package2.bmp # IMDSCompMCategory
+{86B4DDFE-AA5A-4676-B7C3-8E1876D9C61E} = ide_package2.bmp # IMDSCompMDrug
+{26CBB215-C90F-4108-B815-76B01A8D5C76} = ide_package2.bmp # IMDSCompMGroup
+{39557DEE-AC0A-45AD-BDB0-1FE62D6840DB} = ide_package2.bmp # IMDSCompMInn
+{F42CB255-CCA8-473F-9B0A-DA076EA32F06} = ide_package2.bmp # IMDSCompMIssue
+{0443B421-ACDD-4A40-85B7-3CC1F794F8BF} = ide_package2.bmp # IMDSCompMMaker
+{D3DE8093-9BA0-4918-B421-589486BF996B} = ide_package2.bmp # IMDSCompMNfc
+{BB18B982-BEB0-4A38-B729-20F3EA8CA5F7} = ide_package2.bmp # IMDSCompMPlace
+{A747E0A6-1818-4A08-964C-9CE1CED0DD2B} = ide_package2.bmp # IMDSCompMAlias
+{15B9E97F-9077-48C3-A27E-4B9E8877D47A} = ide_package2.bmp # IMDSCompMUnit
+{1CF57750-20DF-45C2-9B0F-F1F63EE3E11B} = ide_package2.bmp # IMDSCompMMorion
+{669FCA62-0E08-4AA0-B71A-BA5B3C822FA2} = ide_package2.bmp # IMDSCompCashCode
+{6CBCEADE-075A-49F8-A480-C3682907C857} = ide_package2.bmp # IMDSCompMarkupControl
+{D97935FD-87CB-4D11-920F-1E9B215B7782} = ide_package2.bmp # IMDSActnCPanelMGrouping
+
+{DC245289-8119-43E9-8049-AA74A82D7C13} = ide_preferences.bmp # IMDSActnCPanelOption
+{7B1D3367-2E34-451D-A77B-79BF001EBCC8} = ide_preferences.bmp # IMDSCompOption
+{89D2DEF6-BF2B-4835-AE0E-9D076CC24FE2} = ide_preferences.bmp # IMDSActnCPanelRepl
+{369F44F4-C3F2-4834-A770-350147362847} = ide_preferences.bmp # IMDSCompRepl
+{A7F642AC-EB72-4E7C-91C2-2645D5985C61} = ide_preferences.bmp # IMDSActnCPanelInit
+{4FBE0A5A-1E3E-4277-B2C9-82D815114A1C} = ide_preferences.bmp # IMDSCompInit
+{F0674C54-4204-4EE7-B613-1EE7E4D7CCDF} = ide_preferences.bmp # IMDSActnCPanelExport
+{5085C578-366A-4CC0-9676-E25E05FC37F3} = ide_preferences.bmp # IMDSCompExport
+
+# E
+{9A29296C-5D76-44F7-BDD8-F87C88943A8E} = ide_package3.bmp # IMDSActnCPanelEPurch
+{6B872E93-F816-4252-ABF4-779282973949} = ide_package3.bmp # IMDSActnCPanelESale1
+{5631562F-B70C-41D6-8771-D8E236050DE9} = ide_package3.bmp # IMDSActnCPanelESale2
+{445A9814-8A66-49A3-97AF-0060C99854B8} = ide_package3.bmp # IMDSActnCPanelEBill
+{D953AB1A-9EBA-40EB-972B-457574815C9E} = ide_package3.bmp # IMDSActnCPanelEStock
+{5991157F-B6D6-4967-A877-9CF3DFDDEE0B} = ide_package3.bmp # IMDSActnCPanelEMove1
+{154D3D22-5B12-44D1-98E0-79C79BADB61F} = ide_package3.bmp # IMDSActnCPanelEMove2
+{5A73E376-F109-4A36-BF6B-0C06386E5A55} = ide_package3.bmp # IMDSActnCPanelEBack1
+{A98ACA8B-87D3-40F4-B5F8-6744A85A40FA} = ide_package3.bmp # IMDSActnCPanelEBack2
+{8796C25C-B3F5-4FF7-B090-A76BF6CAF14F} = ide_package3.bmp # IMDSActnCPanelEBack3
+{9E03A108-85D7-43DA-BB7A-F89BC4AEFD2F} = ide_package3.bmp # IMDSActnCPanelEInventory
+{6B7E384F-07E0-4143-80BA-9A16C90B3D89} = ide_package3.bmp # IMDSActnCPanelEPricing
+{BEC5680A-5E8C-423D-A5F1-00BA9D666313} = ide_package2.bmp # IMDSActnCPanelDiscount
+{FD50770D-9014-469D-BB9B-180600BB956F} = ide_package3.bmp # IMDSActnCPanelLinker
+{82EF4BFE-417E-48C1-956E-7ADF09B65930} = ide_package3.bmp # IMDSActnCPanelNeed
+
+{3BECDCDF-9C48-479F-957E-131862E761CC} = mdo_linkadd.bmp  # IMDSActnLinkMake
+{3B41EC51-6AB5-4CBD-A21D-932BADDDC97B} = mdo_linkdel.bmp  # IMDSActnLinkRemove
+
+{25B6FA71-5EAF-4351-AD57-4927D71F97F5} = mds_arrow_btn.bmp # IMDSActnEPurchBanTrue
+{C910D91A-B367-4B5F-B853-32D2086EC4CF} = mds_arrow_btn.bmp # IMDSActnEPurchBanFalse
+{034AC108-587D-4AA2-8F2A-C6768C5972E4} = mds_arrow_btn.bmp # IMDSActnEPurchBlockTrue
+{609AD39D-0FC5-4CE5-9840-71B8232719D1} = mds_arrow_btn.bmp # IMDSActnEPurchBlockFalse
+{639ED0D6-57A0-4A05-8260-51EBFF5F92F8} = mds_arrow_btn.bmp # IMDSActnBillMakeSale2
+
+# A
+{65F09E15-3A13-4DA1-9AD7-1C8D5FCB2CDF} = ide_package1.bmp # IMDSActnCPanelAPurch
+{4C65B2E9-82E0-402A-A1FD-E5B29A10E07E} = ide_package1.bmp # IMDSActnCPanelASale1
+{A99C6B3C-1F07-4333-B7A2-D0895099894D} = ide_package1.bmp # IMDSActnCPanelASale1Bonus
+{6E2A38ED-CD91-4F97-A878-CEDB0D46ABCB} = ide_package1.bmp # IMDSActnCPanelASale2
+{43049037-7387-482B-BFB2-37A767D9E3C2} = ide_package1.bmp # IMDSActnCPanelAMove1
+{3A26572E-BD43-47BC-8DAD-11F8C7B1E47C} = ide_package1.bmp # IMDSActnCPanelAMove2
+{3EECFA68-3607-47B9-84DE-558CEFF0AAA6} = ide_package1.bmp # IMDSActnCPanelAInvt1
+{4F17E6C2-DC42-4ADA-AF00-4E0894A6D1BB} = ide_package1.bmp # IMDSActnCPanelAInvt2
+{57D0D57F-B462-40FD-8924-2092B6F4B17B} = ide_package1.bmp # IMDSActnCPanelABack1
+{8F27011F-38AB-444B-9C09-7C2492B654AC} = ide_package1.bmp # IMDSActnCPanelABack2
+{5E6827A7-C2D9-4721-ABA4-5CA3FFC6F410} = ide_package1.bmp # IMDSActnCPanelABack3
+{C3F24267-D1CB-4BD2-BC34-768C8C9E7117} = ide_package1.bmp # IMDSActnCPanelA1C
+{7786BD04-EB1B-4346-8A7E-5EB4B8BAB92C} = ide_package1.bmp # IMDSActnCPanelAStock
+{96C76048-2999-41B0-8363-88126EB44255} = ide_package1.bmp # IMDSActnCPanelAStockExport
+{7AF6A086-7158-43E9-A805-52A4D3689D55} = ide_package1.bmp # IMDSActnCPanelAStockMovement
+{675EC3E8-2C33-4728-A991-502596987146} = ide_package1.bmp # IMDSActnCPanelADrugMovement
+{CBDB5F3F-CB63-4693-B76B-B762AEB3A1DC} = ide_package1.bmp # IMDSActnCPanelARotat
+{5BAD86C4-1FC1-4973-812C-8D3453C47C82} = ide_package1.bmp # IMDSActnCPanelADisco
+{7CC66C0A-E412-4631-9517-1B46163A524F} = ide_package1.bmp # IMDSActnCPanelAReval
+{30D655D5-E400-4249-A06F-E44BE8732F5C} = ide_package1.bmp # IMDSActnCPanelAInsur
+{63C59FEC-E611-42DB-99C7-75F7F99F148A} = ide_package1.bmp # IMDSActnCPanelADoctor
+{22E3D2FE-A124-4DCF-8331-6D719E327AA5} = ide_package1.bmp # IMDSActnCPanelAInsurSale2
+{B31070DE-F1F8-4C83-A1A4-8FFB1941D3FF} = ide_package1.bmp # IMDSActnCPanelAStockByLocation
+{B1A6BB94-3B46-4AB0-AE91-A483961A80D1} = ide_package1.bmp # IMDSActnCPanelASale1
+{9B5ED374-7224-4FCB-AA12-2FCA0A7D9938} = ide_package1.bmp # IMDSActnCPanelAOldStockTop
+{F936CB20-E7DE-466C-8759-AAAF38D04786} = ide_package1.bmp # IMDSActnCPanelAABC
+{ECE7B45A-ECBF-4B8E-8E70-9D009FDAB94B} = ide_package1.bmp # IMDSActnCPanelATop100
+{ECC2E049-FE17-43E4-8658-5C68A25DA46A} = ide_package1.bmp # IMDSActnCPanelAPriceMonitoring
+
+# Orders
+{A4FAAE85-8186-4DD4-B3DB-122141C1A32C} = ide_package3.bmp # IMDSActnCPanelSalepoint
+{9A13BE82-2C01-4DF7-A4A4-1989BCEE84A5} = ide_package3.bmp # IMDSActnCPanelNeedTotal
+
+# Fiscal
+{2821E5F0-0D53-43BA-9EC9-0A6AADE60543} = mds_post.bmp #IMDSActnFiscalApply
+
+# Print
+{B34261BB-86E5-48C2-B7AB-649C2E0D8C58} = mds_print.bmp # IMDSCompPrint
+
+{F623F305-09F8-445A-92CE-4472D1468E93} = mds_print.bmp # IMDSActnPrint
+{2630A79A-207E-498B-9C4F-F3ED00AF9A5E} = mds_print.bmp # IMDSActnPrintData
+{FD9D1397-3471-4EB5-A2F5-7B3B9400D43A} = mds_print.bmp # Виртуальный отчет "Приходная накладная"
+{9FE87270-BFB6-46C5-BBCD-6C623289110F} = mds_print.bmp # Виртуальный отчет "Место хранения"
+{93DF9CC6-7762-4833-ABCC-529149FC3851} = mds_print.bmp # Виртуальный отчет "Ярлыки: Все"
+{13E6F580-177E-4968-88B5-28468E7211FD} = mds_print.bmp # Виртуальный отчет "Ярлыки: Полученные в продажу"
+{C44179AE-E5DA-4D82-AF64-06AE0FDD2B62} = mds_print.bmp # Виртуальный отчет "Приход реестр"
+{871ABFF4-B031-4723-AD28-9FB6BE540DF5} = mds_print.bmp # Виртуальный отчет "Расход-чек/Расходная накладная"
+{67108D47-6CFB-417D-8D40-6F0351F1BEA4} = mds_print.bmp # Виртуальный отчет "Расход-чек/Налоговая накладная
+{B0E35FF4-0573-4C72-9DA4-0A7B1668C998} = mds_print.bmp # Виртуальный отчет "Расход-чек/Товарный чек
+{DE44D46B-88B5-4044-8793-728695130268} = mds_print.bmp # Виртуальный отчет "Расход БН/Расходная накладная"
+{2D6F8A1E-22B9-4865-B591-49CCB6C65D21} = mds_print.bmp # Виртуальный отчет "Расход БН/Налоговая накладная"
+{6D19F253-ED8F-4F65-A208-850DB70748EB} = mds_print.bmp # Виртуальный отчет "Расход БН/Товарный чек"
+{CFEDBD80-04BD-4A17-8BF6-4AE3C32D7715} = mds_print.bmp # Виртуальный отчет "Расход БН/Реестр"
+{D14508B0-ED79-4EFE-9EC4-2AAFD0619B9D} = mds_print.bmp # Виртуальный отчет "Счет"
+{BA4FA24C-D671-40FF-A8FB-E39189DB6936} = mds_print.bmp # Виртуальный отчет "Перемещение (+)
+{2F426C16-B19E-4208-968C-93C7B7573025} = mds_print.bmp # Виртуальный отчет "Ярлыки для Перемещение (+)
+{FCB24029-A2E8-477F-845D-7B4DC9356118} = mds_print.bmp # Виртуальный отчет "Перемещение (-)"
+{8FBDB970-A90D-4596-9A9B-91F7ECA9CA59} = mds_print.bmp # Виртуальный отчет "Перемещение (-) Ярлыки"
+{C599E93E-1CB8-4329-A142-9EB6150F80BA} = mds_print.bmp # Виртуальный отчет "Акт инвентаризации"
+{C5383B9C-52A0-422F-BFE3-AD83B3E991E0} = mds_print.bmp # Виртуальный отчет "Акт инвентаризации (по местам хранения)"
+{B4E1ED96-5520-4957-BCC1-0EA5EBD7BFB5} = mds_print.bmp # Виртуальный отчет "Акт списания"
+{9C20C404-D404-460A-BE96-3C81BECB7B99} = mds_print.bmp # Виртуальный отчет "Акт прихода"
+{B8C9CDF3-7F38-4941-AD9A-5A59E5754A9A} = mds_print.bmp # Виртуальный отчет "Инвентаризационная опись (бланк)"
+{8AAE1621-2BD6-41EF-919D-C183E3BCC312} = mds_print.bmp # Виртуальный отчет "Ведомость переоценки"
+{8D813023-1084-4E8E-91C6-6124E258162D} = mds_print.bmp # Виртуальный отчет "Возврат поставщику"
+{4C8717DF-8BF7-4D75-960F-BF3522D6F3A8} = mds_print.bmp # Виртуальный отчет "Возврат покупателя"
+{5F4082D1-4E8F-45A5-AD75-50F9A794E0E3} = mds_print.bmp # Виртуальный отчет "Возврат БН"
+{DFBC7009-3E32-4C10-9AA3-2B2BBA8EB28E} = mds_print.bmp # Виртуальный отчет "Возврат БН/Налоговая накладная"
+{86444826-BA8B-45CE-BDBB-BF3E2664EAEB} = mds_print.bmp # Виртуальный отчет "Заказ"
+{BF92A1DF-AFA2-448C-A9D1-D19E50C6949B} = mds_print.bmp # Виртуальный отчет "Отчеты по приходу"
+{8C568F69-6CB0-427A-87F8-2F55822CD3B8} = mds_print.bmp # Виртуальный отчет "Реестр документов (Приход)"
+{7FFC9C05-A016-46BE-8E96-34CE861B7B1E} = mds_print.bmp # Виртуальный отчет "Реестр документов (Расход Б/Н)"
+{E3766FC8-9937-4C7C-879D-C8F79D7237EB} = mds_print.bmp # Виртуальный отчет "Отчеты по расходу"
+{B7D21C42-611F-4C93-8080-1239BC8ABE74} = mds_print.bmp # Виртуальный отчет "Отчеты по возвратам поставщику"
+{90C3E4AA-780D-4B2A-9769-62EB168E0F72} = mds_print.bmp # Виртуальный отчет "Отчеты по возвратам Б/Н"
+{854F5F42-0B72-4283-856F-7E5D526B1F4F} = mds_print.bmp # Виртуальный отчет "Медицинский акт"
+{02677B1A-820A-4873-B981-E4B775A30278} = mds_print.bmp # Виртуальный отчет "Расходная накладная (Анализ)"
+{1E184F3C-7990-406B-AF7F-888A226F0853} = mds_print.bmp # Виртуальный отчет "Требование"
+
+# Print Purchase
+{02E4971D-619E-4D3B-AFD0-7C0B4185A8E7} = mds_print.bmp # IMDSActnPrintPurchase
+{B233A948-E190-4D0A-8DA3-FCDCF254B227} = mds_print.bmp # IMDSActnPrintStorage
+{AF9F41A2-0D3F-43A4-8D99-94BD65A3B01F} = mds_print.bmp # IMDSActnPrintLabel
+{D5401C16-EEB1-40F0-95A3-ED12CEC52830} = mds_print.bmp # IMDSActnPrintRegister
+
+# Print Release
+{E42A0CE4-15A5-4C8D-9E00-221F946C915D} = mds_print.bmp # IMDSActnPrintSale1
+{3C25143A-A578-456F-894C-3A317390ACBE} = mds_print.bmp # IMDSActnPrintSale1Tax
+{E7C866B4-520E-4DD7-A6E6-DFED454A0402} = mds_print.bmp # IMDSActnPrintSale1Bill
+{AF6B10D3-ACDA-4BD5-A81F-A0741D933CCA} = mds_print.bmp # IMDSActnPrintSale1Req
+{9426E4EB-1F87-482B-BDA0-C56BEF483C03} = mds_print.bmp # IMDSActnPrintSale2
+{7063F2EE-166E-404B-A3A3-CDD2AE0FC829} = mds_print.bmp # IMDSActnPrintSale2Tax
+{050C020C-3A66-49D0-B791-925710AC2D3D} = mds_print.bmp # IMDSActnPrintSale2Bill
+{AA61EF9B-2CC2-485F-8FBD-8781475C855A} = mds_print.bmp # IMDSActnPrintBill
+{FD91DFE9-24D7-4F56-B827-667A0734FF39} = mds_print.bmp # IMDSActnSale2Reg
+
+# Print Inventory
+{1A2E4C37-78A9-4CEA-AD1F-B2936135D72C} = mds_print.bmp # IMDSActnPrintQuant
+{FD53CDB3-9D3B-491B-B063-13A9FFC8F575} = mds_print.bmp # IMDSActnPrintQuantBlank
+{366F7518-450F-4B8C-9CF9-2BE658581E05} = mds_print.bmp # IMDSActnPrintActDec
+{EE45770A-2328-415B-B816-45D8780DEE64} = mds_print.bmp # IMDSActnPrintActInc
+
+# Print Pricing
+{F4A8512C-7AF5-4174-BB7E-90122DD64B62} = mds_print.bmp # IMDSActnPrintPrice
+
+# Print Back
+{583CB276-F82E-4C72-A05A-C5AEA6B18873} = mds_print.bmp # IMDSActnPrintBack1
+{6F0F731E-24B2-48BE-B715-5C5B2AEABC78} = mds_print.bmp # IMDSActnPrintBack2
+{C0DC0E78-E81B-44A2-8C7A-72812863CB9D} = mds_print.bmp # IMDSActnPrintBack3
+
+# Print Order
+{3796E828-E652-4E3D-A741-9AB1E8CB32B3} = mds_print.bmp # IMDSActnPrintOrder
+
+# Print Analysis
+{DC3DC083-867B-4C2C-804C-AE3C9D70DE19} = mds_print.bmp # IMDSActnPrintAnalysPurch
+{0DA565BC-DFFE-4D6D-A22E-1F41EC311A97} = mds_print.bmp # IMDSActnPrintAnalysSale2
+{286DB9FC-2459-46E9-B588-9675BB5630A4} = mds_print.bmp # IMDSActnPrintAnalysBack1
+{36131CBE-FF37-43CE-901C-1B211E79C90D} = mds_print.bmp # IMDSActnPrintAnalysBack3
+{F0DA2FC9-5CCF-4C24-B1BA-5D9F7A6F3AAC} = mds_print.bmp # IMDSActnPrintAInsur
+{CC83B2B5-C8C7-473F-B4B3-3C10FA645B5D} = mds_print.bmp # IMDSActnPrintAAct
+{6C7FE4E3-AD46-4213-BC4D-4BF80A74ACD2} = mds_print.bmp # IMDSActnPrintADelBill
+
+# Print Move
+{BA38172F-9E13-4422-9671-0F535A451F4D} = mds_print.bmp # IMDSActnPrintMove1
+{BBDBD15E-88B1-487D-A913-4DF10E8C512C} = mds_print.bmp # IMDSActnPrintMove2
+
+# Import/Export
+{D5A5700D-754B-4D6C-A9CA-35309253FFCA} = mds_import.bmp # IMDSActnImportPurch
+{A694CA10-1EF2-49B5-A128-9DF027C55BAF} = mds_import.bmp # IMDSActnImportPurchIgnoreSyncMethod
+{9145A14C-4E44-46F2-AAE0-870587F3E517} = mds_import.bmp # IMDSActnImportFromElOrder
+{3A123CED-7793-462E-8BA8-20E8D6C198DE} = mds_export.bmp # IMDSActnExportSale
+{EFA37628-2B69-497A-B4B9-62DDA879F3EA} = mds_import.bmp # IMDSActnImportOffer
+
+{C9ED0FC0-E423-4821-8A86-666E866A5166} = mds_export.bmp # IMDSActnExportNeed
+{40558127-C017-41AD-9CD5-D070052D1157} = mds_export.bmp # IMDSActnExportNeedWNT
+{5D4A9ACB-A4AD-4136-87CF-AEAC2AB0733C} = mds_export.bmp # IMDSActnExportNeedWN3
+{F6D9F875-726B-4AEE-B73D-93508FE776D5} = mds_export.bmp # IMDSActnExportNeedTotalWNT
+{C68A5ED7-0420-41D3-9051-B7A369AB40F0} = mds_export.bmp # IMDSActnExportNeedTotalWN3
+{3495F594-8E6D-4AD3-B44E-F4C5DC8D9B4C} = mds_import.bmp # IMDSActnImportNeed
+{BE182BCD-E909-4DD6-A120-B90B6780005D} = mds_export.bmp # IMDSActnOrderExport
+
+{3571F5FE-2E99-4768-8C4A-D50C6494008B} = mds_select.bmp # IMDSActnShowSelect
+{9813FD2A-5491-4BDE-9047-85D0C7DA6288} = mds_newtab.bmp # IMDSActnStockKind
+
+{7593CC57-8C8C-4CDF-B5E3-393AA4354BEA} = mds_export.bmp # IMDSActnRplExport
+
+{740094C5-69B1-43FE-A346-2A01BDD0876D} = ide_refresh.bmp # IMDSActnSync
+{8E5C0AEB-457A-4824-A5AD-AF1CDF7A526B} = idf_filter.bmp  # IMDSActnControlFilter
+{CC31EDE8-C606-4594-A242-37C6936B259C} = idf_filter.bmp  # IMDSActnDrugFilter
+{076D8714-764A-4904-BCE9-1B8C5D6D777C} = mds_filter_control.bmp  # IMDSActnNeedTotalGroupFilter
+
+{23131DBA-9C2D-4D92-BD3B-C5E341FF1A20} = ide_refresh.bmp # IMDSActnCPanelSyncSetup
+{A0BBDE4F-B704-4FED-B3C0-631B35E8FD3E} = ide_refresh.bmp # IMDSCompSyncSetup
+
+{62930CCA-9D01-4BFE-85A6-453702648F01} = idf_filter.bmp         # IMDSActnEPricingFltPrice
+{EA279DC9-8E26-4910-9548-C37893B57DEE} = mds_filter_control.bmp # IMDSActnEPricingFltControl
+
+{BFE66DD8-1C1D-40DB-8DD2-997932B95089} = mds_paste.bmp # IMDSActnPasteData
+
+{D9A24255-0134-4BFA-8592-E0E1796B59EF} = idf_filter.bmp # IMDSActnNeedTotalGrouping
+
+{40A128C6-2C7F-4B33-B005-9D691A5E597D} = mds_import.bmp # IMDSActnNeedTotalImport

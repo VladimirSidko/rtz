@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<tasks>
+  <task_servers>
+    <mds3050devbuild>
+      <soap_addr>http://mds3050devbuild:4050/soap/ITaskRunner</soap_addr>
+    </mds3050devbuild>
+
+    <mds3050dev>
+      <soap_addr>http://mds3050dev:4050/soap/ITaskRunner</soap_addr>
+    </mds3050dev>
+  </task_servers>
+
+  <task_list>
+    <task Name="WebTest" Caption="Тест web" TaskMachine="mds3050devbuild" TaskName="TEST" TaskType="ttWeb">
+      <descr>Тестирование запуска заданий шедулера через веб-сервис заданий</descr>
+      <link_caption>Запустить</link_caption>
+    </task>
+  
+    <task Name="MDS_BUILD_RLS" Caption="Сборка официального релиза Учетки" TaskMachine="mds3050devbuild" TaskName="MDS_BUILD_RLS" TaskType="ttWeb">
+      <descr>Компилияция и создание инсталятора для релиза Учетной системы. Без базы ФЗ.</descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+    <task Name="MDS_BUILD_TEST_DBG" Caption="Сборка тестового отладочного варианта Учетки" TaskMachine="mds3050devbuild" TaskName="MDS_BUILD_TEST_DBG" TaskType="ttWeb">
+      <descr>Компилияция и создание инсталятора для тестового ОТЛАДОЧНОГО варианта УC. Без базы ФЗ.</descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+
+    <task Name="MDS2_BUILD_RLS" Caption="Сборка релиза ФЗ+БД(>=18)" TaskMachine="mds3050devbuild" TaskName="MDS2_BUILD_RLS" TaskType="ttWeb">
+      <descr>Компилияция и создание инсталятора для релиза Учетной системы. Без базы ФЗ. ftp://mds3050devbuild/MDS3050/MDS2/RELEASE/mds_setup.exe
+      </descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+    <task Name="MDS2_BUILD_TEST_DBG" Caption="Сборка тестовой отладочной  Учетки(>=18)" TaskMachine="mds3050devbuild" TaskName="MDS2_BUILD_TEST_DBG" TaskType="ttWeb">
+      <descr>Компилияция и создание инсталятора для тестового ОТЛАДОЧНОГО варианта УC объединенного с ФЗ. Без базы ФЗ.</descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+    <task Name="MDS2_BUILD_TEST_RLS" Caption="Сборка тестового релиза Учетки(>=18)" TaskMachine="mds3050devbuild" TaskName="MDS2_BUILD_TEST_RLS" TaskType="ttWeb">
+      <descr>Компилияция и создание инсталятора для _тестового_ релиза Учетной системы. Без базы ФЗ.</descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+
+    <task Name="MDO2_BUILD_RLS" Caption="Сборка релиза ФЗ+БД(>=18)" TaskMachine="mds3050devbuild" TaskName="MDO2_BUILD_RLS" TaskType="ttWeb">
+      <descr>Компиляция и создание инсталятора для релиза ФЗ с необновленнной базой. ftp://mds3050devbuild/MDS3050/MDO2/RELEASE/mdo_setup.exe
+      </descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+    <task Name="MDO2_BUILD_TEST_RLS" Caption="Сборка тестового релиза ФЗ(>=18)" TaskMachine="mds3050devbuild" TaskName="MDO2_BUILD_TEST_RLS" TaskType="ttWeb">
+      <descr>Компилияция и создание инсталятора для тестового _релиза_ ФЗ. Без базы.</descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+    <task Name="MDO2_BUILD_TEST_DBG" Caption="Тестовый отладочный ФЗ(>=18)" TaskMachine="mds3050devbuild" TaskName="MDO2_BUILD_TEST_DBG" TaskType="ttWeb">
+      <descr>Компилияция и создание инсталятора для тестового ОТЛАДОЧНОГО варианта ФЗ из 18 ветки. Без базы.</descr>
+      <link_caption>Начать сборку</link_caption>
+    </task>
+
+
+    <task Name="MDS3050DEV_BACKUP_VM_SYNC" Caption="Бекап VMWare DEV-SYNC" TaskMachine="mds3050dev" TaskName="MDS3050DEV_BACKUP_VM_SYNC" TaskType="ttWeb">
+      <descr>Бекап виртуальной машины тестового синхронизатора - mds3050devsync. Занимает порядка 50 минут.</descr>
+      <link_caption>Запустить</link_caption>
+    </task>
+    <task Name="MDS3050DEV_BACKUP_VM_BUILD" Caption="Бекап VMWare DEV-BUILD" TaskMachine="mds3050dev" TaskName="MDS3050DEV_BACKUP_VM_BUILD" TaskType="ttWeb">
+      <descr>Бекап виртуальной машины сборочного сервера - mds3050devbuild. Занимает порядка 50 минут.</descr>
+      <link_caption>Запустить</link_caption>
+    </task>
+  </task_list>
+
+  
+
+  <task_groups>
+    <group Name="QA" Caption="QA операции">
+      <task>MDO2_BUILD_TEST_DBG</task>
+      <task>MDO2_BUILD_TEST_RLS</task>
+      <task>MDS2_BUILD_TEST_DBG</task>
+      <task>MDS2_BUILD_TEST_RLS</task>
+    </group>
+
+    <group Name="QA" Caption="QA операции(до 18 версии)">
+      <task>MDS_BUILD_TEST_DBG</task>
+    </group>
+
+    <group Name="Dev" Caption="Релизы">
+      <task>MDO2_BUILD_RLS</task>
+      <task>MDS_BUILD_RLS</task>
+      <task>MDS2_BUILD_RLS</task>
+    </group>
+
+    <group Name="Test" Caption="Тест" GroupExecution="1">
+      <task>WebTest</task>
+    </group>
+
+    <group Name="Backup" Caption="Резервное копирование">
+      <task>MDS3050DEV_BACKUP_VM_SYNC</task>
+      <task>MDS3050DEV_BACKUP_VM_BUILD</task>
+    </group>
+
+  </task_groups>
+
+</tasks>

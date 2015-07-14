@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  version="1.1"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/> 
+
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="Document" type="Document"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="Document">
+        <xsd:sequence>
+          <xsd:element name="Header" type="Header"/>
+          <xsd:element name="Body"   type="Body" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="DocType" type="elo:DocType" fixed="OrderItemsDeficiency" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Header" >
+    <xsd:all>
+      <xsd:element name="UID"       type="elo:GUID"        minOccurs="1"/>
+      <xsd:element name="ParentDoc" type="elo:ParentDoc"   minOccurs="1"/>
+      <xsd:element name="Date"      type="elo:DateTime"/>
+    </xsd:all>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="Body">
+    <xsd:sequence>
+      <xsd:element name="Items">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="i" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:attribute name="MorionID"         type="xsd:integer"            use="required"/>
+                <xsd:attribute name="SellerID"         type="xsd:string"/>
+                <xsd:attribute name="DeficiencyAmount" type="xsd:int"                use="required"/>
+                <xsd:attribute name="PriceTypeID"      type="xsd:string"             use="required"/>
+                <xsd:attribute name="Reason"           type="xsd:string"/>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

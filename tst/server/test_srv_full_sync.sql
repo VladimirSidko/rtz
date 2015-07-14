@@ -1,0 +1,19 @@
+INPUT '..\sql-mdo\connect.sql';
+
+SET TERM ^ ;
+
+EXECUTE BLOCK
+AS
+  DECLARE V_ID_DRUG   TYPE OF TPRIMARY;
+  DECLARE V_ID_SELLER         TPRIMARY;
+BEGIN
+  -- добавление нового поставщика для которго раньше не ходили предложения
+  INSERT INTO M_SELLER (ID_MORION, NAME) VALUES ( -999, 'Тестовый поставщик') RETURNING ID INTO :V_ID_SELLER;
+  SELECT MAX(D.ID) FROM M_DRUG D INTO :V_ID_DRUG;
+  INSERT INTO M_SUPPLY (ID_DRUG, ID_SELLER, PRICE_WHOLESALE, DATE_SUPP) VALUES (:V_ID_DRUG, :V_ID_SELLER, 999, CURRENT_DATE);
+END
+^
+
+SET TERM ; ^
+
+COMMIT;

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<ElOrder>
+    <Document DocType="PurchaseInvoice">
+        <Header>
+            <UID>C07E1706-5AA6-4B13-A159-5A9F0F56D45D</UID>
+            <Number>ЗК-00005</Number>
+            <Date>12.05.2009 14:00</Date>
+            <ParentDoc UID="AC5BF3AD-FF63-4BB1-BC6E-28558C332441" Number="345" Date="01.01.2009 12:00">Заказ № ЗК-0000004 от 16.07.2009</ParentDoc>
+            <TaxConsignment Number="3465362522" Date="01.01.2009">3452 345234 245fghd fgh dfgjh</TaxConsignment>
+
+            <Comment>произвольный текст примечания</Comment>
+            <PaymentDate>01.10.2009</PaymentDate>
+            <PaymentDelay ID="S00" Days="10" Name="">Отсрочка 10 дней</PaymentDelay>
+            <SumTotal>500.475</SumTotal>
+            <SumVAT>505.346</SumVAT>
+            <IncludeVAT>1</IncludeVAT>
+
+            <Supplier>
+                <MorionID>324556</MorionID>
+                <Name>ООО "Морион"</Name>
+                <Okpo>1234567890</Okpo>
+                <IndividualTaxNumber>24563575688</IndividualTaxNumber>
+                <Address>erwger</Address>
+                <AddressActual>erwger</AddressActual>
+                <Phone>80504548675</Phone>
+                <License>
+                  <Number>фыва</Number> 
+                  <Term>01.01.2009</Term> 
+                </License>
+                <Bank>
+                  <b>
+                    <Name>Приватбанк</Name>
+                    <MFO>345</MFO>
+                    <AccountCurrent>24563456</AccountCurrent>
+                  </b>
+                  <b>
+                    <Name>Аваль</Name>
+                    <MFO>345</MFO>
+                    <AccountCurrent>24563456</AccountCurrent>
+                  </b>
+                </Bank>
+            </Supplier>
+
+            <Client>
+                <ID>3456576</ID>
+                <Name>ООО "Морион"</Name>
+                <Okpo>1234567890</Okpo>
+                <IndividualTaxNumber>24563575688</IndividualTaxNumber>
+                <Address>erwger</Address>
+                <DeliveryAddressID>3466</DeliveryAddressID>
+                <DeliveryAddress>г. Киев, Бажана 10А</DeliveryAddress>
+            </Client>
+        </Header>
+        <Body>
+            <Items>
+                <i> 
+                  <RowNum>1</RowNum>
+                  <MorionID>85813</MorionID> 
+                  <SellerID>33191</SellerID> 
+                  <BarCode>4564566</BarCode>
+                  <DrugName>Аспирин</DrugName> 
+                  <ProducerName>Дарница</ProducerName>
+                  <ProducerInternalID>566</ProducerInternalID>
+                  <RegNumber>3434</RegNumber>
+                  <RegDateStart>12.12.2009</RegDateStart> 
+                  <RegDateEnd>12.12.2010</RegDateEnd>
+                  <ConsignmentNumber>456 gsfdg</ConsignmentNumber>
+                  <SerialNumber>456 gsfdg</SerialNumber>
+
+                  <ExpirationDate>12.12.2009</ExpirationDate>
+
+                  <CertificateNumber>2345234</CertificateNumber>
+                  <CertificateDate>31.05.2009</CertificateDate>
+                  <CertificateRequired>0</CertificateRequired>
+
+                  <MeasureUnit>шт</MeasureUnit>
+                  <Amount>15</Amount> 
+
+                  <PriceWholesale>34.56</PriceWholesale>
+                  <PriceMarkupPercent>3.145</PriceMarkupPercent>
+                  <Price>1.1</Price>  
+                  <VATPercent>20</VATPercent>
+                  <SumTotal>1.1</SumTotal>
+                  <SumTotalVat>1.1</SumTotalVat>
+                  <IsBonus>0</IsBonus>
+                  <Comment>просто комментарий</Comment>
+
+                  <!-- <AnyCustomAttr>de</AnyCustomAttr>-->
+                </i>
+                <i> 
+                  <RowNum>1</RowNum>
+                  <MorionID>85813</MorionID> 
+                  <SellerID>33191</SellerID> 
+                  <BarCode>4564566</BarCode>
+                  <DrugName>Аспирин</DrugName> 
+                  <ProducerName>Дарница</ProducerName>
+                  <ProducerInternalID>566</ProducerInternalID>
+                  <RegNumber>3434</RegNumber>
+                  <RegDateStart>12.12.2009</RegDateStart> 
+                  <RegDateEnd>12.12.2010</RegDateEnd>
+                  <ConsignmentNumber>456 gsfdg</ConsignmentNumber>
+                  <SerialNumber>456 gsfdg</SerialNumber>
+
+                  <ExpirationDate>12.12.2009</ExpirationDate>
+
+                  <CertificateNumber>2345234</CertificateNumber>
+                  <CertificateDate></CertificateDate>
+                  <CertificateRequired>0</CertificateRequired>
+
+                  <MeasureUnit>шт</MeasureUnit>
+                  <Amount>15</Amount> 
+
+                  <PriceWholesale>34.56</PriceWholesale>
+                  <PriceMarkupPercent>3.145</PriceMarkupPercent>
+                  <Price>1.1</Price>  
+                  <VATPercent>20</VATPercent>
+                  <SumTotal>1.1</SumTotal>
+                  <SumTotalVat>1.1</SumTotalVat>
+                  <IsBonus>0</IsBonus>
+
+                  <!-- <AnyCustomAttr>de</AnyCustomAttr>-->
+                </i>
+
+            </Items>
+        </Body>
+    </Document>
+</ElOrder>

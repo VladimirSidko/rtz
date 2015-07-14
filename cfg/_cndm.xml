@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Sync>
+  <Layer GUID="{B21C51F4-D14D-4B54-B4B8-5F2DE13253C4}" Name="Синхронизация справочной информации" SQL="sql_mds_sync_info" SQLCheck="sql_mds_sync_info_check">
+	<Objects>
+	  <Object Name="Справки на медикаменты" Number="4"/>
+	</Objects>
+	<Fields>
+
+	</Fields>
+  </Layer>
+
+  <Layer GUID="{07E6D5D5-DDD3-4600-AAF5-0950BFAF8F33}" Name="Синхронизация каталога медикаментов" SQL="sql_mds_sync_drug" SQLCheck="sql_mds_sync_drug_check">
+    <Objects>
+      <Object Name="Расширенный каталог лекарственных средств" Number="9"/>
+      <Object Name="Расширенный каталог лекарственных средств (украинский)" Number="18"/>
+    </Objects>
+    <Fields>
+      <Field Name="ID_SYNONYM" Description="Синоним"/>
+      <Field Name="NAME" Description="Название"/>
+      <Field Name="FORM" Description="Лекарственная форма"/>
+      <Field Name="NUMBER" Description="Номер упаковки"/>
+      <Field Name="MAKER_NAME" Description="Производитель"/>
+      <Field Name="MAKER_COUNTRY" Description="Страна производителя"/>
+      <Field Name="MAKER_CITY" Description="Город производителя"/>
+      <Field Name="OWNER_NAME" Description="Владелец лицензии"/>
+      <Field Name="OWNER_COUNTRY" Description="Страна владельца лицензии"/>
+      <Field Name="OWNER_CITY" Description="Город владельца лицензии"/>
+      <Field Name="ATC" Description="ATC"/>
+      <Field Name="NFC" Description="NFC"/>
+      <Field Name="CATEGORY" Description="Категория"/>
+      <Field Name="AMOUNT" Description="Количество вещества"/>
+      <Field Name="RECIPE" Description="Признак: рецепт"/>
+      <Field Name="BUDGET" Description="Признак: за бюджетные средства"/>
+      <Field Name="CONTROL" Description="Признак: ЦРГ постановление 333"/>
+      <Field Name="REG_NUM" Description="Номер регистрации"/>
+      <Field Name="REG_START" Description="Начало регистрации"/>
+	  <Field Name="REG_CLOSE" Description="Конец регистрации"/>
+	  <!--<Field Name="UNIFIED_ID" Description="ID унифицированого названия"/>-->
+	</Fields>
+  </Layer>
+
+  <Layer GUID="{7B034287-1121-436C-ACB5-33C438711D5C}" Name="Синхронизация ATC-классификаций" SQL="sql_mds_sync_atc" SQLCheck="sql_mds_sync_atc_check">
+    <Objects>
+      <Object Name="ATC-классификация" Number="10"/>
+      <Object Name="ATC-классификация (украинская)" Number="19"/>
+    </Objects>
+    <Fields>
+      <Field Name="CODE_PARENT" Description="Код ATC родителя"/>
+      <Field Name="NAME" Description="Название"/>
+    </Fields>
+  </Layer>
+
+  <Layer GUID="{5F7D5D1B-992A-4A1F-A4F1-2430BF946AA4}" Name="Синхронизация NFC-классификаций" SQL="sql_mds_sync_nfc" SQLCheck="sql_mds_sync_nfc_check">
+    <Objects>
+      <Object Name="NFC-классификация" Number="11"/>
+      <Object Name="NFC-классификация (украинская)" Number="20"/>
+    </Objects>
+    <Fields>
+      <Field Name="CODE_PARENT" Description="Код NFC родителя"/>
+      <Field Name="NAME" Description="Название"/>
+    </Fields>
+  </Layer>
+
+  <Layer GUID="{7CD5B9B9-0B07-489F-9664-88243B7F6A17}" Name="Синхронизация информации о сериях" SQL="sql_mds_sync_series" SQLCheck="sql_mds_sync_series_check">
+    <Objects>
+      <Object Name="Атрибуты серий" Number="8"/>
+    </Objects>
+	<Fields>
+	  <Field Name="COMMENT" Description="Комментарий"/>
+	  <Field Name="TEXT" Description="Текст документа"/>
+    </Fields>
+  </Layer>
+<!--
+  <Layer GUID="{BA90092A-E22B-4EF3-AB00-42A4E9FB1D14}" Name="Синхронизация унифицированных названий" SQL="sql_mds_sync_drugs_unified" SQLCheck="sql_mds_sync_drugs_unified_check">
+	<Objects>
+	  <Object Name="Список идентификаторов унифицированных названий" Number="29"/>
+	</Objects>
+	<Fields>
+
+	</Fields>
+  </Layer>
+-->
+</Sync>

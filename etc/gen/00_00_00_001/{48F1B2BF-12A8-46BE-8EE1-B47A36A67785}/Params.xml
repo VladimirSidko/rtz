@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<TXMLParamNode IsDocElem="true" ID="" OwnerEntityIID="{48F1B2BF-12A8-46BE-8EE1-B47A36A67785}">
+	<TXMLCategoryNode ID="97" Visible="1" Name="GeneralProperties" Caption="INN" ParamType="0">
+		<TXMLAttrNode ID="98" Visible="0" Name="Category" Caption="Категория" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_CATEGORY" ConditionFldType="8" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="99" Visible="1" Name="NameRus" Caption="Русское наименование" SrcTblName="T" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NAME_RUS" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="100" Visible="1" Name="NameUA" Caption="Украинское наименование" SrcTblName="T" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NAME_UKR" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>  <TXMLAttrNode ID="101" Visible="1" Name="NameEng" Caption="Английское наименование" SrcTblName="T" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NAME_ENG" ConditionFldType="2" SubCondition="" TreeLike="0" DistinctNeeded="0" ParamType="1"/>
+  </TXMLCategoryNode>
+</TXMLParamNode>

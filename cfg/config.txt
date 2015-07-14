@@ -1,0 +1,11 @@
+# IDEMainConfig...
+# Format: 
+# <config> = [filename, filename, ...]  [#<description>]
+# Example: 
+# cfg_name = file1, file2, file3
+# 
+
+cfg_ide_options   = ide3050-options,   idf3050-options,   mdo-options,   mds-options,   usr-options,   dev-options
+cfg_ide_strings   = ide3050-strings,   idf3050-strings,   mdo-strings,   mds-strings,   usr-strings,   dev-strings
+cfg_ide_registers = ide3050-registers, idf3050-registers, mdo-registers, mds-registers, usr-registers, dev-registers
+cfg_ide_packages  = ide3050-packages,  idf3050-packages,  mdo-packages,  mds-packages,  usr-packages,  dev-packages

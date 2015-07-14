@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<TXMLParamNode IsDocElem="true" ID="" OwnerEntityIID="{9BC5DA42-D086-4AB6-A673-81CB8DE8D9E4}">
+	<TXMLCategoryNode ID="12" Visible="1" Name="GeneralProperties" Caption="Основные характеристики" ParamType="0">
+		<TXMLAttrNode ID="13" Visible="1" Name="OrgName" Caption="Название (русское)" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NAME_RUS" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0"/>
+		<TXMLAttrNode ID="14" Visible="1" Name="OrgCorporateMembership" Caption="Корпоративная принадлежность" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NODE_CODE" ConditionFldType="11" SubCondition="" ParamType="1" TreeLike="1" DistinctNeeded="0"/>
+		<TXMLAttrNode ID="15" Visible="1" Name="OrgKindOfActivity" Caption="Вид деятельности" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_ORG_ACTIVITY" TrgtFldName="ID_ORG" ConditionFldName="ID_ORG_ACTIVITY_TYPE" ConditionFldType="15" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0"/>
+		<TXMLAttrNode ID="16" Visible="1" Name="OrgCountry" Caption="Страна" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_COUNTRY" ConditionFldType="10" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0"/>
+		<TXMLAttrNode ID="17" Visible="1" Name="OrgCity" Caption="Город" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_CITY" ConditionFldType="5" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0"/>
+		<TXMLAttrNode ID="18" Visible="1" Name="OrgOKPOforUkraine)" Caption="Код ОКПО (для Украины)" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="CODE_EGRPOU" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0"/>
+	</TXMLCategoryNode>
+</TXMLParamNode>

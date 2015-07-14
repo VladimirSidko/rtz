@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  version="1.0"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/> 
+
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="Header"     type="PriceHeader"    minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="PriceTypes" type="PriceTypesType" minOccurs="1" maxOccurs="1"/>
+          <xsd:element name="Items"      type="PriceItems"     minOccurs="1" maxOccurs="1"/>
+          <xsd:any     processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+     <xsd:key name="PriceTypeID">
+       <xsd:selector xpath="./PriceTypes/pt"/>
+       <xsd:field xpath="@ID"/>
+     </xsd:key> 
+     
+     <xsd:keyref name="PriceTypeIDRef" refer="PriceTypeID">
+      <xsd:selector xpath="./Items/i/Prices/p"/>
+      <xsd:field xpath="@TypeID"/>
+    </xsd:keyref> 
+  </xsd:element>
+
+
+  <xsd:complexType name="PriceHeader">
+        <xsd:sequence>
+          <xsd:element name="SellerID" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="Date"     type="elo:DateTime" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="PriceTypesType">
+        <xsd:sequence>
+          <xsd:element name="pt" minOccurs="0" maxOccurs="unbounded">
+            <xsd:complexType>
+              <xsd:attribute name="ID"    type="xsd:string"  use="required"/>
+              <xsd:attribute name="Days"  type="xsd:integer" />
+              <xsd:attribute name="Name"  type="xsd:string"  />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="PriceItems">
+    <xsd:sequence>
+      <xsd:element name="i" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Prices" minOccurs="1" maxOccurs="1">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="p" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:complexType>
+                      <xsd:attribute name="TypeID" type="xsd:string"  use="required"/>
+                      <xsd:attribute name="IsDef"  type="xsd:boolean" />
+                      <xsd:attribute name="Val"    type="elo:price"  use="required" />
+                      <xsd:attribute name="ValVAT" type="elo:price"  use="optional" />
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="MorionID"    type="xsd:integer" />
+          <xsd:attribute name="SellerID"    type="xsd:string"  />
+          <xsd:attribute name="Expiry"      type="elo:Date"    />
+          <xsd:attribute name="IsNDS"       type="xsd:boolean" />
+
+          <xsd:attribute name="SplInBox"     type="xsd:integer"/>
+          <xsd:attribute name="QntInSplice"  type="xsd:integer"/>
+          <xsd:attribute name="MinOrderQnt"  type="xsd:integer"/>
+          <xsd:anyAttribute/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+
+  </xsd:complexType>
+</xsd:schema>

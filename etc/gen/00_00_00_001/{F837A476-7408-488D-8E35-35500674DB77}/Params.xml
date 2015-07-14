@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<TXMLParamNode IsDocElem="true" ID="" OwnerEntityIID="{F837A476-7408-488D-8E35-35500674DB77}">
+  <TXMLCategoryNode ID="82" Visible="1" Name="Prices" Caption="Цены" ParamType="0">
+    <TXMLAttrNode ID="86" Visible="1" Name="ActualPrice" Caption="Актуальная" SrcTblName="RDPI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="IS_ACTUAL" ConditionFldType="4" SubCondition="" ParamType="1" TreeLike=""/>
+    <TXMLAttrNode ID="87" Visible="1" Name="Currency" Caption="Валюта" SrcTblName="RDPI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_CURRENCY" ConditionFldType="17" SubCondition="" ParamType="1" TreeLike="0"/>
+    <TXMLAttrNode ID="88" Visible="1" Name="DateReg" Caption="Дата регистрации" SrcTblName="RDPI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="DECLARE_DATE" ConditionFldType="3" SubCondition="" ParamType="1"/>
+    <TXMLAttrNode ID="89" Visible="1" Name="PRICE_UAH" Caption="Задекл. цена в гривне" SrcTblName="RDPI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="PRICE_UAH" ConditionFldType="1" SubCondition="" ParamType="1"/>
+    <TXMLAttrNode ID="90" Visible="1" Name="PRICE_Curr" Caption="Задекл. цена в валюте" SrcTblName="RDPI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="PRICE" ConditionFldType="1" SubCondition="" ParamType="1"/>
+    <TXMLAttrNode ID="91" Visible="1" Name="CurrRate" Caption="Курс на дату декларирования" SrcTblName="RDPI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="CURR_RATE" ConditionFldType="1" SubCondition="" ParamType="1" TreeLike="0"/>
+  </TXMLCategoryNode>
+  <TXMLCategoryNode ID="83" Visible="1" Name="Medicament" Caption="Лекарственная форма" ParamType="0">
+    <TXMLAttrNode ID="84" Visible="1" Name="MedicamentName" Caption="Название" SrcTblName="RDPI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_DRUG" ConditionFldType="16" SubCondition="" ParamType="1" TreeLike="0"/>
+  </TXMLCategoryNode>
+</TXMLParamNode>

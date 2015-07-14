@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ElOrder>
+  <Header>
+    <SellerID>7999</SellerID>
+    <Date>12.12.2012</Date>
+  </Header>
+  <PriceTypes>
+    <pt ID="00" Days="00" Name="Предоплата"/>
+    <pt ID="01" Days="02" Name="Оплата по факту"/>
+    <pt ID="07" Days="09" Name="Отсрочка 7 дней"/>
+    <pt ID="14" Days="16" Name="Отсрочка 14 дней"/>
+    <pt ID="21" Days="23" Name="Отсрочка 21 дней"/>
+    <pt ID="30" Days="30" Name="Отсрочка 30 дней"/>
+  </PriceTypes>
+  <Items>
+    <i MorionID="4671" SellerID="127" Expiry="01.12.2012" SplInBox="50" QntInSplice="10" MinOrderQnt="50">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="11.11"/>
+        <p TypeID="01" Val="11.61"/>
+        <p TypeID="07" Val="11.84"/>
+        <p TypeID="14" Val="12.19"/>
+        <p TypeID="21" Val="12.43"/>
+      </Prices>
+    </i>
+    <i MorionID="4483" SellerID="129" Expiry="01.09.2013" SplInBox="112" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="200" ValVAT="240"/>
+        <p TypeID="01" Val="250.60" ValVAT="340"/>
+        <p TypeID="07" Val="255.61" ValVAT="340"/>
+        <p TypeID="14" Val="263.13" ValVAT="340"/>
+        <p TypeID="21" Val="268.14" ValVAT="340"/>
+      </Prices>
+    </i>
+    <i MorionID="4484" SellerID="130" Expiry="01.12.2013" SplInBox="60" QntInSplice="5">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="120.21"/>
+        <p TypeID="01" Val="125.59"/>
+        <p TypeID="07" Val="128.10"/>
+        <p TypeID="14" Val="131.87"/>
+        <p TypeID="21" Val="134.38"/>
+      </Prices>
+    </i>
+    <i MorionID="20841" SellerID="132" Expiry="01.07.2012" SplInBox="189" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" Val="1.27"/>
+        <p TypeID="01" Val="1.33"/>
+        <p TypeID="07" Val="1.33"/>
+        <p TypeID="14" Val="1.33"/>
+        <p TypeID="21" Val="1.33"/>
+        <p TypeID="30" IsDef="1" Val="1.33"/>
+      </Prices>
+    </i>
+    <i MorionID="4074" SellerID="133" Expiry="01.10.2011" SplInBox="30" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="117.69"/>
+        <p TypeID="01" Val="122.95"/>
+        <p TypeID="07" Val="125.41"/>
+        <p TypeID="14" Val="129.10"/>
+        <p TypeID="21" Val="131.56"/>
+      </Prices>
+    </i>
+    <i MorionID="4519" SellerID="135" Expiry="01.02.2013" SplInBox="8" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="54.27"/>
+        <p TypeID="01" Val="56.70"/>
+        <p TypeID="07" Val="57.84"/>
+        <p TypeID="14" Val="59.54"/>
+        <p TypeID="21" Val="60.67"/>
+      </Prices>
+    </i>
+    <i MorionID="24720" SellerID="136" Expiry="01.07.2011" SplInBox="216" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" Val="1.33"/>
+        <p TypeID="01" Val="1.39"/>
+        <p TypeID="07" Val="1.39"/>
+        <p TypeID="14" Val="1.39"/>
+        <p TypeID="21" Val="1.39"/>
+        <p TypeID="30" IsDef="1" Val="1.39"/>
+      </Prices>
+    </i>
+    <i MorionID="4383" SellerID="143" Expiry="01.11.2010" SplInBox="200" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="19.71"/>
+        <p TypeID="01" Val="20.59"/>
+        <p TypeID="07" Val="21.01"/>
+        <p TypeID="14" Val="21.62"/>
+        <p TypeID="21" Val="22.04"/>
+      </Prices>
+    </i>
+    <i SellerID="144" IsNDS="1" Expiry="01.08.2011" SplInBox="16" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="15.03"/>
+        <p TypeID="01" Val="15.70"/>
+        <p TypeID="07" Val="16.09"/>
+        <p TypeID="14" Val="16.17"/>
+        <p TypeID="21" Val="16.25"/>
+        <p TypeID="30" Val="16.33"/>
+      </Prices>
+    </i>
+    <i MorionID="4886" SellerID="150" Expiry="01.06.2012" SplInBox="300" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" Val="0.77"/>
+        <p TypeID="01" Val="0.80"/>
+        <p TypeID="07" Val="0.80"/>
+        <p TypeID="14" Val="0.80"/>
+        <p TypeID="21" Val="0.80"/>
+        <p TypeID="30" IsDef="1" Val="0.80"/>
+      </Prices>
+    </i>
+    <i MorionID="28796" SellerID="151" Expiry="01.03.2012" SplInBox="200" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="49.78"/>
+        <p TypeID="01" Val="52.01"/>
+        <p TypeID="07" Val="53.05"/>
+        <p TypeID="14" Val="54.61"/>
+        <p TypeID="21" Val="55.65"/>
+      </Prices>
+    </i>
+    <i MorionID="4275" SellerID="154" Expiry="01.09.2013" SplInBox="200" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="12.27"/>
+        <p TypeID="01" Val="12.82"/>
+        <p TypeID="07" Val="13.08"/>
+        <p TypeID="14" Val="13.46"/>
+        <p TypeID="21" Val="13.72"/>
+      </Prices>
+    </i>
+    <i MorionID="4276" SellerID="158" Expiry="01.06.2014" SplInBox="180" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="12.83"/>
+        <p TypeID="01" Val="13.41"/>
+        <p TypeID="07" Val="13.68"/>
+        <p TypeID="14" Val="14.08"/>
+        <p TypeID="21" Val="14.35"/>
+      </Prices>
+    </i>
+    <i MorionID="6510" SellerID="159" Expiry="01.02.2011" SplInBox="18" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="50.45"/>
+        <p TypeID="01" Val="52.70"/>
+        <p TypeID="07" Val="53.76"/>
+        <p TypeID="14" Val="55.34"/>
+        <p TypeID="21" Val="56.39"/>
+        <p TypeID="30" Val="56.39"/>
+      </Prices>
+    </i>
+    <i MorionID="4283" SellerID="162" Expiry="01.01.2014" SplInBox="100" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="46.83"/>
+        <p TypeID="01" Val="48.93"/>
+        <p TypeID="07" Val="49.91"/>
+        <p TypeID="14" Val="51.38"/>
+        <p TypeID="21" Val="52.36"/>
+      </Prices>
+    </i>
+    <i MorionID="4290" SellerID="163" Expiry="01.01.2010" SplInBox="100" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="13.27"/>
+        <p TypeID="01" Val="13.87"/>
+        <p TypeID="07" Val="14.14"/>
+        <p TypeID="14" Val="14.56"/>
+        <p TypeID="21" Val="14.84"/>
+      </Prices>
+    </i>
+    <i MorionID="12212" SellerID="167" Expiry="01.11.2009" SplInBox="120" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="128.74"/>
+        <p TypeID="01" Val="134.50"/>
+        <p TypeID="07" Val="137.19"/>
+        <p TypeID="14" Val="141.23"/>
+        <p TypeID="21" Val="143.92"/>
+      </Prices>
+    </i>
+    <i MorionID="36923" SellerID="169" Expiry="01.07.2012" SplInBox="144" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="149.29"/>
+        <p TypeID="01" Val="155.97"/>
+        <p TypeID="07" Val="159.09"/>
+        <p TypeID="14" Val="163.77"/>
+        <p TypeID="21" Val="166.89"/>
+      </Prices>
+    </i>
+    <i MorionID="4294" SellerID="171" Expiry="01.06.2014" SplInBox="300" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="9.74"/>
+        <p TypeID="01" Val="10.17"/>
+        <p TypeID="07" Val="10.38"/>
+        <p TypeID="14" Val="10.68"/>
+        <p TypeID="21" Val="10.89"/>
+      </Prices>
+    </i>
+    <i MorionID="5403" SellerID="183" Expiry="01.05.2012" SplInBox="56" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="16.79"/>
+        <p TypeID="01" Val="17.54"/>
+        <p TypeID="07" Val="17.98"/>
+        <p TypeID="14" Val="18.06"/>
+        <p TypeID="21" Val="18.15"/>
+        <p TypeID="30" Val="18.24"/>
+      </Prices>
+    </i>
+    <i MorionID="5260" SellerID="186" Expiry="01.01.2011" SplInBox="16" QntInSplice="5">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="24.60"/>
+        <p TypeID="01" Val="25.70"/>
+        <p TypeID="07" Val="26.21"/>
+        <p TypeID="14" Val="26.98"/>
+        <p TypeID="21" Val="27.49"/>
+      </Prices>
+    </i>
+    <i MorionID="4199" SellerID="187" Expiry="01.10.2010" SplInBox="20" QntInSplice="25">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="57.59"/>
+        <p TypeID="01" Val="60.17"/>
+        <p TypeID="07" Val="61.37"/>
+        <p TypeID="14" Val="63.17"/>
+        <p TypeID="21" Val="64.38"/>
+      </Prices>
+    </i>
+    <i MorionID="12108" SellerID="189" Expiry="01.12.2013" SplInBox="24" QntInSplice="6">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="15.30"/>
+        <p TypeID="01" Val="15.30"/>
+        <p TypeID="07" Val="15.30"/>
+        <p TypeID="14" Val="15.30"/>
+        <p TypeID="21" Val="15.30"/>
+        <p TypeID="30" Val="15.30"/>
+      </Prices>
+    </i>
+    <i MorionID="114690" SellerID="193" Expiry="01.10.2014" SplInBox="8" QntInSplice="50">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="2.32"/>
+        <p TypeID="01" Val="2.42"/>
+        <p TypeID="07" Val="2.42"/>
+        <p TypeID="14" Val="2.42"/>
+        <p TypeID="21" Val="2.42"/>
+        <p TypeID="30" Val="2.42"/>
+      </Prices>
+    </i>
+    <i MorionID="26710" SellerID="194" Expiry="01.03.2011" SplInBox="350" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="38.70"/>
+        <p TypeID="01" Val="40.43"/>
+        <p TypeID="07" Val="41.24"/>
+        <p TypeID="14" Val="42.46"/>
+        <p TypeID="21" Val="43.26"/>
+      </Prices>
+    </i>
+    <i MorionID="5338" SellerID="196" Expiry="01.07.2011" SplInBox="100" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="53.80"/>
+        <p TypeID="01" Val="56.21"/>
+        <p TypeID="07" Val="57.33"/>
+        <p TypeID="14" Val="59.02"/>
+        <p TypeID="21" Val="60.14"/>
+      </Prices>
+    </i>
+    <i MorionID="11986" SellerID="198" Expiry="01.06.2014" SplInBox="60" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="70.51"/>
+        <p TypeID="01" Val="73.66"/>
+        <p TypeID="07" Val="75.14"/>
+        <p TypeID="14" Val="77.35"/>
+        <p TypeID="21" Val="78.82"/>
+      </Prices>
+    </i>
+    <i MorionID="17148" SellerID="200" Expiry="01.06.2011" SplInBox="10" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="34.10"/>
+        <p TypeID="01" Val="35.62"/>
+        <p TypeID="07" Val="36.33"/>
+        <p TypeID="14" Val="37.40"/>
+        <p TypeID="21" Val="38.11"/>
+        <p TypeID="30" Val="38.11"/>
+      </Prices>
+    </i>
+    <i MorionID="29422" SellerID="205" Expiry="01.03.2013" SplInBox="14" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="19.66"/>
+        <p TypeID="01" Val="20.53"/>
+        <p TypeID="07" Val="20.95"/>
+        <p TypeID="14" Val="21.56"/>
+        <p TypeID="21" Val="21.97"/>
+      </Prices>
+    </i>
+    <i MorionID="12159" SellerID="212" Expiry="01.06.2011" SplInBox="25" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="94.97"/>
+        <p TypeID="01" Val="99.22"/>
+        <p TypeID="07" Val="101.20"/>
+        <p TypeID="14" Val="104.18"/>
+        <p TypeID="21" Val="106.17"/>
+      </Prices>
+    </i>
+    <i MorionID="5670" SellerID="213" Expiry="01.11.2011" SplInBox="40" QntInSplice="12">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="31.34"/>
+        <p TypeID="01" Val="32.74"/>
+        <p TypeID="07" Val="33.40"/>
+        <p TypeID="14" Val="34.38"/>
+        <p TypeID="21" Val="35.03"/>
+      </Prices>
+    </i>
+    <i MorionID="5956" SellerID="216" Expiry="01.10.2014" SplInBox="12" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="14.38"/>
+        <p TypeID="01" Val="15.03"/>
+        <p TypeID="07" Val="15.03"/>
+        <p TypeID="14" Val="15.03"/>
+        <p TypeID="21" Val="15.03"/>
+        <p TypeID="30" Val="15.03"/>
+      </Prices>
+    </i>
+    <i MorionID="7096" SellerID="218" Expiry="01.04.2013" SplInBox="300" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" Val="2.52"/>
+        <p TypeID="01" Val="2.63"/>
+        <p TypeID="07" Val="2.63"/>
+        <p TypeID="14" Val="2.63"/>
+        <p TypeID="21" Val="2.63"/>
+        <p TypeID="30" IsDef="1" Val="2.63"/>
+      </Prices>
+    </i>
+    <i MorionID="62438" SellerID="222" Expiry="01.03.2010" SplInBox="240" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="32.57"/>
+        <p TypeID="01" Val="34.02"/>
+        <p TypeID="07" Val="34.70"/>
+        <p TypeID="14" Val="35.72"/>
+        <p TypeID="21" Val="36.40"/>
+      </Prices>
+    </i>
+    <i MorionID="26908" SellerID="226" Expiry="01.10.2011" SplInBox="36" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="39.08"/>
+        <p TypeID="01" Val="40.83"/>
+        <p TypeID="07" Val="41.65"/>
+        <p TypeID="14" Val="42.87"/>
+        <p TypeID="21" Val="43.69"/>
+      </Prices>
+    </i>
+    <i MorionID="75869" SellerID="227" Expiry="01.03.2012" SplInBox="36" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="108.57"/>
+        <p TypeID="01" Val="113.42"/>
+        <p TypeID="07" Val="113.42"/>
+        <p TypeID="14" Val="113.99"/>
+        <p TypeID="21" Val="114.56"/>
+        <p TypeID="30" Val="115.12"/>
+      </Prices>
+    </i>
+    <i MorionID="7668" SellerID="233" Expiry="01.12.2013" SplInBox="1" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="78.46"/>
+        <p TypeID="01" Val="81.97"/>
+        <p TypeID="07" Val="83.61"/>
+        <p TypeID="14" Val="86.07"/>
+        <p TypeID="21" Val="87.71"/>
+      </Prices>
+    </i>
+    <i MorionID="12273" SellerID="235" Expiry="01.03.2012" SplInBox="450" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="36.46"/>
+        <p TypeID="01" Val="38.09"/>
+        <p TypeID="07" Val="38.85"/>
+        <p TypeID="14" Val="40.00"/>
+        <p TypeID="21" Val="40.76"/>
+      </Prices>
+    </i>
+    <i MorionID="12374" SellerID="236" Expiry="01.08.2012" SplInBox="10" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="117.16"/>
+        <p TypeID="01" Val="122.41"/>
+        <p TypeID="07" Val="124.85"/>
+        <p TypeID="14" Val="128.53"/>
+        <p TypeID="21" Val="130.97"/>
+      </Prices>
+    </i>
+    <i MorionID="4788" SellerID="240" Expiry="01.09.2011" SplInBox="120" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="7.78"/>
+        <p TypeID="01" Val="8.13"/>
+        <p TypeID="07" Val="8.29"/>
+        <p TypeID="14" Val="8.54"/>
+        <p TypeID="21" Val="8.70"/>
+      </Prices>
+    </i>
+    <i SellerID="241" Expiry="01.02.2012" SplInBox="200" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="38.14"/>
+        <p TypeID="01" Val="39.85"/>
+        <p TypeID="07" Val="40.65"/>
+        <p TypeID="14" Val="41.84"/>
+        <p TypeID="21" Val="42.64"/>
+      </Prices>
+    </i>
+    <i MorionID="4531" SellerID="244" Expiry="01.08.2011" SplInBox="54" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="16.28"/>
+        <p TypeID="01" Val="17.01"/>
+        <p TypeID="07" Val="17.44"/>
+        <p TypeID="14" Val="17.52"/>
+        <p TypeID="21" Val="17.61"/>
+        <p TypeID="30" Val="17.69"/>
+      </Prices>
+    </i>
+    <i MorionID="12299" SellerID="247" Expiry="01.01.2012" SplInBox="50" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="20.52"/>
+        <p TypeID="01" Val="21.44"/>
+        <p TypeID="07" Val="21.97"/>
+        <p TypeID="14" Val="22.08"/>
+        <p TypeID="21" Val="22.19"/>
+        <p TypeID="30" Val="22.30"/>
+      </Prices>
+    </i>
+    <i MorionID="74578" SellerID="248" Expiry="01.10.2011" SplInBox="56" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="8.55"/>
+        <p TypeID="01" Val="8.93"/>
+        <p TypeID="07" Val="9.11"/>
+        <p TypeID="14" Val="9.38"/>
+        <p TypeID="21" Val="9.56"/>
+      </Prices>
+    </i>
+    <i MorionID="19838" SellerID="249" Expiry="01.11.2011" SplInBox="240" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="19.86"/>
+        <p TypeID="01" Val="20.75"/>
+        <p TypeID="07" Val="21.17"/>
+        <p TypeID="14" Val="21.79"/>
+        <p TypeID="21" Val="22.21"/>
+      </Prices>
+    </i>
+    <i MorionID="17264" SellerID="252" Expiry="01.10.2011" SplInBox="270" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="9.86"/>
+        <p TypeID="01" Val="10.30"/>
+        <p TypeID="07" Val="10.51"/>
+        <p TypeID="14" Val="10.82"/>
+        <p TypeID="21" Val="11.02"/>
+      </Prices>
+    </i>
+    <i MorionID="6253" SellerID="256" Expiry="01.03.2014" SplInBox="120" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="33.24"/>
+        <p TypeID="01" Val="34.73"/>
+        <p TypeID="07" Val="35.42"/>
+        <p TypeID="14" Val="36.46"/>
+        <p TypeID="21" Val="37.16"/>
+      </Prices>
+    </i>
+    <i MorionID="4319" SellerID="258" Expiry="01.05.2011" SplInBox="16" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="24.44"/>
+        <p TypeID="01" Val="25.54"/>
+        <p TypeID="07" Val="26.05"/>
+        <p TypeID="14" Val="26.81"/>
+        <p TypeID="21" Val="27.32"/>
+      </Prices>
+    </i>
+    <i MorionID="12289" SellerID="261" Expiry="01.06.2011" SplInBox="100" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="126.63"/>
+        <p TypeID="01" Val="132.29"/>
+        <p TypeID="07" Val="134.94"/>
+        <p TypeID="14" Val="138.90"/>
+        <p TypeID="21" Val="141.55"/>
+      </Prices>
+    </i>
+    <i MorionID="17709" SellerID="269" Expiry="01.03.2014" SplInBox="30" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="4.19"/>
+        <p TypeID="01" Val="4.38"/>
+        <p TypeID="07" Val="4.49"/>
+        <p TypeID="14" Val="4.51"/>
+        <p TypeID="21" Val="4.53"/>
+        <p TypeID="30" Val="4.55"/>
+      </Prices>
+    </i>
+    <i MorionID="4317" SellerID="279" Expiry="01.03.2014" SplInBox="40" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="54.36"/>
+        <p TypeID="01" Val="56.79"/>
+        <p TypeID="07" Val="58.21"/>
+        <p TypeID="14" Val="58.49"/>
+        <p TypeID="21" Val="58.78"/>
+        <p TypeID="30" Val="59.06"/>
+      </Prices>
+    </i>
+    <i MorionID="36917" SellerID="280" Expiry="01.10.2013" SplInBox="12" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="37.64"/>
+        <p TypeID="01" Val="39.32"/>
+        <p TypeID="07" Val="40.11"/>
+        <p TypeID="14" Val="41.29"/>
+        <p TypeID="21" Val="42.08"/>
+      </Prices>
+    </i>
+    <i MorionID="4316" SellerID="282" Expiry="01.01.2014" SplInBox="20" QntInSplice="10">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="19.56"/>
+        <p TypeID="01" Val="20.44"/>
+        <p TypeID="07" Val="20.84"/>
+        <p TypeID="14" Val="21.46"/>
+        <p TypeID="21" Val="21.87"/>
+      </Prices>
+    </i>
+    <i MorionID="5080" SellerID="284" Expiry="01.10.2012" SplInBox="174" QntInSplice="1">
+      <Prices>
+        <p TypeID="00" Val="2.40"/>
+        <p TypeID="01" Val="2.51"/>
+        <p TypeID="07" Val="2.51"/>
+        <p TypeID="14" Val="2.51"/>
+        <p TypeID="21" Val="2.51"/>
+        <p TypeID="30" IsDef="1" Val="2.51"/>
+      </Prices>
+    </i>
+    <i MorionID="23218" SellerID="291" IsNDS="1" Expiry="01.08.2011">
+      <Prices>
+        <p TypeID="00" IsDef="1" Val="8.84"/>
+        <p TypeID="01" Val="9.24"/>
+        <p TypeID="07" Val="9.47"/>
+        <p TypeID="14" Val="9.52"/>
+        <p TypeID="21" Val="9.56"/>
+        <p TypeID="30" Val="9.61"/>
+      </Prices>
+    </i>
+  </Items>
+  <Actions>
+     <a ID="2245332" PriceTypeID="00" Name="Gripex 1+1" Begin="31.07.09" End="31.12.10">
+       <RequiredItem MorionID="84811" SellerID="33205" Amount="1"/>
+       <BonusItem SellerID="41397" Amount="1" Price="0.02"/>
+     </a>
+     <a ID="2344794" PriceTypeID="30" Name="" Begin="21.09.09" End="31.12.09">
+       <RequiredItem MorionID="22861" SellerID="2085" Amount="4"/>
+       <BonusItem MorionID="22861" SellerID="2085" Amount="1" Price="0.05"/>
+     </a>
+  </Actions>
+ </ElOrder>

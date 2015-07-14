@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://tempuri.org/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="ElorderFramService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="tempuri.org.xsd" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="schemas.microsoft.com.2003.10.Serialization.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="ElorderFRAM.xsd" namespace="http://schemas.datacontract.org/2004/07/ElorderFRAM" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IElOrderFram_Login2_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login2" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_Login2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Login2Response" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetNontificationQueue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNontificationQueue" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetNontificationQueue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNontificationQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_SendDeliveryAddresses_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendDeliveryAddresses" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_SendDeliveryAddresses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendDeliveryAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetPriceList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriceList" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetPriceList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriceListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetPriceList2_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriceList2" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetPriceList2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPriceList2Response" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_SendOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendOrder" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_SendOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetDocumentByUID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentByUID" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetDocumentByUID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDocumentByUIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetCertificateInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCertificateInfo" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetCertificateInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCertificateInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetCertificateFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCertificateFile" />
+  </wsdl:message>
+  <wsdl:message name="IElOrderFram_GetCertificateFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCertificateFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IElOrderFram">
+    <wsdl:operation name="Login2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/Login2" message="tns:IElOrderFram_Login2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/Login2Response" message="tns:IElOrderFram_Login2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNontificationQueue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/GetNontificationQueue" message="tns:IElOrderFram_GetNontificationQueue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/GetNontificationQueueResponse" message="tns:IElOrderFram_GetNontificationQueue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendDeliveryAddresses">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/SendDeliveryAddresses" message="tns:IElOrderFram_SendDeliveryAddresses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/SendDeliveryAddressesResponse" message="tns:IElOrderFram_SendDeliveryAddresses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/GetPriceList" message="tns:IElOrderFram_GetPriceList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/GetPriceListResponse" message="tns:IElOrderFram_GetPriceList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/GetPriceList2" message="tns:IElOrderFram_GetPriceList2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/GetPriceList2Response" message="tns:IElOrderFram_GetPriceList2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/SendOrder" message="tns:IElOrderFram_SendOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/SendOrderResponse" message="tns:IElOrderFram_SendOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentByUID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/GetDocumentByUID" message="tns:IElOrderFram_GetDocumentByUID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/GetDocumentByUIDResponse" message="tns:IElOrderFram_GetDocumentByUID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/GetCertificateInfo" message="tns:IElOrderFram_GetCertificateInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/GetCertificateInfoResponse" message="tns:IElOrderFram_GetCertificateInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElOrderFram/GetCertificateFile" message="tns:IElOrderFram_GetCertificateFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElOrderFram/GetCertificateFileResponse" message="tns:IElOrderFram_GetCertificateFile_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_IElOrderFram" type="tns:IElOrderFram">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login2">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/Login2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNontificationQueue">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/GetNontificationQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDeliveryAddresses">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/SendDeliveryAddresses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/GetPriceList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList2">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/GetPriceList2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendOrder">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/SendOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentByUID">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/GetDocumentByUID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateInfo">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/GetCertificateInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateFile">
+      <soap:operation soapAction="http://tempuri.org/IElOrderFram/GetCertificateFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_IElOrderFram1" type="tns:IElOrderFram">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login2">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/Login2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNontificationQueue">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/GetNontificationQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendDeliveryAddresses">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/SendDeliveryAddresses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/GetPriceList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriceList2">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/GetPriceList2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendOrder">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/SendOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentByUID">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/GetDocumentByUID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateInfo">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/GetCertificateInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificateFile">
+      <soap12:operation soapAction="http://tempuri.org/IElOrderFram/GetCertificateFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ElorderFramService">
+    <wsdl:port name="CustomBinding_IElOrderFram" binding="tns:CustomBinding_IElOrderFram">
+      <soap:address location="http://lina.wizard.net:8080/ElorderFramService.svc/SOAP11" />
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_IElOrderFram1" binding="tns:CustomBinding_IElOrderFram1">
+      <soap12:address location="http://lina.wizard.net:8080/ElorderFramService.svc/SOAP12" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

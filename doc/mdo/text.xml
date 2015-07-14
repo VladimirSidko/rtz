@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='windows-1251'?>
+
+<!DOCTYPE book []>
+
+<book
+  lang = 'ru' version  = '5.0'
+  xmlns = 'http://docbook.org/ns/docbook'
+  xmlns:xl = 'http://www.w3.org/1999/xlink'
+  xmlns:xi = 'http://www.w3.org/2003/XInclude'>
+
+<info>
+<title>HELP</title>
+<subtitle>User manual</subtitle>
+<copyright><year>2009</year><holder>Runningmaster. All Rights Reserved.</holder></copyright>
+</info>
+
+<chapter xml:id = 'chapter01'>
+<title>Chapter1</title>
+<para>Para1</para>
+
+<section>
+<title>Section1</title>
+<para>Section1.Para1.</para>
+</section>
+
+<para>Itemizedlist:
+<itemizedlist>
+  <listitem></listitem>
+  <listitem></listitem>
+  <listitem></listitem>
+</itemizedlist>
+</para>
+
+<para>Orderedlist:
+<orderedlist>
+  <listitem></listitem>
+  <listitem></listitem>
+  <listitem></listitem>
+</orderedlist>
+</para>
+
+<para>
+<procedure><title>Procedure</title>
+<step></step>
+<step></step>
+<step></step>
+</procedure>
+</para>
+
+</chapter>
+
+</book>

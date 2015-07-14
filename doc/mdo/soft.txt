@@ -1,0 +1,39 @@
+## 1. Установка Tortoise SVN
+1. [Скачать](http://sourceforge.net/project/showfiles.php?group_id=138498) и установить последнюю версию.
+
+Для настройки используйте следующий список игнорируемых файлов:
+`*/*.local __history *.~* *.bak *.dcu *.dcp *.ddp *.dsm *.ddp *.dsk *.drc *.dpu *.hpp *.obj *.map *.rsm *.local *.identcache *.exe *.bpl *.dll Thumbs.db *.$$$`
+
+Для корректной работы с сервисом в офисе необходимо использовать соединение с SVN через протокол https или же настроить работу через proxy 10.0.0.254 port 3128.
+
+Адреса репозитариев доступны на странице Trac/SVN каждого проекта.
+
+## 2. Установка 7-Zip
+1. [Скачать](http://www.7-zip.org/download.html) и установить версию 4.57.
+
+## 3. Установка Inno Setup
+1. [Скачать isetup-x.x.x.exe](http://www.jrsoftware.org/isdl.php) последней версии и установить.
+2. [Скачать ispack-x.x.x.exe](http://www.jrsoftware.org/isdl.php) последней версии и установить.
+
+Во время установки ispack обязательно включить "Install Inno Setup Preprocessor".
+
+Во время установки ispack можно снять отметки "Download and install ISTool" и "Download and install encryption support".
+
+## 4. Установка Doc Book 5.x
+1. [Скачать DocBook XML](http://www.docbook.org/schemas/5x) последней версии (docbook-5.x.zip) и распаковать в C:\DOCBOOK.
+2. [Скачать XSLT Stylesheets](http://sourceforge.net/project/showfiles.php?group_id=21935) последней версии (docbook-xsl-ns) и распаковать в C:\DOCBOOK\xsl-ns.
+3. [Скачать XSLT Proc Binary](http://www.zlatkovic.com/pub/libxml/) последней версии (iconv, libxml2, libxslt, zlib) и распаковать (bin) в C:\DOCBOOK\xsltproc.
+
+Необходимо использовать [online документацию](http://www.docbook.org/tdg5/en/html/docbook.html) или же [загрузить себе offline вариант](http://www.docbook.org/tdg5/). 
+
+## 5. Установка Microsoft HTML Help Workshop
+1. [Скачать htmlhelp.exe](http://download.microsoft.com/download/0/a/9/0a939ef6-e31c-430f-a3df-dfae7960d564/htmlhelp.exe) и установить.
+
+## 1. Установка wget
+[Скачать](http://users.ugent.be/~bpuype/wget/#download) windows билд wget и файл wget.exe разместить в каталоге установки 7Zip
+
+## 2. Установка wput
+[Скачать](http://wput.sourceforge.net/) windows билд wput и файл wput.exe разместить в каталоге установки 7Zip
+
+## 3. Установка blat
+[Скачать](http://www.blat.net/) blat и файл blat.exe разместить в каталоге установки 7Zip. Необходим для утилиты mdo_sync.exe для нотификации об ошибках в процессе синхронизации.

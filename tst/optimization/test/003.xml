@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<mdo_test>
+  <tests>
+    <optimize_test Number="003.01" Description="Проверка отсечения предложений без цен (#593)">
+      <import_demand>
+        <wnt LocationID="1001" FileName="tst\optimization\data\003\empty_price\1001.wnt"/>
+      </import_demand>
+
+      <import_supply>
+        <mvp SupplierID="90001" FileName="tst\optimization\data\003\empty_price\90001_FULL.MVP"/>
+        <!-- второй прайс должен сбросить цены предложений от первого -->
+        <mvp SupplierID="90001" FileName="tst\optimization\data\003\empty_price\90001_CLEAR.MVP"/>
+      </import_supply>
+
+      <filters>
+        <favorite>False</favorite>
+        <date_supply>False</date_supply>
+      </filters>
+
+      <optimize>
+        <by_supplier/>
+      </optimize>
+
+      <checks Number="01" Description="Отсечение пустых предложений при оптимизации по поставщику">
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1001"/>
+          <drug_supplier DrugID="100005" SupplierID="0" LocationID="1001"/>
+
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100007" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1001"/>
+      </checks>
+
+      <optimize>
+        <by_weight/>
+      </optimize>
+      <checks Number="02" Description="Отсечение пустых предложений по весу">
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1001"/>
+          <drug_supplier DrugID="100005" SupplierID="0" LocationID="1001"/>
+
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100007" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1001"/>
+      </checks>
+
+    </optimize_test>
+  </tests>
+</mdo_test>

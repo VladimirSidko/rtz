@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  version="1.0"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/> 
+
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="Files"     type="FileList"    minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+
+  <xsd:complexType name="FileList">
+      <xsd:choice minOccurs="0" maxOccurs="unbounded">
+        <xsd:element name="soap" type="FileInfoSoap" minOccurs="0" maxOccurs="1"/>
+        <xsd:element name="web"  type="FileInfoWeb"  minOccurs="0" maxOccurs="1"/>
+      </xsd:choice>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="FileInfo">
+    <xsd:attribute name="FileID"   type="xsd:string" use="required"/>
+    <xsd:attribute name="Type"     type="FileType"   use="required"/>
+    <xsd:attribute name="Caption"  type="xsd:string" use="optional"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="FileInfoSoap">
+    <xsd:complexContent>
+      <xsd:extension base="FileInfo">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="FileInfoWeb">
+    <xsd:complexContent>
+      <xsd:extension base="FileInfo">
+          <xsd:attribute name="Url" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:simpleType name="FileType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="TIF"/>
+      <xsd:enumeration value="JPG"/>
+      <xsd:enumeration value="GIF"/>
+      <xsd:enumeration value="PNG"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+
+</xsd:schema>

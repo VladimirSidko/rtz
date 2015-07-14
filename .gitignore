@@ -1,0 +1,57 @@
+# Untracked extensions:
+# ---------------------
+*.~*
+*.bak
+*.dcu
+*.dcp
+*.ddp
+*.dsm
+*.ddp
+*.dsk
+*.drc
+*.dpu
+*.hpp
+*.obj
+*.map
+*.rsm
+*.$$$
+*.identcache
+*.local
+*.tlb
+*.log
+*.todo
+*.skincfg
+C
+tmp
+*.tvsconfig
+
+# Untracked files:
+# ---------------------
+project-vars.bat
+Thumbs.db
+
+# Untracked folders:
+# ---------------------
+*.git
+*.*.local
+__history
+user-distr*
+user-setup
+.git-*.cmd
+
+# Untracked binaries:
+# ---------------------
+*.exe
+!IBEScript.exe
+*.bpl
+*.dll
+
+# DDevExtensions project settings
+# -------------------------------
+*.projdata
+/etc/batch/project_init/init_projeñt.bat
+
+/src.add/gfc_loader/exe/_crypt.bat
+/src.add/gfc_loader/exe/_decrypt.bat
+/src.add/gfc_loader/exe/gfc-options.txt
+/src.add/gfc_loader/exe/key.dat

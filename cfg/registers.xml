@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<ide>
+  <!--
+  <actn IID="" Intf="" ImageName="" ShortCut=""/>
+
+  <comp IID="" Intf="">
+  <form IID="" Intf=""/>
+  </comp>
+   -->
+  <meta>
+  </meta>
+
+  <groups>
+  </groups>
+
+  <root>
+    <!-- ACTIONS FOR LEVEL3 TOOLBAR (LEFTSIDE) -->
+    <virtual IID="{1C8A5864-E448-4281-9D93-567A1BFE4B77}">
+      <actn IID="{8BBCB795-BB14-491A-94FF-25297723D3F3}" Intf="IIDEActnControlPanel">
+        <actn IID="{57C1FCC0-ADB5-42D0-93FB-D48DEF0D5A60}" Intf="IMDSActnChangePass" Caption="str_mds_user_pass_change" />
+        <separator />
+        <actn IID="{6CB27F9F-B64A-442C-AE9F-38FCDB6F1C97}" Intf="IMDSAcntLogout" />
+      </actn>
+    </virtual>
+
+
+<!--
+  IrtzCompLogin = interface ['{C7E67918-80F6-4953-AE4F-728B64617752}'] end;
+  IrtzFormLogin = interface ['{2E2FB2CD-1BF9-46C7-A842-C98C7BFE54C4}'] end;
+-->
+  <comp IID="{C7E67918-80F6-4953-AE4F-728B64617752}" Intf="IrtzCompLogin" Caption="11111" >
+	<form IID="{2E2FB2CD-1BF9-46C7-A842-C98C7BFE54C4}" Intf="IrtzFormLogin" Caption="11111" />
+  </comp>
+
+<!--
+  IrtzCompCPanel = interface ['{D296AAE8-F15E-4D76-8D9C-AEAEDC7B589E}'] end;
+  IrtzFormCPanel = interface ['{EC9A6414-0210-4B92-90DD-6E7D8C3F0804}'] end;
+-->
+  <comp IID="{D296AAE8-F15E-4D76-8D9C-AEAEDC7B589E}" Intf="IrtzCompCPanel" Caption="22222">
+	<form IID="{EC9A6414-0210-4B92-90DD-6E7D8C3F0804}" Intf="IrtzFormCPanel" Caption="22222">
+	</form>
+	<actn IID="{FD8462D1-28FA-4F65-9096-5685BBEB0A25}" Intf="IIDEActnManual" />
+	<actn IID="{A1AC61DC-94CB-4AA7-A043-7B96495B41FB}" Intf="IIDEActnAboutHome" />
+	<actn IID="{51364001-C1B7-4521-A7C6-147757522331}" Intf="IIDEActnPreference" />
+  </comp>
+
+  <!-- Общая стартовая -->
+  <comp IID="{0AF5E4B3-5DA8-477C-AA89-7FF37008BBC5}" Intf="IIDECompCPanel">
+	<form IID="{C7D70DED-326C-435D-AD74-D5DDB142B973}"  Intf="IIDEFormCPanel" Caption="SGeneralStart" >
+    <!-- Start page actions -->
+	</form>
+  </comp>
+
+	<comp IID="{493EA95D-A163-46A0-8DB8-40905BFFC436}" Intf="IMDSCompAuth" Caption="SAuth">
+	  <form IID="{202D6962-E16C-490A-A0CB-8AC6B0C9B8B6}" Intf="IMDSFormAuth" Caption="SAuth"/>
+	</comp>
+
+	<comp IID="{7286EC3A-98C6-4146-A423-9DAF68F3BC14}" Intf="IMDSCompDrugInfo" Caption="SInfos">
+	  <form IID="{8BE8F810-EB9F-44CF-A266-325A9D5D9677}" Intf="IMDSFormDrugInfo" Caption="SInfos">
+		<actn IID="{7ECFD3F4-5F66-4F0F-85DE-267740A3381A}" Intf="IMDSActnInfoPrintPreview" ImageName = "idf_print.bmp" Caption="str_mds_print"/>
+	  </form>
+	</comp>
+
+	<!-- IDF DB Services -->
+	<comp IID="{AD224235-1F42-4262-9470-5D9BBBFA1995}" Intf="IIDFCompService" >
+      <form IID="{3E6E448B-B145-4144-8ACA-15C25D20F62F}" Intf="IIDFFormService" >
+        <actn IID="{36CEB4DF-0F3B-4864-8946-9C364ECBA206}" Intf="IIDFActnDBOther">
+          <actn IID="{F8C0D2DD-D9A9-4E89-A499-CC4CC98BBB43}" Intf="IMDOActnFullBR"    ImageName="idf_run.bmp" Caption="B/R"   Hint="SFullDBbr" DisplayMode="admImageAndText"/>
+          <actn IID="{DE2A7345-195D-48F4-94FB-0CAD7F2FE276}" Intf="IMDSActnCheckGen"  ImageName="idf_run.bmp" Caption="CheckGenerators" DisplayMode="admImageAndText"/>
+        </actn>
+      </form>
+    </comp>
+
+
+  </root>
+</ide>

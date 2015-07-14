@@ -1,0 +1,27 @@
+Отредактировать и сохранить etc\project-vars.txt как etc\project-vars.bat
+sql\_var.bat
+sql\connect.sql
+sql\create.sql
+sql\update.sql
+sql\xxx\update.sql
+
+
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\CodeGear\BDS\6.0\Globals]
+"UserCanCancelKibitzing"="1"
+
+
+Стуктура дистрибутива:
+cfg - файлы конфигурации для usr-distr\cfg
+cmd - файлы часто выполняемых команд для разработки
+doc - файлы документации для разработки и исходные тексты результата для usr-distr\doc
+etc - файлы настроек для разработки и прочая
+img - файлы графические для usr-distr\img
+inc - файлы включения для разработки (для исходников src)
+iss - файлы для разработки инсталлятора usr-setup\
+sql - файлы для разработки базы данных usr-distr\fdb и usr-distr\sql
+src - файлы исходных текстов проекта
+
+Генерировать SSH ключ рекомендуется для passphrase = '', 
+чтобы не вводить его каждый раз при общении с сервером Git

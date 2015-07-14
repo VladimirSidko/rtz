@@ -1,0 +1,38 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{94506e4d-7900-41eb-bf53-6e95c589b153}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="rtz_core.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<BorlandProject>
+					<Default.Personality/>
+				</BorlandProject>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="rtz_core">
+			<MSBuild Projects="rtz_core.dproj"/>
+		</Target>
+		<Target Name="rtz_core:Clean">
+			<MSBuild Targets="Clean" Projects="rtz_core.dproj"/>
+		</Target>
+		<Target Name="rtz_core:Make">
+			<MSBuild Targets="Make" Projects="rtz_core.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="rtz_core"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="rtz_core:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="rtz_core:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

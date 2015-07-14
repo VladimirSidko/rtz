@@ -1,0 +1,840 @@
+/*    MAIN   */
+html, body {
+height: 100%; 
+background-color:	#FDF9EF;
+margin:				0px;
+padding:			0px;
+text-align:			justify;
+scrollbar-arrow-color:		#03428E;
+scrollbar-base-color:		#FDC215; 
+scrollbar-darkshadow-color:	#03428E;
+scrollbar-highlight-color:	#FFF56D; 
+scrollbar-3dlight-color:	#FFFFFF;
+scrollbar-track-color:		#FDC215; 
+}
+
+td {
+font-size: 			13px;
+}
+input {
+font-size: 			11px;
+}
+
+select{
+font-size: 			11px;
+}
+
+/* œ–Œ—“Œ œ›’¿ */
+p {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+margin-top:			5px;
+margin-bottom:		12px;
+margin-left:		5px;
+margin-right:		5px;
+text-align:			justify;
+}
+
+/* ƒÀﬂ “Œ◊≈  */
+li {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+margin-top:			2px;
+margin-left:		0px;
+margin-right:		20px;
+text-align:			justify;
+}
+
+p.apteka {
+font-size: 			15px;
+color:				#1C458A;
+font-weight:		bold; 
+margin-top:			2px;
+margin-bottom:		3px;
+text-align:			center;
+}
+
+
+p.apteka_purpose {
+font-size: 			15px;
+color:				#FFFFFF;
+font-weight:		bold; 
+margin-top:			2px;
+margin-bottom:		3px;
+text-align:			center;
+}
+
+
+
+
+.newsdate {
+font-family: tahoma;
+color: #FFFFFF;
+font-weight: bold;
+background-color: #0070B0;
+font-size: 9px;
+text-align: left;
+padding-left:6px;
+padding-right:6px;
+padding-top:5px;
+padding-bottom:3px;}
+
+
+.allnewsblock {
+font-family: tahoma;
+font-size: 13px;
+font-weight: bold;
+text-align: right;
+padding-bottom:0px;}
+
+.addheaderblue {
+font-family: tahoma;
+font-size: 19px;
+/*color: #0070B0;*/
+color: #FFFFFF;
+}
+
+.addheaderred {
+font-family: tahoma;
+font-size: 15px;
+font-weight: bold;
+color: #FFFFFF;
+}
+
+
+a.aptekanews, a.aptekanews:link, a.aptekanews:visited {
+text-decoration:	none;
+}
+a.aptekanews:hover, a.aptekanews:active {
+text-decoration:	none;
+}
+
+a.apteka_content, a.apteka_content:link, a.apteka_content:visited {
+font-family:		Arial, san-serif;
+color:				#1C458A;
+text-decoration:	none;
+}
+a.apteka_content:hover, a.apteka_content:active {
+color:				#3D72CB;
+}
+
+
+
+/* Œ¡Ÿ»≈  ——€À » */
+a, a:link, a:visited {
+font-family:		tahoma, san-serif;
+font-size: 			12px;
+color:				#1C458A;
+text-decoration:	underline; 
+}
+a:hover, a:active {
+font-family:		tahoma, san-serif;
+font-size: 			12px;
+color:				#3D72CB;
+text-decoration:	none;
+}
+
+
+/* =====================================H====================== */
+h1, h4 {
+margin-left:		5px;
+}
+
+/* »Ãﬂ œ–Œ»«¬Œƒ»“≈Àﬂ */
+h1.maker_Name {
+font-family:		Tahoma, san-serif;
+font-size: 			18px;
+color:				#E90000;
+margin-top:			0px;
+margin-bottom:		0px;
+margin-left:		15px;
+text-align:			left;
+}
+
+
+/* »ƒ≈Õ“»‘» ¿“Œ– Õ¿«¬¿Õ»≈ œ–≈œ¿–¿“¿ */
+h1.identify {
+font-family:		Tahoma, san-serif;
+font-size: 			19px;
+color:				#E90000;
+margin-left:		2px;
+margin-top:			5px;
+margin-bottom:		0px;
+margin-right:		15px;
+text-align:			left;
+}
+
+/* »ƒ≈Õ“»‘» ¿“Œ– - œ–Œ»«¬Œƒ»“≈À‹ */
+h1.identify_maker {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+color:				#000000;
+margin-left:		2px;
+margin-top:			2px;
+margin-bottom:		0px;
+margin-right:		15px;
+text-align:			left;
+}
+
+/*  Õ¿«¬¿Õ»≈ œ–≈œ¿–¿“¿ */
+h1.Name {
+font-family:		Tahoma, san-serif;
+font-size: 			18px;
+color:				#E90000;
+font-weight:		bold; 
+margin-top:			10px;
+margin-bottom:		0px;
+text-align:			left;
+}
+
+h1.hi {
+font-family:		Tahoma, san-serif;
+font-size: 			12px;
+color:				#03428E;
+font-weight:		bold; 
+margin-top:			0px;
+margin-bottom:		2px;
+margin-right:		20px;*/
+text-align:			right;
+}
+
+/* œ–Œ»«¬Œƒ»“≈À‹ ¬ —œ–¿¬ ≈ */
+h4.OrganizationBig {
+font-family:		Tahoma, san-serif;
+font-size: 			14px;
+color:				#03428E;
+margin-top:			5px;
+margin-bottom:		2px;
+text-align:			left;
+}
+
+.atc_in_organization {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+margin-left:			50px;
+color:				#000000;
+font-weight:		normal; 
+}
+
+/* «¿√ÀŒ¬Œ  */
+h4.page_title {
+font-family:		Tahoma, san-serif;
+font-size: 			16px;
+color:				#03428E;
+font-weight:		bold; 
+margin-top:			0px;
+margin-bottom:		0px;
+}
+
+/* œ–≈œ¿–¿“ */
+h1.preparat {
+font-family:		Tahoma, san-serif;
+font-size: 			11px;
+color:				#03428E;
+margin-top:			3px;
+margin-bottom:		0px;
+font-weight:		normal;
+}
+
+/* Õ¿«¬¿Õ»≈ ¬≈“ » */
+h1.ats_name {
+font-family:		Tahoma, san-serif;
+font-weight:		normal; 
+font-size: 			13px;
+margin-left:		2px;
+margin-top:			0px;
+margin-bottom:		1px;
+}
+
+/* “≈ —“ ¬ ¿“— (–¿«ƒ≈À) */
+h1.ats_firstname {
+font-family:		Tahoma, san-serif;
+font-size: 			12px;
+font-weight:		normal; 
+color:				#000000;
+margin-left:		0px;
+margin-top:			0px;
+margin-bottom:		1px;
+}
+/* “Œ∆≈ */
+h1.ats_name2 {
+font-family:		Tahoma, san-serif;
+font-weight:		normal; 
+font-size: 			12px;
+margin-left:		8px;
+margin-top:			0px;
+margin-bottom:		1px;
+}
+
+/*==========================——€À »===============================*/
+/* ¬ Ã≈Õﬁ Õ¿¬»√¿÷»» */
+a.razdel, a.razdel:link, a.razdel:visited {
+font-family:		Arial, san-serif;
+font-size: 			13px;
+font-weight:		bold; 
+color:				#1C458A;
+text-decoration:	none;
+margin-left:		25px;
+}
+a.razdel:hover, a.razdel:active {
+font-size: 			13px;
+font-weight:		bold; 
+color:				#3D72CB;
+}
+
+
+/* œ≈◊¿“Õ€≈ —“»À» */
+a.print, a.print:link, a.print:visited {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+font-weight:		bold; 
+color:				#1C458A;
+text-decoration:	none;
+margin-left:		25px;
+}
+a.print:hover, a.print:active {
+font-size: 			13px;
+font-weight:		bold; 
+color:				#3D72CB;
+}
+
+/* ¬ Õ¿¬»√¿÷»» */
+a.sub_razdel, a.sub_razdel:link, a.sub_razdel:visited {
+font-family:		Arial, san-serif;
+font-size: 			15px;
+font-weight:		bold; 
+color:				#1C458A;
+text-decoration:	none;
+margin-left:		20px;
+}
+a.sub_razdel:hover, a.sub_razdel:active {
+font-size: 			15px;
+font-weight:		bold; 
+color:				#3D72CB;
+}
+
+
+/* ¬ Õ¿¬»√¿÷»» */
+a.sub_razdel2, a.sub_razdel2:link, a.sub_razdel2:visited {
+font-family:		Arial, san-serif;
+font-size: 			13px;
+color:				#000000;
+text-decoration:	none;
+margin-left:		25px;
+}
+a.sub_razdel2:hover, a.sub_razdel2:active {
+font-size: 			13px;
+color:				#646464;
+}
+
+/* ¬ Õ¿¬»√¿÷»» */
+a.sub_razdel3, a.sub_razdel3:link, a.sub_razdel3:visited {
+font-family:		Arial, san-serif;
+font-size: 			13px;
+color:				#000000;
+text-decoration:	none;
+margin-left:		40px;
+}
+a.sub_razdel3:hover, a.sub_razdel3:active {
+font-size: 			13px;
+color:				#646464;
+}
+
+/* œ–≈œ¿–¿“ ¬ —œ»— ≈ */
+a.preparat_list, a.preparat_list:link {
+font-family:		Arial, san-serif;
+color:				#1C458A;
+text-decoration:	underline;
+}
+a.preparat_list:hover, a.preparat_list:active, a.preparat_list:visited {
+color:				#3D72CB;
+}
+
+/* »ƒ≈Õ“»‘» ¿“Œ–€ */
+a.identify, a.identify:link, a.identify:visited {
+font-family:		Arial, san-serif;
+color:				#E90000;
+text-decoration:	underline;
+}
+a.identify:hover, a.identify:active {
+color:				#EE6666;
+}
+
+/* ’¿«ﬂ≈¬¿ »ƒ≈Õ“»‘» ¿“Œ–Œ¬ */
+a.identify_maker, a.identify_maker:link, a.identify_maker:visited {
+font-family:		Arial, san-serif;
+color:				#1C458A;
+text-decoration:	underline;
+}
+a.identify_maker:hover, a.identify_maker:active {
+color:				#3D72CB;
+}
+
+
+/* œ–Œ»«¬Œƒ»“≈À» */
+a.makers_list, a.makers_list:link {
+font-family:		Arial, san-serif;
+color:				#1C458A;
+text-decoration:	underline;
+}
+a.makers_list:hover, a.makers_list:active, a.makers_list:visited {
+color:				#3D72CB;
+}
+
+
+/* ¿“— */
+a.ats_link, a.ats_link:link {
+font-family:		Arial, san-serif;
+color:				#1C458A;
+text-decoration:	underline;
+}
+a.ats_link:hover, a.ats_link:active, a.ats_link:visited {
+color:				#3D72CB;
+}
+
+/* ¿“—2 */
+a.ats_link2, a.ats_link2:link {
+font-family:		Arial, san-serif;
+color:				#1C458A;
+text-decoration:	underline;
+}
+a.ats_link2:hover, a.ats_link2:active, a.ats_link2:visited {
+color:				#3D72CB;
+}
+
+
+/*Ï˝ÈÍÂ˚ */
+a.info_maker, a.info_maker:link, a.info_maker:visited, a.info_maker:active {
+font-family:		tahoma, san-serif;
+color:				#1C458A;
+text-decoration:	none; 
+}
+a.info_maker:hover {
+font-family:		tahoma, san-serif;
+color:				#3D72CB;
+text-decoration:	underline;
+}
+
+
+/* compendium */
+a.compendium, a.compendium:link, a.compendium:visited, a.compendium:active {
+font-family:		tahoma, san-serif;
+font-size: 			15px;
+color:				#000000;
+margin-left:		10px;
+font-weight:		bold; 
+text-decoration:	none; 
+}
+a.compendium:hover {
+font-family:		tahoma, san-serif;
+font-size: 			15px;
+color:				#414141;
+text-decoration:	underline;
+}
+
+a.Copyright, a.Copyright:link, a.Copyright:visited, a.Copyright:active {
+font-size: 			10px;
+text-decoration:	none; 
+}
+a.Copyright:hover {
+font-size: 			10px;
+text-decoration:	underline;
+}
+
+
+a.limited, a.limited:link, a.limited:visited, a.limited:active {
+font-size: 			10px;
+color:				#E90000;
+text-decoration:	underline;
+}
+a.limited:hover {
+font-size: 			10px;
+text-decoration:	none; 
+}
+
+
+
+
+a.linkname, a.linkname:link, a.linkname:visited, a.linkname:active {
+color:				#1C458A;
+text-decoration:	underline;
+padding-left: 1;
+}
+a.linkname:hover {
+color:				#3D72CB;
+text-decoration:	none; 
+}
+
+
+
+a.linknameitem, a.linknameitem:link, a.linknameitem:visited, a.linknameitem:active {
+color:				#1C458A;
+font-size: 			11px;
+text-decoration:	underline;
+padding-left: 3;
+}
+a.linknameitem:hover {
+color:				#3D72CB;
+font-size: 			11px;
+text-decoration:	none; 
+
+}
+
+
+/*======================== œ¿–¿√–¿‘€=============================*/
+
+
+/* —Œƒ≈–∆¿Õ»≈ »ƒ≈Õ“»‘» ¿“Œ–Œ¬ */
+p.identify_content {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+margin-left:		2px;
+text-align:			justify;
+}
+
+
+
+.town {
+font-family:		Tahoma, san-serif;
+/*color:				#1C458A;*/
+color:				#000000;
+font-size: 			13px;
+margin-right:		3px;
+font-weight:		bold;
+text-align:	right;
+
+}
+
+
+
+
+
+/* ¿ƒ–≈— ¬ —œ–¿¬ ≈  */
+p.adress_Name {
+font-family:		Arial, san-serif;
+font-size: 			13px;
+color:				#000000;
+margin-left:		15px;
+text-align:			left;
+}
+
+/*—Ô‡ÙÙÍ‡*/
+
+
+/**/
+p.sub_Name {
+font-family:		Arial, san-serif;
+font-size: 			12px;
+color:				#000000;
+margin-top:			2px;
+margin-bottom:		2px;
+text-align:			left;
+}
+
+/* ¿ƒ–≈— ¬ —œ–¿¬ ≈  */
+p.adress_Name {
+font-family:		Arial, san-serif;
+font-size: 			13px;
+color:				#000000;
+margin-left:		15px;
+text-align:			left;
+}
+
+/*—Ô‡ÙÙÍ‡*/
+
+
+
+/*========================—œ–¿¬ ¿==============================*/
+
+
+/* ‘Œ–Ã¿ ¬€œ”— ¿ */
+.DrugFormBig {
+margin-left:		5px;
+margin-top:			0px;
+font-weight:		bold; 
+}
+
+/* –≈√»—“–¿÷»ŒÕÕ€≈ ƒ¿ÕÕ€≈ */
+.RegistryBig {
+text-align:			right;
+margin-right:		8px;
+font-size: 			11px;
+margin-top:			0px;
+margin-bottom:		10px;
+}
+
+
+/*  ◊“Œ“Œ ¬ —œ–¿¬ ≈ Õ¿ œ≈◊¿“» */
+.CompositionBig {
+font-size: 			13px;
+margin-top:			0px;
+margin-bottom:		0px;
+}
+
+
+
+/* ¬ —œ–¿¬ ≈ Õ¿ œ≈◊¿“»*/
+.CompositionAddNameBig {
+font-size: 			13px;
+margin-top:			 0px;
+margin-bottom:		10px;
+}
+
+/* —œ–¿¬ ¿*/
+.DrugFormReg {
+font-weight:		bold;
+color:				#03428E;
+}
+
+/* —œ–¿¬Œ◊Õ€≈ “¿¡À»÷˚ */
+table.spravka {
+text-align:			center;
+}
+
+
+/*========================¿À‘¿¬»“€==============================*/
+/* ¿À‘¿¬»“ ¿ “»¬Õ¿ﬂ */
+.alfabet_activ {
+font-family:		Tahoma, san-serif;
+font-size: 			14px;
+font-weight:		bold; 
+color:				#C76924;
+text-decoration:	none;
+margin-right:		3px;
+}
+
+/* ¿À‘¿¬»“ ¿  ¿œÃ»Õﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ“‹*/
+a.alfabet, a.alfabet:link, a.alfabet:visited {
+font-family:		Tahoma, san-serif;
+font-size: 			14px;
+font-weight:		bold;
+color:				#1C458A;
+text-decoration:	underline;
+margin-right:		3px;
+}
+a.alfabet:hover, a.alfabet:active {
+font-size: 			14px;
+font-weight:		bold;
+color:				#000000;
+}
+
+/*========================À»—“»Õ√ » œ≈…ƒ∆»Õ√===================*/
+
+
+/* À»—“»Õ√ (œ≈…ƒ∆»Õ√) */
+.listing_activ{
+font-family:		Arial, san-serif;
+font-size: 			12px;
+font-weight:		bold; 
+color:				#1C458A;
+text-decoration:	underline;
+}
+
+/* À»—“»Õ√ */
+a.listing, a.listing:link, a.listing:visited {
+font-family:		Arial, san-serif;
+color:				#1C458A;
+text-decoration:	none;
+}
+a.listing:hover, a.listing:active {
+color:				#000000;
+}
+
+
+/*========================Œ‘Œ–ÃÀ≈Õ»≈=============================*/
+
+/* ›– » */
+.ragy {
+	vertical-align : top;
+	font-size : 10px;
+	text-decoration : none;
+}
+
+/* Œ¡Ÿ≈≈ ƒÀﬂ “≈ —“¿ */
+.text {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+text-align:			justify;
+}
+
+/*  Œœ»–¿…“€ */
+.copyright {
+font-family:		Tahoma, san-serif;
+font-size: 			10px;
+color:				#1C458A;
+}
+
+/* √¿À”¡Œ… :-) */
+.blue {
+font-family:		Tahoma, san-serif;
+font-size: 			11px;
+font-weight:		bold; 
+color:				#1C458A;
+}
+
+/* √¿À”¡Œ… ¬ ¿“— :-) */
+.blue_ats {
+font-family:		Tahoma, san-serif;
+font-size: 			16px;
+font-weight:		bold; 
+color:				#1C458A;
+}
+
+/* ◊≈–Õ€… */
+.black {
+font-family:		Tahoma, san-serif;
+font-size: 			11px;
+color:				#000000;
+margin-right:		2px;
+}
+
+
+
+/*  –¿—Õ€… */
+.red {
+font-family:		Tahoma, san-serif;
+font-size: 			10px;
+font-weight:		bold; 
+color:				#E90000;
+margin-left:		2px;
+}
+
+/*  –¿—Õ€… ¬ ¿“— */
+.red_ats {
+font-family:		Arial, san-serif;
+font-size: 			11px;
+font-weight:		bold; 
+color:				#E90000;
+margin-left:		0px;
+margin-top:			0px;
+margin-bottom:		1px;
+
+}
+
+/* œ–Œ»«¬Œƒ»“≈À‹  –¿—Õ€… */
+.red_maker {
+font-family:		Tahoma, san-serif;
+font-size: 			15px;
+font-weight:		bold; 
+color:				#E90000;
+margin-left:		2px;
+}
+
+/* »Ãﬂ ◊≈√Œ“Œ  –¿—ÕŒ≈ */
+.red_name {
+font-family:		Tahoma, san-serif;
+font-size: 			13px;
+font-weight:		bold; 
+color:				#E90000;
+}
+
+/* ??????????????? */
+.main {
+font-family:		Arial, san-serif;
+font-size: 			23px;
+font-weight:		bold; 
+color:				#1C458A;
+text-decoration:	none;
+}
+
+/* ¬ Õ¿¬»√¿÷»» */
+.razdel {
+font-family:		Arial, san-serif;
+font-size: 			15px;
+font-weight:		bold; 
+color:				#1C458A;
+text-decoration:	none;
+}
+
+/* ÃŒ∆≈ » Õ≈ Õ¿ƒ¿  */
+.symbol {
+color:				#E90000;
+font-weight:		bold; 
+}
+
+/* ÃŒ∆≈ » Õ≈Õ¿ƒ¿ */
+.znak_symbol {
+font-family:		Symbol, san-serif;
+}
+
+/* new faq style*/
+p.faq_blue {
+border:				1px solid #1C458A;
+background:			#1C458A;
+color:				#FFFFFF;
+font-size: 			11px;
+font-weight:		bold; 
+margin-top:			3px;
+}
+
+.marker {
+/*margin-right:3px solid ;
+margin-left:3px solid ;
+margin-top:1px solid ;
+margin-bottom:1px solid;*/
+}
+
+p.faq_red {
+border:				1px solid #E90000;
+background:			#E90000;
+color:				#FFFFFF;
+font-size: 			11px;
+font-weight:		bold; 
+margin-top:			1px;
+margin-bottom:		1px;
+}
+
+p.faq_text {
+font-size: 			12px;
+margin-left:		2px;
+margin-right:		0px;
+margin-top:			2px;
+margin-bottom:		0px;
+}
+
+p.faq_q {
+color:				#E90000;
+font-size: 			11px;
+font-weight:		bold;
+margin-left:		2px;
+margin-right:		0px;
+margin-top:			2px;
+margin-bottom:		0px;
+}
+
+.znak {
+font-family:		Tahoma, san-serif;
+font-size: 			24px;
+color:				#FFFFFF;
+font-weight:		bold; 
+margin-top:			10px;
+margin-bottom:		10px;
+margin-left:			10px;
+margin-right:			10px;
+text-align:			center;
+}
+
+td.spell {
+color:				#0070B0;
+background-color:	#E9E9E9;
+}
+hr.spell {
+border-top:			1px solid #FF0000;
+background:			#FF9494;
+color:				#FF9494;
+width:				100%;
+height:				1px;
+text-align:			left;
+}
+
+
+
+a.topnewstitle, a.topnewstitle:link, a.topnewstitle:visited {
+font-family:		Tahoma, san-serif;
+font-size: 			10px;
+color:				#1C458A;
+}
+a.topnewstitle:hover, a.topnewstitle:active {
+font-size: 			10px;
+color:				#000000;
+}

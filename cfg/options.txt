@@ -1,0 +1,187 @@
+# Preferences...
+# Format:
+# <preference> = <value: Integer | string | Boolean (True|False) >  [#<description>]
+# Example:
+# window_height = 350 # comment
+#
+
+# Overriding IDE's preferences
+# --------------------------
+prf_ide_app_cpanel_guid = {493EA95D-A163-46A0-8DB8-40905BFFC436} # IMDSCompLogin
+prf_ide_mutex_name      = MDS_RUNNING
+;prf_ide_file_docguide   = help.chm
+prf_ide_file_docguide   = none # отключено пока нет нормального
+prf_ide_addr_homepage   = http://pharmbase.com.ua/
+prf_ide_file_icon       = mds.ico
+
+prf_ide_level_1_show_desks  = False # показывать столы
+prf_ide_level_3_page_always = False
+prf_ide_app_exit_confirm    = True
+prf_ide_registry_path       = \Software\Morion\PharmAccount # Дефолтный ключ в реестре. Используется системой обновлений.
+
+# Overriding IDF's preferences
+# ----------------------------
+prf_idf_dbg_search_time        = 3000 # Задержка при поиске в сетке
+prf_idf_sql_executor_default_fdb = {96507AE9-0732-4507-BCCE-0C5CBF42E6C4}
+
+
+# Overriding MDO's preferences
+# ----------------------------
+prf_mds_upd_update_server_url  = none
+prf_mds_upd_service_app_type   = MDS
+prf_mds_sync_entity_section    = MDS
+
+# отображать панель с шагами заказа
+prf_mds_show_step_panel             = 0 
+
+# блокировать импорт, если не обновлялись более 2-х номеров газеты
+prf_mdo_block_import_without_update = 0
+
+# не использовать поиск по умолчанию(рекламный) в форме Потребность
+prf_mdo_disable_default_demand_search = True 
+
+
+
+# MDS preferences
+# ---------------
+
+prf_ide_app_cpanel_auto = True          # автозагрузка cpanel после
+
+prf_ide_app_cpanel_guid = {C7E67918-80F6-4953-AE4F-728B64617752} # IrtzCompLogin
+prf_mds_app_cpanel_guid = {D296AAE8-F15E-4D76-8D9C-AEAEDC7B589E} # IrtzCompCPanel
+
+{96507AE9-0732-4507-BCCE-0C5CBF42E6C4}.cstring=localhost:C:\Sitya\MDS3050\3050RTZ.GIT\user-distr\fdb\MDO.FDB
+
+prf_mds_sale1_scale         = 120  # Масштаб формы и диалогов в чеке
+prf_mds_select_dialog_scale = 120  # Масштаб диалоговых форм выбора
+
+prf_mds_sale1_timer         = 1000 # Задержка при вводе фильтра в чеке, если установить 0 - автоматическая фильтрация отключается
+
+prf_mds_sale1_chars         = 3    # минимальное количество символов в фильтре чека, при котором данные будут фильтроваться
+
+date_expire_warn_period     = 30   # Количество дней, с которого выводится предупреждение об окончании срока годности
+
+reg_close_warn_period       = 30   # Количество дней, с которого выводится предупреждение об окончании срока регистрации
+
+prf_mds_receipt_pause       = 0    # Пауза после печати чека - сколько будет видно сдачу
+
+prf_filter_font_size        = 8    # Размер шрифта для фильтров (обычно 8-12 пунктов)
+
+prf_mds_allow_future_doc_date = False # Разрешить задавать даты документов больше текущей даты
+prf_mds_active_quant_num_if_zero = False # Переходить в диалоге выбора кол-ва на дробную часть, если на остатках целое кол-во = 0
+
+# каталог в котором находятся файлы справок ГФЦ
+# prf_mds_gfc_files_dir = C:\gfc\new\ins\
+
+# адрес папки с файлами ГФЦ на сервере Морион для скачивания в случае их отсутствия локально
+prf_mds_gfc_files_url=http://pharmbase.com.ua/updateviewer/files/gfc/
+
+
+
+# Печатать отдельной строкой (True) или не печатать (False) скидку в чеке (для отображения в Z-отчете).
+# Актуально для принтеров, которые поддерживают такой режим. Иначе параметр игнорируется.
+# Поддержку режима можно выяснить в "Настройки"->"фискальный принтер"->"Состояние"
+pref_fiscal_discount_line_mode = False
+
+# Запрет вывода итоговой скидки при печати чека (True - запрещено, False - разрешено)
+pref_fiscal_discount_invisible = False
+
+# Признак установленного (True) или не установленного (False) принтера печати этикеток POSTEK C168
+# при установленном значении (True) печать ярлыков реализована в 2 столбика (8 шт на 1 стикер)
+prf_mds_postek_installed = False
+
+# Показывать (True) или не показывать (False) сообщение "Фискальный принтер не указан"
+pref_fiscal_not_defined_message = True
+
+# !!!
+pref_fiscal_close_check_if_error = True
+pref_fiscal_multi_payment_mode = False
+
+# Картридер для дисконтных карт (0-отсутствует, 1-присутствует)
+prf_mds_cardreader_present = 0
+
+# Значения фильров по-умолчанию
+prf_mds_drug_filter = True # Фильтр по оприходованным товарам
+
+# Фильтрация по избранным ЛС. Для УС по умолчанию включена.
+# На заполненных базах ФЗ фуллфетч, потому пока включаем.
+prf_mdo_filter_drug = False
+
+
+prf_mds_analyzer_location_always_visible = False # Всегда разрешить проводить анализы по любой дислокации
+
+# MDS Server
+# ---------------
+
+# порт, по которому бедет слушать сервер лицензирования точки
+prf_mds_server_protect_service_port = 8003
+
+# адрес сервиса лицензирования точки. Настраивается под каждого клиента.
+prf_mds_server_protect_service_url  = http://localhost:8003/soap/IMDSProtector
+
+# адрес сервиса лицензий Морион
+prf_mds_server_license_service_url  = http://license.pharmbase.com.ua:8080/aptekaWS/LicenseSevicePort
+
+# включает запрос типа лицензии у сервера в дебаг моде.
+prf_mds_dev_license_init_enable = False
+
+# период оповещения окончания лицензии (дней)
+prf_mds_license_еxpired_period = 14
+
+# РЕПЛИКАЦИЯ
+prf_mds_dts_dir = dts # Каталог для файлов синхронизации
+prf_mds_dts_qry = False   # добавлять (True) или не добавлять (False) запрос на выгрузку в пакет с данными
+prf_mds_dts_ftp_host = 
+prf_mds_dts_ftp_port = 21
+prf_mds_dts_ftp_username = 
+prf_mds_dts_ftp_password = 
+prf_mds_dts_ftp_passive = True
+prf_mds_dts_ftp_TransferTimeout = 30000
+prf_mds_dts_ftp_proxy = False
+prf_mds_dts_ftp_proxy_host =
+prf_mds_dts_ftp_proxy_port =
+prf_mds_dts_ftp_proxy_username =
+prf_mds_dts_ftp_proxy_password =
+prf_mds_dts_ftp_initdir = DTS
+
+# MDS server update
+# ---------------
+
+# адрес сервера, на котором проверяются обновления УС
+prf_mds_upd_version_url = http://update.pharmbase.com.ua/mds/
+
+# имя инстанса сервиса Firebird, через который работает УС
+prf_mds_upd_firebird_instance = DefaultInstance
+
+# путь к каталогу инсталяции Firebird, через который работает УС
+# если не задан, то выполняется попытка вычислить его через имя инстанса
+# для инсталяций без СЕРВИСА - должно быть указано
+# prf_mds_upd_firebird_root
+
+# адреса сервисов обновлений данных
+prf_mds_upd_sync_service_url = http://license.pharmbase.com.ua:8080/aptekaWS/backoffice/UpdatePacketReplicationServicePort
+prf_mds_upd_auth_service_url = http://license.pharmbase.com.ua:8080/aptekaWS/CommonServicePort
+prf_mds_upd_client_service_url = http://license.pharmbase.com.ua:8080/aptekaWS/UpdateServicePort
+
+prf_mds_synchronization_qry = False   # добавлять (True) или не добавлять (False) запрос на выгрузку в пакет с данными
+
+
+prf_mds_core_is_valid = True
+
+# Разрешение ввода латинских символов в номер дисконтной карты default = False
+pref_mds_discount_card_chars = False
+
+#Путь к каталогу размещения сертификатов
+prf_mds_cert_path = cert
+
+# Показывать (отмечать голубым цветом) позиции выбора из остатков, если они являются приоритетным товаром
+prf_mds_drug_priority_show_in_doc = 0
+
+#  Протоколы провизора
+str_mds_web_prot_provis = ..\htm\index.html
+
+# Настройки к API Head Office
+prf_hdf_api_data_url = http://ho.pharmbase.com.ua/api/data/
+prf_hdf_access_key   = key
+prf_hdf_try_count    = 3
+prf_hdf_try_timeout  = 1000

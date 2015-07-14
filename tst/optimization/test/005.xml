@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<mdo_test>
+  <tests>
+    <optimize_test Number="005.01" Description="Проверка оптимизации с учетом избранных поставщиков" LocationCount="2">
+         
+         <import_demand>
+             <wnt LocationID="1001" FileName="tst\optimization\data\005\wnt\1001izbran.wnt"/>
+             <wnt LocationID="1002" FileName="tst\optimization\data\005\wnt\1002izbran.wnt"/>
+         </import_demand>
+         <import_supply>
+             <mvp SupplierID="90001" FileName="tst\optimization\data\005\mvp\90001_izbr.MVP"/>
+             <mvp SupplierID="90002" FileName="tst\optimization\data\005\mvp\90002_izbr.MVP"/>
+             <mvp SupplierID="90003" FileName="tst\optimization\data\005\mvp\90003_izbr.MVP"/>
+             <mvp SupplierID="90005" FileName="tst\optimization\data\005\mvp\90005_izbr.MVP"/>
+             <mvp SupplierID="90007" FileName="tst\optimization\data\005\mvp\90007_izbr.MVP"/>
+         </import_supply>
+         
+         <settings>
+             <favorite SupplierID="90001" LocationID="0"/>
+             <favorite SupplierID="90007" LocationID="0"/>
+         </settings> 
+         
+         <filters>
+             <favorite>True</favorite>
+             <date_supply>True</date_supply>
+         </filters>   
+         
+         <optimize>
+             <by_price/>
+         </optimize>
+          
+         <checks Number="01" Description="Оптимизация по цене с учетом только глобальных избранных">
+             <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1002"/>
+             <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1002"/>
+             <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1002"/>
+
+         </checks>
+ 
+         <settings>
+             <favorite SupplierID="90002" LocationID="1001"/>
+             <favorite SupplierID="90005" LocationID="1001"/>
+             <favorite SupplierID="90003" LocationID="1002"/>
+         </settings> 
+         
+         <optimize>
+             <by_price/>
+         </optimize>
+         
+         <checks Number="02" Description="Оптимизация по цене с учетом глобальных избранных и по точкам">
+             <drug_supplier DrugID="100002" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90005" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90003" LocationID="1002"/>
+             <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1002"/>
+             <drug_supplier DrugID="100005" SupplierID="90005" LocationID="1001"/>
+             <drug_supplier DrugID="100005" SupplierID="90003" LocationID="1002"/>
+         </checks>
+         
+         <optimize>
+             <by_supplier/>
+         </optimize>
+         
+         <checks Number="03" Description="Оптимизация по поставщику с учетом глобальных избранных и по точкам">
+             <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1002"/>
+             <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1002"/>
+             <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1002"/>
+         </checks>
+         
+     </optimize_test>
+     
+     <optimize_test Number="005.02" Description="Проверка оптимизации с учетом избранных, если у глобальных избранных минимальные цены" LocationCount="2">
+
+         <import_demand>
+             <wnt LocationID="1001" FileName="tst\optimization\data\005\wnt\1001izbran.wnt"/>
+             <wnt LocationID="1002" FileName="tst\optimization\data\005\wnt\1002izbran.wnt"/>
+         </import_demand>
+         
+         <import_supply>
+             <mvp SupplierID="90001" FileName="tst\optimization\data\005\mvp\90001_izbr_minprice.MVP"/>
+             <mvp SupplierID="90002" FileName="tst\optimization\data\005\mvp\90002_izbr.MVP"/>
+             <mvp SupplierID="90003" FileName="tst\optimization\data\005\mvp\90003_izbr.MVP"/>
+             <mvp SupplierID="90005" FileName="tst\optimization\data\005\mvp\90005_izbr.MVP"/>
+             <mvp SupplierID="90007" FileName="tst\optimization\data\005\mvp\90007_izbr_minprice.MVP"/>
+         </import_supply>
+         
+         <settings>
+             <favorite SupplierID="90001" LocationID="0"/>
+             <favorite SupplierID="90007" LocationID="0"/>
+             <favorite SupplierID="90002" LocationID="1001"/>
+             <favorite SupplierID="90005" LocationID="1001"/>
+             <favorite SupplierID="90003" LocationID="1002"/>
+         </settings> 
+         
+         <filters>
+             <favorite>True</favorite>
+             <date_supply>True</date_supply>
+         </filters> 
+         
+         <optimize>
+             <by_price/>
+         </optimize>
+          
+         <checks Number="01" Description="Оптимизация по цене">
+             <drug_supplier DrugID="100002" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90005" LocationID="1001"/>
+             <drug_supplier DrugID="100003" SupplierID="90003" LocationID="1002"/>
+             <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1002"/>
+             <drug_supplier DrugID="100005" SupplierID="90005" LocationID="1001"/>
+             <drug_supplier DrugID="100005" SupplierID="90003" LocationID="1002"/>
+         </checks>
+     </optimize_test>     
+ 
+     <optimize_test Number="005.03" Description="Проверка оптимизации с учетом избранных, если у разных точек указаны разные филиалы в настройках" LocationCount="3">
+           
+         <import_demand>
+             <wnt LocationID="1001" FileName="tst\optimization\data\005\wnt\1001izbran_t.wnt"/>
+             <wnt LocationID="1002" FileName="tst\optimization\data\005\wnt\1002izbran_t.wnt"/>
+             <wnt LocationID="1003" FileName="tst\optimization\data\005\wnt\1003izbran_t.wnt"/>
+         </import_demand>
+         
+         <import_supply>
+             <mvp SupplierID="90001" FileName="tst\optimization\data\005\mvp\90001_izbr_t.MVP"/>
+             <mvp SupplierID="90002" FileName="tst\optimization\data\005\mvp\90002_izbr_t.MVP"/>
+             <mvp SupplierID="90003" FileName="tst\optimization\data\005\mvp\90003_izbr_t.MVP"/>
+         </import_supply>
+         
+         <settings>
+             <favorite SupplierID="90001" LocationID="1001"/>
+             <favorite SupplierID="90002" LocationID="1002"/>
+             <favorite SupplierID="90003" LocationID="0"/>
+         </settings> 
+         
+         <filters>
+             <favorite>True</favorite>
+             <date_supply>True</date_supply>
+         </filters> 
+         
+         <optimize>
+             <by_price/>
+         </optimize>
+          
+         <checks Number="01" Description="Оптимизация по цене">
+             <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100002" SupplierID="90002" LocationID="1002"/>
+             <drug_supplier DrugID="100002" SupplierID="90003" LocationID="1003"/>
+         </checks>
+     </optimize_test>                  
+     
+  </tests>
+</mdo_test>        
+         
+         
+         

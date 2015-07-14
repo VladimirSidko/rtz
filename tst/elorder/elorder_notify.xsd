@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xsd:schema 
+  version="1.2"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/> 
+
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element ref="Notifications" minOccurs="0"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="Notifications">
+      <xsd:complexType>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+          <xsd:element ref="n"                    minOccurs="0" maxOccurs="unbounded"/>
+          <!-- вторая версия формата -->
+          <xsd:element ref="TextNews"             minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="DeficiencyInOrder"    minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="PurchaseInvoice"      minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="ChangesInOrderStatus" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="OrderStatus"          minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+      </xsd:complexType>
+  </xsd:element>
+
+  <!-- 
+    Сделать правильно, через choice или полиморфизм (http://www.ibm.com/developerworks/webservices/library/ws-tip-xsdchoice.html)
+    пока не получится, из-за одинакового имени элементов :(
+  -->
+  <xsd:element name="n">
+      <xsd:complexType mixed="true">
+        <xsd:all>
+          <xsd:element name="Document"    minOccurs="0" type="DocLink"/>
+          <xsd:element name="NewStatus"   minOccurs="0" type="OrderStatus"/>
+          <xsd:element name="Description" minOccurs="0" type="xsd:string"/>
+        </xsd:all>
+        <xsd:attribute name="ID"      type="xsd:integer"  use="required"/>
+        <xsd:attribute name="Type"    type="NotifyType"   use="required"/>
+        <xsd:attribute name="Date"    type="elo:DateTime" use="required"/>
+        <xsd:attribute name="Caption" type="xsd:string"/>
+      </xsd:complexType>
+  </xsd:element>
+
+  <!-- вторая версия формата, с более четкими правилами и контролем формата -->
+  <xsd:element name="TextNews">
+      <xsd:complexType mixed="true">
+        <xsd:attribute name="ID"      type="xsd:integer"  use="required"/>
+        <xsd:attribute name="Type"    type="xsd:string"   use="required" fixed="TextNews"/>
+        <xsd:attribute name="Date"    type="elo:DateTime" use="required"/>
+        <xsd:attribute name="Caption" type="xsd:string"/>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DeficiencyInOrder">
+      <xsd:complexType>
+        <xsd:all>
+          <xsd:element name="Document"    minOccurs="1" type="DocLink"/>
+        </xsd:all>
+        <xsd:attribute name="ID"      type="xsd:integer"  use="required"/>
+        <xsd:attribute name="Type"    type="xsd:string"   use="required" fixed="DeficiencyInOrder"/>
+        <xsd:attribute name="Date"    type="elo:DateTime" use="required"/>
+        <xsd:attribute name="Caption" type="xsd:string"/>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="PurchaseInvoice">
+      <xsd:complexType>
+        <xsd:all>
+          <xsd:element name="Document"    minOccurs="1" type="DocLink"/>
+        </xsd:all>
+        <xsd:attribute name="ID"      type="xsd:integer"  use="required"/>
+        <xsd:attribute name="Type"    type="xsd:string"   use="required" fixed="PurchaseInvoice"/>
+        <xsd:attribute name="Date"    type="elo:DateTime" use="required"/>
+        <xsd:attribute name="Caption" type="xsd:string"/>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ChangesInOrderStatus">
+      <xsd:complexType>
+        <xsd:all>
+          <xsd:element name="Document"    minOccurs="1" type="DocLink"/>
+          <xsd:element name="NewStatus"   minOccurs="0" type="OrderStatus"/>
+          <xsd:element name="Description" minOccurs="0" type="xsd:string"/>
+        </xsd:all>
+        <xsd:attribute name="ID"      type="xsd:integer"  use="required"/>
+        <xsd:attribute name="Type"    type="xsd:string"   use="required" fixed="ChangesInOrderStatus"/>
+        <xsd:attribute name="Date"    type="elo:DateTime" use="required"/>
+        <xsd:attribute name="Caption" type="xsd:string"/>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="OrderStatus">
+      <xsd:complexType>
+        <xsd:all>
+          <xsd:element name="Document"    minOccurs="1" type="DocLink"/>
+          <xsd:element name="StatusCode"  minOccurs="0" type="xsd:string"/>
+          <xsd:element name="StatusName"  minOccurs="1" type="xsd:string"/>
+          <xsd:element name="Description" minOccurs="0" type="xsd:string"/>
+        </xsd:all>
+        <xsd:attribute name="ID"      type="xsd:integer"  use="required"/>
+        <xsd:attribute name="Type"    type="xsd:string"   use="required" fixed="OrderStatus"/>
+        <xsd:attribute name="Date"    type="elo:DateTime" use="required"/>
+        <xsd:attribute name="Caption" type="xsd:string"/>
+      </xsd:complexType>
+  </xsd:element>
+
+
+  <!-- типы данных -->
+  <xsd:complexType name="DocLink" mixed="true">
+    <xsd:attribute name="UID" type="elo:GUID" use="required"/>
+  </xsd:complexType>
+
+  <xsd:simpleType name="NotifyType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="DeficiencyInOrder"/>
+      <xsd:enumeration value="ChangesInOrderStatus"/>
+      <xsd:enumeration value="TextNews"/>
+      <xsd:enumeration value="PurchaseInvoice"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="OrderStatus">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Received"/>
+      <xsd:enumeration value="Processed"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

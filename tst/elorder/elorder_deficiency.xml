@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<ElOrder>
+  <Document DocType="OrderItemsDeficiency">
+    <Header>
+      <UID>38C05D0A-0612-43AB-9C23-4B8B002B4049</UID>
+      <ParentDoc UID="B826F393-CC2E-4970-BC74-F6DAD8C1E08E">Заказ № ЗК-0000004 от 16.07.2009</ParentDoc>
+      <Date>16.07.2009 12:01:50</Date>
+    </Header>
+    <Body>
+      <Items>
+        <i MorionID="8950" SellerID="10246" PriceTypeID="07" DeficiencyAmount="4" Reason="Нехватка товара на складе"/>
+        <i MorionID="12018" SellerID="429" PriceTypeID="07" DeficiencyAmount="6" Reason="Нехватка товара на складе"/>
+      </Items>
+    </Body>
+  </Document>
+</ElOrder>

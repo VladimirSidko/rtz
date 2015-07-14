@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<mdo_test>
+  <tests>
+    <optimize_test Number="004.01" Description="Проверка оптимизации с учетом групп товаров, строгий по коду морион">
+    
+         <filters>
+             <favorite>False</favorite>
+             <date_supply>True</date_supply>
+         </filters>    
+     
+         <import_supply>
+             <mvp SupplierID="90001" FileName="tst\optimization\data\004\mvp\90001_FULL.MVP"/>
+             <mvp SupplierID="90002" FileName="tst\optimization\data\004\mvp\90002_FULL.MVP"/>
+         </import_supply>    
+    
+         <import_demand>
+             <wnt LocationID="1001" FileName="tst\optimization\data\004\wnt\1001group0.wnt"/>
+             <wnt LocationID="1002" FileName="tst\optimization\data\004\wnt\1002group0.wnt"/>
+         </import_demand>
+    
+         <settings>
+             <preference Setting="prf_mds_supply_mode" Value="0"/>
+         </settings>
+    
+         <optimize>
+              <by_price/>
+         </optimize>    
+    
+         <checks Number="01" Description="По цене, строгий по коду морион, с прайсом поставщика1 у которого на некоторые медикаменты нет предложений ">
+             <drug_supplier DrugID="100001" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1002"/>
+             <drug_supplier DrugID="100008" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100010" SupplierID="90001" LocationID="1001"/>
+             <drug_supplier DrugID="100010" SupplierID="90001" LocationID="1002"/>
+         </checks>
+
+    </optimize_test>
+    
+    <optimize_test Number="004.02" Description="Проверка оптимизации с учетом групп товаров, точный">
+    
+         <filters>
+             <favorite>False</favorite>
+             <date_supply>True</date_supply>
+          </filters>    
+     
+         <import_supply>
+              <mvp SupplierID="90001" FileName="tst\optimization\data\004\mvp\90001_group1.MVP"/>
+              <mvp SupplierID="90002" FileName="tst\optimization\data\004\mvp\90004_group1.MVP"/>
+         </import_supply>    
+    
+         <import_demand>
+              <wnt LocationID="1001" FileName="tst\optimization\data\004\wnt\1001group1.wnt"/>
+              <wnt LocationID="1002" FileName="tst\optimization\data\004\wnt\1002group1.wnt"/>
+          </import_demand>
+    
+         <settings>
+             <preference Setting="prf_mds_supply_mode" Value="1"/>
+          </settings>
+    
+         <optimize>
+             <by_price/>
+         </optimize>    
+    
+    <checks Number="01" Description="По цене, точный">
+          <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1001"/>
+          <drug_quant DrugID="100006" Quant="0" LocationID="1001"/>
+          <drug_quant DrugID="100008" Quant="4" LocationID="1001"/>
+          <drug_supplier DrugID="100008" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100008" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100010" SupplierID="90002" LocationID="1001"/>
+          <drug_supplier DrugID="100010" SupplierID="90002" LocationID="1002"/>
+     </checks>
+    
+     </optimize_test>
+    
+    <optimize_test Number="004.03" Description="Проверка оптимизации с учетом групп товаров, общий">
+    
+         <settings>
+             <preference Setting="prf_mds_supply_mode" Value="2"/>
+         </settings>
+
+         <import_supply>
+             <mvp SupplierID="90001" FileName="tst\optimization\data\004\mvp\90001_group1_p.MVP"/>
+             <mvp SupplierID="90002" FileName="tst\optimization\data\004\mvp\90004_group1_p.MVP"/>
+         </import_supply>
+    
+    
+         <import_demand>
+             <wnt LocationID="1001" FileName="tst\optimization\data\004\wnt\1001group1_p.wnt"/>
+             <wnt LocationID="1002" FileName="tst\optimization\data\004\wnt\1002group1_p.wnt"/>
+         </import_demand>
+    
+          <optimize>
+             <by_price/>
+         </optimize>    
+
+         <checks Number="02" Description="По цене, общий">
+    
+             <drug_supplier DrugID="100005" SupplierID="0" LocationID="1001"/>      
+             <drug_quant DrugID="100010" Quant="0" LocationID="1002"/>
+             <drug_quant DrugID="100006" Quant="1" LocationID="1002"/>
+             <drug_supplier DrugID="100006" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100006" SupplierID="90002" LocationID="1002"/>
+         </checks>
+
+         <settings>
+             <preference Setting="prf_mds_supply_mode" Value="0"/>
+         </settings>
+    
+    </optimize_test>
+    
+    <optimize_test Number="004.04" Description="Проверка оптимизации с учетом групп товаров, по приоритету">
+         <settings>
+             <preference Setting="prf_mds_supply_mode" Value="1"/>
+         </settings>
+
+         <import_supply>
+             <mvp SupplierID="90001" FileName="tst\optimization\data\004\mvp\90001_group_prior.MVP"/>
+             <mvp SupplierID="90002" FileName="tst\optimization\data\004\mvp\90002_group_prior.MVP"/>
+         </import_supply>
+    
+         <import_demand>
+             <wnt LocationID="1001" FileName="tst\optimization\data\004\wnt\1001group_prior.wnt"/>
+         </import_demand>
+         
+         <settings>
+             <supplier SupplierID="90001" LocationID="0" Setting="WEIGHT" Value="0"/>
+             <supplier SupplierID="90002" LocationID="0" Setting="WEIGHT" Value="5"/>
+         </settings>
+         
+         <optimize>
+             <by_weight/>
+         </optimize>     
+         
+         <checks Number="01" Description="По приоритету, точный">
+             <drug_supplier DrugID="100004" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100007" SupplierID="90002" LocationID="1001"/>
+             <drug_quant DrugID="100008" Quant="0" LocationID="1001"/>
+             <drug_quant DrugID="100006" Quant="14" LocationID="1001"/>    
+             <drug_supplier DrugID="100006" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100010" SupplierID="90002" LocationID="1001"/>
+         </checks>
+         
+         <settings>
+             <preference Setting="prf_mds_supply_mode" Value="2"/>
+         </settings>
+         
+         <optimize>
+             <by_weight/>
+         </optimize> 
+         
+         <checks Number="02" Description="По приоритету, общий">
+             <drug_supplier DrugID="100004" SupplierID="90002" LocationID="1001"/>
+             <drug_supplier DrugID="100007" SupplierID="90002" LocationID="1001"/>
+             <drug_quant DrugID="100008" Quant="0" LocationID="1001"/>
+             <drug_quant DrugID="100010" Quant="0" LocationID="1001"/>
+             <drug_quant DrugID="100006" Quant="24" LocationID="1001"/>    
+             <drug_supplier DrugID="100006" SupplierID="90002" LocationID="1001"/>
+         </checks>  
+
+         <settings>
+             <preference Setting="prf_mds_supply_mode" Value="0"/>
+         </settings>
+         
+     </optimize_test>    
+
+  </tests>
+</mdo_test>

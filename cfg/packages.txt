@@ -1,0 +1,9 @@
+# Packages...
+# Format: 
+
+# <package_name> = <enabled | disabled>  [#<description>]
+# Example: 
+# package.bpl = enabled # comment
+#
+
+rtz_core.bpl   = enabled

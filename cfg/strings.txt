@@ -1,0 +1,105 @@
+# Strings...
+# Format:
+# <string> = <string>  [#<description>]
+# Example:
+# application_title = My Application 3.0 # comment
+#
+
+# Override IDE strings #########################################################
+
+str_ide_warning                 = Увага
+str_ide_error                   = Помилка
+str_ide_information             = Інформація
+str_ide_confirmation            = Підтвердження
+str_ide_question                = Питання
+str_ide_will_end_your_session   = Вашу сесію в %s завершено
+
+# MDS strings #########################################################
+
+str_mdo_support 				= Підтримка
+SAuth 							= Авторизація
+SAppCaption2 					= Програмний комплекс "Аптека": конфігурація: "БД "Лікарські засоби"
+SAppCaption3 					= Майстер оновлень ПК "АПТЕКА"
+SFmtVersion						= %s Версія %s
+
+str_mds_reg_err_initserver 		= Помилка з`єднання з серевером ліцензій.\nМожливо у вас не запущений сервіс ліцензій, не вірно вказана його адреса або відсутній доступ до локальної мережі.
+SInvalidLogin 					= Ви вказали неправильний пароль або ім'я користувача. Перевірте правильність регістру і/або розкладки клавіатури.
+
+# обновление #########################################
+str_mdo_update 								= Оновлення
+SUpdated 									= Оновлено
+SFmtErrorUpdateVer 							= Помилка поновлення метаданих до версії %d (%s)!
+str_mdo_upd_metadata_pass_caption 			= Запит пароля адміністратора
+str_mdo_upd_metadata_pass_prompt 			= Введіть пароль SYSDBA тут:
+str_mdo_upd_metadata_gfix_shutdown_full 	= База закривається
+str_mdo_upd_metadata_gfix_online_single 	= База тільки для мене
+str_mdo_upd_metadata_gfix_online_normal 	= База знову для всіх
+str_mdo_upd_metadata_isql_execute_files 	= База оновлюється до версії %s
+str_mdo_upd_metadata_succ 					= Наші вітання, оновлення пройшло успішно. Тепер можна працювати!
+str_mdo_upd_metadata_crash 					= Увага, помилка! База даних не оновлена. \nДодаткові відомості знаходяться у файлі:\n%s \n\n%s
+str_mdo_upd_metadata_exit1 					= Оновлення бази даних не закінчено. \nДля використання поточної версії програми необхідно застосувати всі пакети оновлень. Спробуйте оновитися через інтернет.
+str_mdo_upd_metadata_exit2 					= Поточна версія бази даних старша, ніж версія, з якою повинна працювати програма: %s > %s . \nРобота програми неможлива (потрібна її більш нова версія).
+str_mdo_upd_metadata_exit3 					= Робота програми неможлива (потрібно виконати оновлення бази даних).
+str_mds_upd_finished_error          = ОШИБКА ОБНОВЛЕНИЯ!\nЖурнал обновления сохранен в файл %s
+
+# ####################################################
+
+str_mdo_last_apteka_opening 			= Відкривається свіжий номер газети "Щотижневик АПТЕКА"
+str_mdo_last_apteka_open 				= Відкрити свіжий номер газети "Щотижневик АПТЕКА"
+SDBFileNotAvailable 					= Файл бази даних недоступний або заблокований.
+SInvalidLogin 							= Ви вказали неправильний пароль або ім'я користувача. Перевірте правильність регістру і/або розкладки клавіатури.
+str_mds_reg_date_expired 				= Термін дії ліцензії закінчився.
+str_mds_reg_clients_over 				= Перевищено ліміт підключених клієнтів (%d).
+
+str_ide_preferences 					=  Налаштування
+
+SValue 									= Значення
+SParameter 								= Параметр
+
+str_ide_refreshlicense 					= Завантажити ліцензію з мережі
+str_mdo_last_apteka_web_open_confirm 	= Диск зі свіжим номером газети не виявлено. \nВідкрити номер через інтернет?
+SLicenceSupp = » Ліцензія:
+SFreeLicence =    Безкоштовна
+SInfoSystem =    Інформаційна система
+SAccountSystem =    Облікова система
+SMarketing =    Маркетiнг
+SUnlimited =    Необмежена
+SDBVersion = » Версія БД:
+SDBRelevantTo = База актуальна на: %s
+SFirebirdVersion = » Версія Firebird:\n  - клієнт - %s\n  - сервер - 
+SOSVersion = » Версія ОС:
+SMailSupport1 = »Контакти:\n    Служба тех. підтримки клієнтів:\n    Тел:. (044) 585-97-12)\n    Email: support@pharmbase.com.ua\n    ПН.-ПТ. з 9.00 до 20.00
+SMailSupport2 =        Термін дії: %s\n       Клієнтських місць: %s\n       Оновлення структури: %s\n       Оновлення даних: %s
+SVersion_ = Версія:
+SNo = Ні
+SYes = Так
+str_mdo_upd_metadata_prompt = Поточна версія бази даних молодша, ніж версія, з якою повинна працювати програма: %s < %s . \nУВАГА, є можливість оновити базу даних автоматично. Продовжити?
+str_mds_upd_client_update_apply_info = На сервері доступне оновлення програми. Воно буде застосоване на вашому комп''ютері.
+
+str_mds_dts_export          = Сформировать
+str_mds_dts_export_query    = Сформировать запрос локально
+str_mds_dts_export_queryftp = Сформировать запрос на FTP
+str_mds_dts_export_zero     = Сформировать нулевой пакет
+str_mds_dts_impexp_ftp      = Обработать данные с FTP
+str_mds_dts_impexp_disk     = Обработать данные локально
+str_mds_dts_export_ftp      = Обработать запросы с FTP
+str_mds_dts_export_file     = Обработать запрос с диска
+str_mds_dts_import_zero     = Загрузить нулевой пакет
+str_mds_dts_import_ftp      = Загрузить пакеты с FTP
+str_mds_dts_import_file     = Загрузить пакет с диска
+str_mds_dts_only_selecteddb = Только с выделенной базой
+str_mds_dts_msg_execdone    = Готово
+str_mds_dts_msg_getfromftp  = Копирование данных с ftp
+str_mds_dts_msg_exportquery  = Экспорт запроса для "%s"
+str_mds_dts_msg_exportpacket = Экспорт пакета для "%s", сущность "%s"
+str_mds_dts_msg_importpacket = Импорт пакета от "%s", сущность "%s" (%d/%d)
+str_mds_dts_confirm_foldercreate = Нет структуры обмена. Создать структуру?
+str_mds_dts_archiving       = Архивирование
+str_mds_dts_delete_mode     = Режим удаления реплицируемых данных
+str_mds_dts_delete_mode_off = Выключить режим удаления реплицируемых данных
+SLisenceTerm = Термін дії ліцензії
+
+SFunctNotAllowed 			= Данная функция не поддерживается этой моделью принтера.
+SPrinterConnectViolation 	= Ошибка соединения с фискальным принтером.
+SPrinterError 				= Ошибка при работе с принтером
+SPrintReceiptError 			= Ошибка при печати чека

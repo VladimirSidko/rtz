@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<ElOrder>
+  <Notifications>
+    <!-- новая, рекомендуемая версия формата с типизированными сообщениями -->
+    <ChangesInOrderStatus ID="131" Type="ChangesInOrderStatus" Date="26.08.2009 15:24:35" Caption="Заказ принят">
+      <Document UID="BC168459-9E97-47AC-977D-8285D05840F5">ЗК-0000011</Document>
+      <NewStatus>Received</NewStatus>
+      <Description>Ваш заказ № ЗК-0000011 от 26.08.2009 принят службой электронных заказов ООО "Поставщик" и будет обработан в ближайшее время. В заказе была использована не активированная менеджером точка доставки, поэтому автоматическая обработка заказа может задержаться на некоторое время (уведомление о вашем заказе уже отправлено менеджеру).</Description>
+    </ChangesInOrderStatus>
+
+    <DeficiencyInOrder ID="133" Type="DeficiencyInOrder" Date="26.08.2009 15:25:00" Caption="Дефектура по заказу №ЗК-0000011 от 26.08.2009">
+      <Document UID="3B8DDF4C-83C4-408D-86C3-D658807CD9FB">Дефектура по заказу №ЗК-0000011 от 26.08.2009</Document>
+    </DeficiencyInOrder>
+
+    <PurchaseInvoice ID="6174" Type="PurchaseInvoice" Date="18.03.2010 12:47:01" Caption="Накладная № 7566282 от 18.03.2010">
+      <Document UID="E8FF5DE3-A1E9-4A19-A550-4AA3C375FE3C">Накладная № 7566282 от 18.03.2010</Document>
+    </PurchaseInvoice>
+    
+    <TextNews ID="164" Type="TextNews" Date="27.08.2009 11:01:00" Caption="Дефектура по заказу №ЗК-0000005 от 27.08.2009">
+      ntrcn
+    </TextNews>
+
+    <ChangesInOrderStatus ID="1331" Type="ChangesInOrderStatus" Date="26.08.2009 15:24:35" Caption="Заказ обработан">
+      <Document UID="BC168459-9E97-47AC-977D-8285D05840F5">ЗК-0000011</Document>
+      <NewStatus>Processed</NewStatus>
+      <Description>Ваш заказ № ЗК-0000011 от 26.08.2009 обработан</Description>
+    </ChangesInOrderStatus>
+
+    <OrderStatus ID="1331" Type="OrderStatus" Date="26.08.2009 15:24:35" Caption="Смена статуса заказа">
+      <Document UID="BC168459-9E97-47AC-977D-8285D05840F5">ЗК-0000011</Document>
+      <StatusCode>105</StatusCode>
+      <StatusName>Статуc</StatusName>
+      <Description>Ваш заказ № ЗК-0000011 от 26.08.2009 обработан</Description>
+    </OrderStatus>
+
+    
+    <!-- пример УСТАРЕВШЕЙ версии формата - не позволяла жестко контролировать формат типов сообщений -->
+    <n ID="131" Type="ChangesInOrderStatus" Date="26.08.2009 15:24:35" Caption="Заказ принят">
+      <Document UID="BC168459-9E97-47AC-977D-8285D05840F5">ЗК-0000011</Document>
+      <NewStatus>Received</NewStatus>
+      <Description>Ваш заказ № ЗК-0000011 от 26.08.2009 принят службой электронных заказов ООО "Поставщик" и будет обработан в ближайшее время. В заказе была использована не активированная менеджером точка доставки, поэтому автоматическая обработка заказа может задержаться на некоторое время (уведомление о вашем заказе уже отправлено менеджеру).</Description>
+    </n>
+    
+    <n ID="133" Type="DeficiencyInOrder" Date="26.08.2009 15:25:00" Caption="Дефектура по заказу №ЗК-0000011 от 26.08.2009">
+      <Document UID="3B8DDF4C-83C4-408D-86C3-D658807CD9FB">Дефектура по заказу №ЗК-0000011 от 26.08.2009</Document>
+    </n>
+
+    <n ID="6174" Type="PurchaseInvoice" Date="18.03.2010 12:47:01" Caption="Накладная № 7566282 от 18.03.2010">
+      <Document UID="E8FF5DE3-A1E9-4A19-A550-4AA3C375FE3C">Накладная № 7566282 от 18.03.2010</Document>
+    </n>
+    
+    <n ID="164" Type="TextNews" Date="27.08.2009 11:01:00" Caption="Дефектура по заказу №ЗК-0000005 от 27.08.2009">
+      ntrcn
+    </n>        
+  </Notifications>
+</ElOrder>

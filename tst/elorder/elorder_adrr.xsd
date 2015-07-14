@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/> 
+  
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element ref="DeliveryAddresses"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DeliveryAddresses">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="d" minOccurs="0" maxOccurs="unbounded" type="DeliveryAddress"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="DeliveryAddress">
+    <xsd:attribute name="UID"     type="elo:GUID"/>
+    <xsd:attribute name="Address" type="xsd:string"/>
+  </xsd:complexType>
+
+</xsd:schema>

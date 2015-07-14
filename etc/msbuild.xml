@@ -1,0 +1,659 @@
+<?xml version='1.0' encoding='windows-1251'?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--
+  Свойства:
+        SQLDir  - каталог SQL скриптов в дистрибутиве
+        FDBFile - файл базы данных в дистрибутиве
+        UDFFile - файл функций для бд в дистрибутиве
+
+  Списки:
+        ImgFiles - список файлов картинок в проекте
+        SQLFiles - список файлов и каталогов SQL в проекте
+        IDEFiles - списко файлов дистрибутива IDE3050
+
+  Задачи:
+                CreateKit - создание структуры дистрибутива (CreateKitUpd для update)
+                DeleteKit - удаление стуктуры дистрибутива
+                CopyIDE   - копирование в дистрибутив необходимого дистрибутива IDE
+                CopyIDF   - копирование в дистрибутив необходимого дистрибутива IDF
+                CopyExt   - копирование в дистрибутив сторонних бинарных файлов
+                CopyPkg   - копирование в дистрибутив необходимых пакетов
+                CopyCfg   - копирование в дистрибутив файлов конфигурации
+                CopyImg   - копирование в дистрибутив файлов картинок
+                CopyRpt   - копирование в дистрибутив файлов отчетов
+                CopyHtm   - копирование в дистрибутив файлов html
+                SweepSrc  - очистка исходников проекта от ненужных и временных файлов
+                FetchSrc  - забор данных из SCM
+                BuildSrc  - сборка проектов
+                BuildDoc  - сборка документации
+                BuildIss  - сборка инсталлятора  (BuildIssUpd для update)
+                BuildPrt  - сборка архива дистрибутива ("portable")
+                Build7zp  - сборка архива проекта
+                StartDoc  - старт документации
+                StartIss  - старт инсталляции
+                StartApp  - старт программы
+                CopyFBE   - копирование в дистрибутив файлов и каталогов Firebird Embedded
+                PrepareSQL- динамическая генерация 02-procedures.sql и 03-triggers.sql
+                CopySQL   - копирование в дистрибутив файлов и каталогов SQL
+                CopyUDF   - копирование библиотеки udf в Firebird\udf
+                CopyFDB   - копирование существующего файла базы данных в %TEMP%
+                BuildSQL  - сборка файла базы данных
+                CreateHDFClient - создание и копирование hdf_client
+  -->
+
+  <PropertyGroup>
+        <SQLSrcDir>$(Root)\sql</SQLSrcDir>
+        <SQLDir>$(DistrKit)\sql-$(Name)</SQLDir>
+        <DistrKitSnc>$(DistrKit)-$(ProjConf)-snc</DistrKitSnc>
+        <DistrKitPrn>$(DistrKit)-prn</DistrKitPrn>
+        <FDBFile>$(DistrKit)\fdb\$(Name).fdb</FDBFile>
+        <UDFFile>$(DistrKit)\bin\udf\$(Name)_udfs.dll</UDFFile>
+        <HelpSrc>doc3050.hmxp</HelpSrc>
+  </PropertyGroup>
+
+  <ItemGroup>
+        <ImgFiles Include="$(Root)\img\*.*" />
+        <HtmFiles Include="$(Root)\htm\*.*" />
+        <RptFilesMDO Include="$(Root)\src\rpt\mdo\*.*" />
+        <RptFilesMDS Include="$(Root)\src\rpt\mds\*.*" />
+        <SQLFiles Include="$(Root)\sql\*\**\*.*;$(Root)\sql\*.*;$(Root)\sql\rpl*\*.*;$(Root)\sql\prc*\*.*;$(Root)\sql\trg*\*.*" />
+        <GENFiles Include="$(Root)\etc\gen\**\*.*" />
+        <IDEFiles Include="$(DistrIDE)\**\*.*;$(DistrIDE)\*.*" Exclude="$(DistrIDE)\log*\*"/>
+        <IDFFiles Include="$(DistrIDF)\**\*.*;$(DistrIDF)\*.*" Exclude="$(DistrIDF)\log*\*"/>
+
+        <TstFixtureFiles Include="$(Root)\tst\**\*.*" />
+
+        <!-- список файлов которые должны попадать только  в дистрибутив сервера УС  -->
+        <SRVONLYFiles
+          Include = "
+          $(DistrKit)\bin*\mds_sky_net.exe;
+          "/>
+		<SRVONLYFiles
+          Include = "
+          $(DistrKit)\bin*\mds_sky_geo.exe;
+          "/>          
+<!--      со временем и эти будут жить только на сервере
+          $(DistrKit)\bin*\mds_task.exe; 
+          $(DistrKit)\bin*\mds_server.exe; 
+-->
+
+
+
+        <!-- список файлов которые не должны попадать в дистрибутивы ФЗ и УС  -->
+        <STPExclude Include="
+          @(SRVONLYFiles);
+          $(DistrKit)\bin*\**\*test.bpl;
+          $(DistrKit)\bin*\ide3050crypt.exe;
+          $(DistrKit)\bin*\mdo_sync.exe;
+          $(DistrKit)\bin*\mdo_runner.exe;
+          $(DistrKit)\bin*\*MemoryManager_EventLog.txt;
+          $(DistrKit)\bin*\FastMM_FullDebugMode.dll;
+          $(DistrKit)\bin\*.d;
+
+          $(DistrKit)\cfg\*dbgrids;
+          $(DistrKit)\cfg\.forms.ini;
+          $(DistrKit)\cfg\ide3050-log;
+
+          $(DistrKit)\cfg\mdo_updt.ini;
+          $(DistrKit)\cfg\mdo_sync.ini.sample;
+          $(DistrKit)\cfg\mdo_sync.cfg;
+
+          $(DistrKit)\sql*\_mdo_sync*.sql;
+          $(DistrKit)\sql*\!error.txt;
+          $(DistrKit)\sql*\_*_test*.sql;
+          $(DistrKit)\sql*\rpl\*;
+          $(DistrKit)\sql*\prc\*;
+          $(DistrKit)\sql*\trg\*;
+
+          $(DistrKit)\fdb.bkp*\**\*;
+		  $(DistrKit)\tmp*\**\*;
+          $(DistrKit)\log*\**\*;
+          $(DistrKit)\upd*\**\*;
+          $(DistrKit)\dbg*\**\*;
+          $(DistrKit)\tst*\**\*;
+          
+
+          $(DistrKit)\**\usr*;
+          $(DistrKit)\**\dev*;
+          $(DistrKit)\**\*.~*;
+          $(DistrKit)\**\C;
+          "/>
+
+        <!-- так же исключить лишние системные bpl !!!-->
+        <!-- список файлов которые не должны попадать только в дистрибутив ФЗ -->
+        <STPMDOExclude Include="
+          $(DistrKit)\bin\mds*.*;
+          $(DistrKit)\cfg\mds*;
+          $(DistrKit)\img\mds_*;
+          $(DistrKit)\sql*\_mds_*.sql;
+          $(DistrKit)\htm\*.*;
+          "/>
+
+        <STPMDSExclude Include="
+          $(DistrKit)\sql*\00*\**\*;
+          $(DistrKit)\sql*\01*\**\*;
+          $(DistrKit)\fdb\*._*;
+          "/>
+
+
+        <!-- список файлов которые не должны попадать в дистрибутив серверной части УС-->
+        <STPSRVExclude 
+          Include="
+            $(DistrKit)\bin\mdo*.*;
+            $(DistrKit)\bin\mds*.*;
+            $(DistrKit)\sql*\_mdo_optimization*.sql;
+            $(DistrKit)\sql*\_mds_doc*.sql;
+            $(DistrKit)\sql*\_mds_ref*.sql;
+            $(DistrKit)\sql*\_mds_analysis*.sql;
+            $(DistrKit)\rpt*\**\*;
+            $(DistrKit)\adv*\**\*;
+            $(DistrKit)\fdb*\**\*;
+            $(DistrKit)\htm*\*.*;
+
+            $(DistrKit)\sql*\00*\**\*;
+            $(DistrKit)\sql*\01*\**\*;
+          "
+          Exclude = "
+            $(DistrKit)\bin\mdo_soap.bpl;
+            $(DistrKit)\bin\mdo_hdf.bpl;
+            $(DistrKit)\bin\mdo_core.bpl;
+            $(DistrKit)\bin\mds_load.bpl;
+            $(DistrKit)\bin\mds_updt.bpl;
+            $(DistrKit)\bin\mds_server.exe;
+            $(DistrKit)\bin\mds_task.exe;
+          "
+          />
+
+        <!-- список файлов сервиса сетевой печати -->
+        <PRNExclude Include="
+          @(STPExclude);
+          $(DistrKit)\cfg*\_*.*;
+          $(DistrKit)\cfg*\mdo_updt.ini.sample;
+        "/>
+
+
+        <!-- список файлов которые не должны попадать в дистрибутив сервера -->
+        <SNCExclude Include="
+          $(DistrKit)\bin*\**\*.bpl;
+          $(DistrKit)\bin*\ide3050main.*;
+          $(DistrKit)\bin*\mdo_updt.*;
+          $(DistrKit)\bin*\mdo_runner.exe;
+          $(DistrKit)\bin*\mds*.*;
+          $(DistrKit)\cfg*\_*.*;
+          $(DistrKit)\bin*\*MemoryManager_EventLog.txt;
+          $(DistrKit)\bin*\FastMM_FullDebugMode.dll;
+          $(DistrKit)\bin*\gdiplus.dll;
+          $(DistrKit)\sql*\!error.txt;
+          $(DistrKit)\sql*\_mds*.sql;
+
+          $(DistrKit)\sql*\_var.bat;
+          $(DistrKit)\sql*\connect.ini;
+          $(DistrKit)\sql*\connect.sql;
+
+          $(DistrKit)\**\*.~*;
+          $(DistrKit)\**\*.d;
+          $(DistrKit)\**\usr*;
+          $(DistrKit)\cfg\mdo_sync.ini;
+          $(DistrKit)\cfg\mdo_updt.ini;
+          $(DistrKit)\htm\*.*;
+          "/>
+
+
+        <UPDExclude Include="@(STPExclude)"/>
+        <UPDInclude Include="
+          $(DistrKit)\bin*\**\ide*.*;
+          $(DistrKit)\bin*\**\idf*.*;
+          $(DistrKit)\bin*\**\mdo*.*;
+          $(DistrKit)\bin*\**\mds*.*;
+          $(DistrKit)\bin*\**\rtz*.*;
+		  $(DistrKit)\cfg*\**\*.*;
+          $(DistrKit)\img*\**\*.*;
+          $(DistrKit)\rpt*\**\*.*;
+          $(DistrKit)\sql*\**\*.*;
+          $(DistrKit)\htm*\**\*.*;
+          "/>
+        
+        <UPDIncludeForVer Include="
+          $(DistrKit)\bin*\isql.exe;
+          $(DistrKit)\bin*\IBEScript.exe;
+          $(DistrKit)\bin*\firebird.conf;
+          $(DistrKit)\bin*\VirtualTreesD14.bpl;
+          $(DistrKit)\bin*\dsnap140.bpl;
+          $(DistrKit)\bin*\frx14.bpl;
+          "/>
+
+
+
+        <STPFilesMDO Include="$(DistrKit)\**\*.*"                  Exclude="@(STPExclude);@(STPMDOExclude)" />
+        <UPDFilesMDO Include="@(UPDInclude);@(UPDIncludeForVer)"   Exclude="@(UPDExclude);@(STPMDOExclude)" />
+
+        <STPFilesMDS Include="$(DistrKit)\**\*.*" Exclude="@(STPExclude);@(STPMDSExclude)"/>
+        <UPDFilesMDS Include="@(UPDInclude)"      Exclude="@(UPDExclude);@(STPMDSExclude)" />
+
+        <STPFilesSRV Include="$(DistrKit)\**\*.*" Exclude="@(STPExclude);@(STPSRVExclude)"/>
+        <UPDFilesSRV Include="@(UPDInclude)"      Exclude="@(UPDExclude);@(STPSRVExclude)" />
+
+        <SNCFiles
+          Include="
+          $(DistrKit)\bin*\**\*.*;
+          $(DistrKit)\cfg*\**\*.*;
+          $(DistrKit)\sql-$(Name)*\**\*.*;
+          "
+          Exclude="@(SNCExclude)" />
+
+        <DBGFiles
+          Include = "
+          $(DistrKit)\bin*\FastMM_FullDebugMode.dll;
+          "/>
+
+        <TSTFiles
+          Include = "
+            @(DBGFiles);
+            $(DistrKit)\bin*\**\*test.bpl;
+			$(DistrKit)\bin*\mdo_runner.exe;
+			$(DistrKit)\sql*\_*_test*.sql;
+			$(DistrKit)\tst*\**\*.*;"
+		/>
+
+		<PRNFiles Include="
+		  $(DistrKit)\cfg*\**\*.*;
+          "
+          Exclude="@(PRNExclude)"/>
+
+  </ItemGroup>
+
+  <Target Name="CreateKitMDO">
+                <Message Text=">> Create distribution kit" Importance="high" />
+                <MakeDir Directories="$(DistrKit);$(SetupKit)" />
+                <MakeDir Directories="$(DistrKit)\hlp" />
+                <CallTarget Targets="CopyIDE" />
+                <CallTarget Targets="CopyIDF" />
+                <CallTarget Targets="CopyExt" />
+                <CallTarget Targets="CopyPkgMDO" />
+                <CallTarget Targets="CopyCfgMDO" />
+                <CallTarget Targets="CopyImg" />
+                <Delete Files="@(RptFilesMDS->'$(DistrKit)\rpt\%(Filename)%(Extension)')" TreatErrorsAsWarnings="true"/>
+                <CallTarget Targets="CopyRptMDO" />
+                <CallTarget Targets="CopySQL" />
+                <CallTarget Targets="PrepareSQL" />
+                <CallTarget Targets="CopyTst" />
+  </Target>
+
+  <Target Name="CreateKitMDS">
+                <CallTarget Targets="CreateKitMDO" />
+                <CallTarget Targets="CopyPkgMDS" />
+                <CallTarget Targets="CopyCfgMDS" />
+                <CallTarget Targets="CopyRptMDS" />
+  </Target>
+
+  <Target Name="CopyTstKit">
+                <!-- для работы тестов нужны доп. файлы -->
+                <Copy Condition="$(Config)=='Debug'"
+                      SourceFiles="@(TSTFiles)" DestinationFiles="@(TSTFiles->'$(Dest)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+
+  <Target Name="CreateKitStpMDO">
+                <Message Text=">> Create distribution kit for MDO full setup" Importance="high" />
+                <RemoveDir Directories="$(DistrKit)-mdo-stp" />
+                <MakeDir   Directories="$(DistrKit)-mdo-stp" />
+                <Copy SourceFiles="@(STPFilesMDO)" DestinationFiles="@(STPFilesMDO->'$(DistrKit)-mdo-stp\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+                <MSBuild Projects="$(MSBuildProjectFile)" Targets="CopyTstKit" Properties="Dest=$(DistrKit)-mdo-stp"/>
+  </Target>
+
+  <Target Name="CreateKitStpMDS">
+                <Message Text=">> Create distribution kit for MDS full setup" Importance="high" />
+                <RemoveDir Directories="$(DistrKit)-mds-stp" />
+                <MakeDir   Directories="$(DistrKit)-mds-stp" />
+                <Copy SourceFiles="@(STPFilesMDS)" DestinationFiles="@(STPFilesMDS->'$(DistrKit)-mds-stp\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+                <MSBuild Projects="$(MSBuildProjectFile)" Targets="CopyTstKit" Properties="Dest=$(DistrKit)-mds-stp"/>
+  </Target>
+
+  <Target Name="CreateKitStpSRV">
+                <Message Text=">> Create distribution kit for MDS Server full setup" Importance="high" />
+                <RemoveDir Directories="$(DistrKit)-srv-stp" />
+                <MakeDir   Directories="$(DistrKit)-srv-stp" />
+                <Copy SourceFiles="@(STPFilesSRV)" DestinationFiles="@(STPFilesSRV->'$(DistrKit)-srv-stp\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+                <Copy SourceFiles="@(SRVONLYFiles)" DestinationFiles="@(SRVONLYFiles->'$(DistrKit)-srv-stp\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+
+                <Copy Condition="$(Config)=='Debug'"
+                      SourceFiles="@(DBGFiles)" DestinationFiles="@(DBGFiles->'$(DistrKit)-srv-stp\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CreateKitPrn">
+                <Message Text=">> Create distribution kit for Net Print Service" Importance="high" />
+                <RemoveDir Directories="$(DistrKitPrn)" />
+                <MakeDir Directories="$(DistrKitPrn)" />
+                <Copy SourceFiles="@(PRNFiles)" DestinationFiles="@(PRNFiles->'$(DistrKitPrn)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CreateKitSnc">
+                <Message Text=">> Create distribution kit for server" Importance="high" />
+                <RemoveDir Directories="$(DistrKitSnc)" />
+                <MakeDir Directories="$(DistrKitSnc)" />
+                
+                <Copy SourceFiles="@(SNCFiles)" DestinationFiles="@(SNCFiles->'$(DistrKitSnc)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+
+  <Target Name="CreateKitUpdMDO">
+                <Message Text=">> Create distribution kit for update" Importance="high" />
+                <RemoveDir Directories="$(DistrKit)-mdo-upd" />
+                <MakeDir   Directories="$(DistrKit)-mdo-upd" />
+                <Copy SourceFiles="@(UPDFilesMDO)" DestinationFiles="@(UPDFilesMDO->'$(DistrKit)-mdo-upd\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+                <MSBuild Projects="$(MSBuildProjectFile)" Targets="CopyTstKit" Properties="Dest=$(DistrKit)-mdo-upd"/>
+  </Target>
+
+
+  <Target Name="DeleteKit">
+                <Message Text=">> Delete distribution kit" Importance="high" />
+                <RemoveDir Directories="$(DistrKit);$(DistrKit)-stp;$(DistrKit)-upd;$(SetupKit)" />
+  </Target>
+
+  <Target Name="CopyIDE">
+        <Message Text=">> Copy IDE files" Importance="high" />
+        <Copy SourceFiles="@(IDEFiles)" DestinationFiles="@(IDEFiles->'$(DistrKit)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyIDF">
+        <Message Text=">> Copy IDE files" Importance="high" />
+        <Copy SourceFiles="@(IDFFiles)" DestinationFiles="@(IDFFiles->'$(DistrKit)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyExt">
+        <Message Text=">> Copy external binaries" Importance="high" />
+        <Copy SourceFiles="$(Root)\etc\Firebird\isql.exe"      DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Root)\etc\Firebird\IBEScript.exe" DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />       
+        <Copy SourceFiles="$(Root)\etc\Firebird\firebird.conf" DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Archiver)\7z.dll"                 DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Archiver)\wget.exe"               DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Archiver)\wput.exe"               DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Archiver)\blat.exe"               DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDS)\bin\gdiplus.dll"             DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyPkgMDO">
+        <Message Text=">> Copy packages" Importance="high" />
+        <Copy SourceFiles="$(SystemRoot)\system32\vcl140.bpl"           DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(SystemRoot)\system32\rtl140.bpl"           DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(SystemRoot)\system32\xmlrtl140.bpl"        DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(SystemRoot)\system32\inet140.bpl"          DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(SystemRoot)\system32\dsnap140.bpl"         DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\FlexCel2010.bpl"         DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\VirtualTreesD14.bpl"     DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\IndySystem140.bpl"       DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\IndyCore140.bpl"         DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\IndyProtocols140.bpl"    DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\SuperObject.bpl"         DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\Synapse40.bpl"           DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\cxLibraryRS14.bpl"       DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\cxEditorsRS14.bpl"       DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxCoreRS14.bpl"          DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxSkinsCoreRS14.bpl"     DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxSkinOffice2013LightGrayRS14.bpl" DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxLayoutControlRS14.bpl" DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\cxGridRS14.bpl"          DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxdbtrRS14.bpl"          DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxThemeRS14.bpl"         DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxGDIPlusRS14.bpl"       DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\cxDataRS14.bpl"          DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\cxExportRS14.bpl"        DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxServerModeRS14.bpl"    DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\cxPageControlRS14.bpl"   DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxComnRS14.bpl"          DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxPSCoreRS14.bpl"        DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxPScxGridLnkRS14.bpl"   DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxPSdxLCLnkRS14.bpl"     DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxPSLnksRS14.bpl"        DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxPScxCommonRS14.bpl"    DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxTileControlRS14.bpl"   DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(BDSCOMMONDIR)\Bpl\dxSkinOffice2010SilverRS14.bpl" DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyPkgMDS">
+        <Message Text=">> Copy packages" Importance="high" />
+        <Copy SourceFiles="$(SystemRoot)\system32\vclie140.bpl"       DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(SystemRoot)\system32\vclshlctrls140.bpl" DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyCfg">
+        <Message Text=">> Copy configs" Importance="high" />
+		<Copy SourceFiles="$(Root)\cfg\config.txt"    DestinationFiles="$(DistrKit)\cfg\config"                SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\options.txt"   DestinationFiles="$(DistrKit)\cfg\$(ProjConf)-options"   SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\packages.txt"  DestinationFiles="$(DistrKit)\cfg\$(ProjConf)-packages"  SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\registers.xml" DestinationFiles="$(DistrKit)\cfg\$(ProjConf)-registers" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\strings.txt"   DestinationFiles="$(DistrKit)\cfg\$(ProjConf)-strings"   SkipUnchangedFiles="true"/>
+
+		<Copy SourceFiles="$(Root)\cfg\mdo_sync.cfg"          DestinationFiles="$(DistrKit)\cfg\mdo_sync.cfg"          SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\mdo_updt.ini.sample"   DestinationFiles="$(DistrKit)\cfg\mdo_updt.ini.sample"   SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\mds_task.ini"          DestinationFiles="$(DistrKit)\cfg\mds_task.ini"          SkipUnchangedFiles="true"/>
+
+		<Copy SourceFiles="$(Root)\cfg\_cndm.css"     DestinationFolder="$(DistrKit)\cfg" Condition="$(ProjConf)=='mds'" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\_cndm.ini"     DestinationFolder="$(DistrKit)\cfg" Condition="$(ProjConf)=='mds'" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="$(Root)\cfg\_cndm.xml"     DestinationFolder="$(DistrKit)\cfg" Condition="$(ProjConf)=='mds'" SkipUnchangedFiles="true"/>
+        <Copy SourceFiles="$(Root)\cfg\info.css"      DestinationFiles="$(DistrKit)\cfg\$(ProjConf)-info.css"  Condition="$(ProjConf)=='mds'" SkipUnchangedFiles="true"/>
+        
+        <Copy SourceFiles="@(GENFiles)" DestinationFiles="@(GENFiles->'$(DistrKit)\etc\gen\%(RecursiveDir)%(Filename)%(Extension)')" Condition="$(ProjConf)=='mds'" SkipUnchangedFiles="true" />
+
+        <!-- дополнительное явное удаление, что бы не затереть настройки пользователей-->
+        <Delete Files="$(DistrKit)\cfg\mds.dbgrids"     TreatErrorsAsWarnings="true"/>
+        <Delete Files="$(DistrKit)\cfg\usr-dbgrids"     TreatErrorsAsWarnings="true"/>
+        <Delete Files="$(DistrKit)\cfg\ide3050-prefers" TreatErrorsAsWarnings="true"/>
+        <Delete Files="$(DistrKit)\cfg\usr-options"     TreatErrorsAsWarnings="true"/>
+        <Delete Files="$(DistrKit)\cfg\usr-controls"    TreatErrorsAsWarnings="true"/>
+
+        <Exec Command="$(DistrKit)\bin\ide3050encrypt.exe /i $(DistrKit)\cfg\config"               WorkingDirectory="$(DistrKit)\cfg" />
+        <Exec Command="$(DistrKit)\bin\ide3050encrypt.exe /i $(DistrKit)\cfg\$(ProjConf)-options"  WorkingDirectory="$(DistrKit)\cfg" />
+        <Exec Command="$(DistrKit)\bin\ide3050encrypt.exe /i $(DistrKit)\cfg\$(ProjConf)-packages" WorkingDirectory="$(DistrKit)\cfg" />
+        <Exec Command="$(DistrKit)\bin\ide3050encrypt.exe /i $(DistrKit)\cfg\$(ProjConf)-strings"  WorkingDirectory="$(DistrKit)\cfg" />
+  </Target>
+
+  <Target Name="CopyCfgMDO">
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="CopyCfg" Properties="ProjConf=mdo"/>
+  </Target>
+
+  <Target Name="CopyCfgMDS">
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="CopyCfg" Properties="ProjConf=mds"/>
+  </Target>
+
+  <Target Name="CopyImg">
+        <Message Text=">> Copy images" Importance="high" />
+        <Copy SourceFiles="@(ImgFiles)" DestinationFolder="$(DistrKit)\img" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyHtm">
+        <Message Text=">> Copy images" Importance="high" />
+        <Copy SourceFiles="@(HtmFiles)" DestinationFolder="$(DistrKit)\htm" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyRptMDO">
+        <Message Text=">> Copy MDO reports" Importance="high" />
+        <Copy SourceFiles="@(RptFilesMDO)" DestinationFolder="$(DistrKit)\rpt" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CopyRptMDS">
+        <Message Text=">> Copy MDS reports" Importance="high" />
+        <Copy SourceFiles="@(RptFilesMDS)" DestinationFolder="$(DistrKit)\rpt" SkipUnchangedFiles="true" />
+  </Target>
+
+
+  <Target Name="CopyTst">
+        <Message Text=">> Copy test fixtures" Importance="high" />
+        <Copy SourceFiles="@(TstFixtureFiles)" DestinationFiles="@(TstFixtureFiles->'$(DistrKit)\tst\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="SweepSrc">
+        <Message Text=">> Sweep project source" Importance="high" />
+        <Exec Command="del /q /s $(SweepExtensions)" WorkingDirectory="$(Root)\src" />
+        <Exec Command="rmdir /q /s __history" WorkingDirectory="$(Root)\src" />
+
+        <Exec Command="del /q /s $(SweepExtensions)" WorkingDirectory="$(Root)\src.add\apteka_cd" />
+        <Exec Command="rmdir /q /s __history" WorkingDirectory="$(Root)\src.add\apteka_cd" />
+  </Target>
+
+  <Target Name="BuildSrc">
+        <Message Text=">> Build all projects" Importance="high" />
+        <MSBuild Projects="$(Root)\src\pkg\$(Name).groupproj" Targets="Clean;Build" StopOnFirstFailure="true" />
+  </Target>
+
+  <Target Name="BuildIssStp">
+        <Message Text=">> Build installation distribution kit ($(ProjConf)_setup.exe)" Importance="high" />
+        <Exec Command="iscc.exe $(Root)\iss\$(ProjConf)_innosetup.iss /o$(SetupKit) /f$(ProjConf)_setup /d_distr=$(DistrKit)-$(ProjConf)-stp" WorkingDirectory="$(InnoSetup)" />
+  </Target>
+
+  <Target Name="BuildIssUpd">
+        <Message Text=">> Build installation distribution kit ($(ProjConf)_update.exe)" Importance="high" />
+        <Exec Command="iscc.exe $(Root)\iss\$(ProjConf)_innosetup.iss /o$(SetupKit) /f$(ProjConf)_update /dUPDATE_MODE /d_distr=$(DistrKit)-$(ProjConf)-upd" WorkingDirectory="$(InnoSetup)" />
+  </Target>
+
+  <Target Name="BuildIssStpMDO">
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildIssStp" Properties="ProjConf=mdo"/>
+  </Target>
+  <Target Name="BuildIssUpdMDO">
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildIssUpd" Properties="ProjConf=mdo"/>
+  </Target>
+
+  <Target Name="BuildIssStpMDS">
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildIssStp" Properties="ProjConf=mds"/>
+  </Target>
+  <Target Name="BuildIssUpdMDS">
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildIssUpd" Properties="ProjConf=mds"/>
+  </Target>
+
+  <Target Name="BuildIssStpSRV">
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="BuildIssStp" Properties="ProjConf=srv"/>
+  </Target>
+
+
+  <Target Name="BuildPrt">
+        <Message Text=">> Build portable MDS distribution kit (*7zip)" Importance="high" />
+        <Exec Command="7z.exe a -tzip -mx9 -x!*.7z $(SetupKit)\mds_prtbl.zip $(DistrKit)\*" WorkingDirectory="$(Archiver)" />
+  </Target>
+
+  <Target Name="BuildPrtPrn">
+        <Message Text=">> Build portable PRN distribution kit (*7zip)" Importance="high" />
+        <Exec Command="7z.exe a -tzip -mx9 -x!*.7z $(SetupKit)\mds_prtbl_netprn.zip $(DistrKit)-prn\*" WorkingDirectory="$(Archiver)" />
+  </Target>
+
+    <Target Name="BuildSncSrv">
+        <Message Text=">> Build portable SNC distribution kit (*7zip)" Importance="high" />
+        <Exec Command="7z.exe a -tzip -mx9 -x!*.7z $(SetupKit)\$(ProjConf)_sync_server.zip $(DistrKitSnc)\*" WorkingDirectory="$(Archiver)" />
+  </Target>
+
+
+  <Target Name="Build7zp">
+        <Message Text=">> Build project backup" Importance="high" />
+        <Exec Command="7z.exe a -mx9 $(Root).7z $(Root)" WorkingDirectory="$(Archiver)" />
+  </Target>
+
+  <Target Name="BuildHlpMDS">
+        <Message Text=">> Build MDS documentation" Importance="high" />
+        <Copy SourceFiles="$(Root)\hlp\WhatsNew.txt" DestinationFolder="$(DistrKit)\hlp" SkipUnchangedFiles="true" />
+
+        <Exec Command="&quot;$(HelpMan)\helpman.exe&quot; $(HelpSrc) /CHM=&quot;$(TEMP)\help.chm&quot; /I=CHM,MDS" WorkingDirectory="$(Root)\hlp" />
+        <Exec Command="copy &quot;$(TEMP)\help.chm&quot; &quot;$(DistrKit)\hlp\help.chm&quot;" WorkingDirectory="$(Root)\hlp" />
+        <Exec Command="del &quot;$(TEMP)\help.chm&quot;" WorkingDirectory="$(Root)\hlp" />
+  </Target>
+
+  <Target Name="BuildHlpMDO">
+        <Message Text=">> Build MDO documentation" Importance="high" />
+        <Delete Files="$(DistrKit)\hlp\help.chm"/>
+        <Exec Command="&quot;$(HelpMan)\helpman.exe&quot; $(HelpSrc) /CHM=&quot;$(DistrKit)\hlp\help.chm&quot; /I=CHM,MDO" WorkingDirectory="$(Root)\hlp" />
+  </Target>
+
+
+  <Target Name="StartHlp">
+        <Message Text=">> Start documentation" Importance="high" />
+        <Exec Command="$(DistrKit)\hlp\help.chm" WorkingDirectory="$(DistrKit)\hlp" />
+  </Target>
+
+
+  <Target Name="StartIss">
+        <Message Text=">> Start installation" Importance="high" />
+        <Exec Command="$(SetupKit)\$(Name)setup" WorkingDirectory="$(SetupKit)" />
+  </Target>
+
+  <Target Name="StartApp">
+        <Message Text=">> Start application" Importance="high" />
+        <Exec Command="$(DistrKit)\bin\ide3050main.exe" WorkingDirectory="$(DistrKit)\bin" />
+  </Target>
+
+  <Target Name="CopyFBEInternal">
+        <Copy SourceFiles="$(Root)\etc\Firebird\firebird.conf"    DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\firebird.msg"              DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\fbembed.dll"               DestinationFiles="$(Dest)\fbclient.dll" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\ib_util.dll"           DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\icudt30.dll"           DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\icuin30.dll"           DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\icuuc30.dll"           DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\gfix.exe"              DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Root)\etc\Firebird\isql.exe"         DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Root)\etc\Firebird\IBEScript.exe"    DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />       
+        <Copy SourceFiles="$(Firebird)\bin\gbak.exe"     DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\Microsoft.VC80.CRT.manifest"  DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\msvcp80.dll"  DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\bin\msvcr80.dll"  DestinationFolder="$(Dest)" SkipUnchangedFiles="true" />
+
+        <Copy SourceFiles="$(Firebird)\intl\fbintl.conf" DestinationFolder="$(Dest)\intl" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\intl\fbintl.dll"  DestinationFolder="$(Dest)\intl" SkipUnchangedFiles="true" />
+
+        <Copy SourceFiles="$(Firebird)\udf\fbudf.dll"    DestinationFolder="$(Dest)\udf" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\udf\fbudf.sql"    DestinationFolder="$(Dest)\udf" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\udf\fbudf.txt"    DestinationFolder="$(Dest)\udf" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\udf\ib_udf.dll"   DestinationFolder="$(Dest)\udf" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\udf\ib_udf.sql"   DestinationFolder="$(Dest)\udf" SkipUnchangedFiles="true" />
+        <Copy SourceFiles="$(Firebird)\udf\ib_udf2.sql"  DestinationFolder="$(Dest)\udf" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyFBE">
+        <Message Text=">> Copy Firebird Embedded" Importance="high" />
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="CopyFBEInternal" Properties="Dest=$(DistrKit)\bin"/>
+  </Target>
+
+  <Target Name="PrepareSQL">
+        <Message Text=">> Prepare SQL files (procedures and triggers)" Importance="high" />
+        <!-- для дистрибутива -->
+        <Exec Command="prepare-procedures.bat" WorkingDirectory="$(SQLDir)"/>
+        <Exec Command="prepare-triggers.bat" WorkingDirectory="$(SQLDir)"/>
+        <!-- для непосредственно исходников -->
+        <Exec Command="prepare-procedures.bat" WorkingDirectory="$(SQLSrcDir)"/>
+        <Exec Command="prepare-triggers.bat" WorkingDirectory="$(SQLSrcDir)"/>
+  </Target>
+
+  <Target Name="CopySQL">
+        <Message Text=">> Copy SQL files" Importance="high" />
+        <Copy SourceFiles="@(SQLFiles)" DestinationFiles="@(SQLFiles->'$(SQLDir)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyUDF" Condition="Exists('$(UDFFile)')">
+        <Message Text=">> Copy udf file if exists" Importance="high" />
+        <Copy SourceFiles="$(UDFFile)" DestinationFolder="$(Firebird)\udf" SkipUnchangedFiles="true" />
+  </Target>
+
+  <Target Name="CopyFDB" Condition="Exists('$(FDBFile)')">
+        <Message Text=">> Copy database file if exists" Importance="high" />
+        <Exec Command="move $(FDBFile) $(FDBFile).backup"  WorkingDirectory="$(SQLDir)"/>
+        <!-- <Copy SourceFiles="$(FDBFile)" DestinationFiles="$(TEMP)\fdb.backup" SkipUnchangedFiles="true" />
+        <Delete Files="$(FDBFile)" TreatErrorsAsWarnings="true"/>-->
+  </Target>
+
+  <Target Name="BuildSQL">
+        <MakeDir Directories="$(DistrKit)\fdb" />
+        <CallTarget Targets="CopyFBE" />
+        <CallTarget Targets="CopySQL" />
+        <CallTarget Targets="PrepareSQL" />
+        <CallTarget Targets="CopyUDF" />
+        <CallTarget Targets="CopyFDB" />
+
+        <Message Text=">> Build Database" Importance="high" />
+        <Exec Command="$(SQLDir)\create.cmd"  WorkingDirectory="$(SQLDir)"/>
+  </Target>
+
+  <Target Name="CreateHDFClient">
+        <Message Text=">> Build hdf_client" Importance="high" />
+        <Exec Command="$(GoBin)\go build" WorkingDirectory="$(Root)\src.go\hdf_client" />
+        <Copy SourceFiles="$(Root)\src.go\hdf_client\hdf_client.exe" DestinationFolder="$(DistrKit)\bin" SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

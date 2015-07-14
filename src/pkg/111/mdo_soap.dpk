@@ -1,0 +1,76 @@
+package mdo_soap;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Copy of SOAP package with progress ability'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+rrequires
+  xmlrtl,
+  inet,
+  dbrtl,
+  rtl,
+  vcldb,
+  vcl;
+
+ocontains
+  mds_XSBuiltIns in '..\..\..\3050MDO.GIT\src\ext\soap\mds_XSBuiltIns.pas',
+  mds_HTTPUtil in '..\..\..\3050MDO.GIT\src\ext\soap\mds_HTTPUtil.pas',
+  mds_inquire_v1 in '..\..\..\3050MDO.GIT\src\ext\soap\mds_inquire_v1.pas',
+  mds_IntfInfo in '..\..\..\3050MDO.GIT\src\ext\soap\mds_IntfInfo.pas',
+  mds_InvConst in '..\..\..\3050MDO.GIT\src\ext\soap\mds_InvConst.pas',
+  mds_Invoker in '..\..\..\3050MDO.GIT\src\ext\soap\mds_Invoker.pas',
+  mds_InvokeRegistry in '..\..\..\3050MDO.GIT\src\ext\soap\mds_InvokeRegistry.pas',
+  mds_InvRules in '..\..\..\3050MDO.GIT\src\ext\soap\mds_InvRules.pas',
+  mds_HTTPSOAPToPasBind in '..\..\..\3050MDO.GIT\src\ext\soap\mds_HTTPSOAPToPasBind.pas',
+  mds_OPConvert in '..\..\..\3050MDO.GIT\src\ext\soap\mds_OPConvert.pas',
+  mds_OPToSOAPDomConv in '..\..\..\3050MDO.GIT\src\ext\soap\mds_OPToSOAPDomConv.pas',
+  mds_OPToSOAPDomCustom in '..\..\..\3050MDO.GIT\src\ext\soap\mds_OPToSOAPDomCustom.pas',
+  mds_PrivateHeap in '..\..\..\3050MDO.GIT\src\ext\soap\mds_PrivateHeap.pas',
+  mds_Rio in '..\..\..\3050MDO.GIT\src\ext\soap\mds_Rio.pas',
+  mds_SOAPAttach in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPAttach.pas',
+  mds_SOAPAttachIntf in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPAttachIntf.pas',
+  mds_SOAPConst in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPConst.pas',
+  mds_SOAPDomConv in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPDomConv.pas',
+  mds_SOAPEnv in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPEnv.pas',
+  mds_SOAPHTTPClient in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPHTTPClient.pas',
+  mds_SOAPHTTPDisp in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPHTTPDisp.pas',
+  mds_SOAPHTTPPasInv in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPHTTPPasInv.pas',
+  mds_SOAPHTTPTrans in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPHTTPTrans.pas',
+  mds_SOAPLinked in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPLinked.pas',
+  mds_SOAPPasInv in '..\..\..\3050MDO.GIT\src\ext\soap\mds_SOAPPasInv.pas',
+  mds_TypeTrans in '..\..\..\3050MDO.GIT\src\ext\soap\mds_TypeTrans.pas',
+  mds_UDDIHelper in '..\..\..\3050MDO.GIT\src\ext\soap\mds_UDDIHelper.pas',
+  mds_WebNode in '..\..\..\3050MDO.GIT\src\ext\soap\mds_WebNode.pas',
+  mds_WSDLNode in '..\..\..\3050MDO.GIT\src\ext\soap\mds_WSDLNode.pas',
+  mds_WSDLSOAP in '..\..\..\3050MDO.GIT\src\ext\soap\mds_WSDLSOAP.pas',
+  mds_WSDLItems in '..\..\..\3050MDO.GIT\src\ext\soap\mds_WSDLItems.pas',
+  mds_WSDLIntf in '..\..\..\3050MDO.GIT\src\ext\soap\mds_WSDLIntf.pas',
+  mds_WSDLBind in '..\..\..\3050MDO.GIT\src\ext\soap\mds_WSDLBind.pas',
+  mds_EncdDecd in '..\..\..\3050MDO.GIT\src\ext\soap\mds_EncdDecd.pas',
+  mds_WebServExp in '..\..\..\3050MDO.GIT\src\ext\soap\mds_WebServExp.pas',
+  mds_OPConvertOptions in '..\..\..\3050MDO.GIT\src\ext\soap\mds_OPConvertOptions.pas',
+  mds_CertHelper in '..\..\..\3050MDO.GIT\src\ext\soap\mds_CertHelper.pas';
+
+d.

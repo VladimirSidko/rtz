@@ -1,0 +1,65 @@
+package rtz_core;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Copy of SOAP package with progress ability'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  xmlrtl,
+  inet,
+  dbrtl,
+  rtl,
+  vcldb,
+  vcl,
+  ide3050intf,
+  idf3050core,
+  cxLibraryRS14,
+  cxEditorsRS14,
+  dxCoreRS14,
+  dxSkinsCoreRS14,
+  dxSkinOffice2010SilverRS14,
+  dxLayoutControlRS14,
+  cxGridRS14,
+  dxdbtrRS14,
+  dxThemeRS14,
+  dxGDIPlusRS14,
+  cxDataRS14,
+  cxExportRS14,
+  dxServerModeRS14,
+  cxPageControlRS14,
+  dxComnRS14,
+  dxPSCoreRS14,
+  dxPScxGridLnkRS14,
+  dxTileControlRS14;
+
+contains
+  rtz_const_sql in '..\rtz_const_sql.pas',
+  rtz_const in '..\rtz_const.pas',
+  rtz_dev_cntr in '..\rtz_dev_cntr.pas',
+  rtz_cpanel in '..\rtz_cpanel.pas',
+  rtz_photo in '..\rtz_photo.pas',
+  rtz_connect in '..\rtz_connect.pas';
+
+end.

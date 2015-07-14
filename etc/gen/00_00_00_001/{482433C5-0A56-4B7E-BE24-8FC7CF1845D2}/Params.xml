@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<TXMLParamNode IsDocElem="true" ID="" OwnerEntityIID="{482433C5-0A56-4B7E-BE24-8FC7CF1845D2}">
+  <TXMLCategoryNode ID="92" Visible="1" Name="DocNum" Caption="Номер документа" ParamType="0">
+    <TXMLAttrNode ID="93" Visible="1" Name="SeriesNum" Caption="Номер серии" SrcTblName="DSI" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NUMBER" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike=""/>
+    <TXMLAttrNode ID="94" Visible="1" Name="DocType" Caption="Тип документа" SrcTblName="DS" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_DOC_SERIES_TYPE" ConditionFldType="14" SubCondition="" ParamType="1"/>
+    <TXMLAttrNode ID="95" Visible="1" Name="DocNum" Caption="Номер документа" SrcTblName="DS" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NUMBER" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike=""/>
+    <TXMLAttrNode ID="96" Visible="1" Name="DocDate" Caption="Дата документа" SrcTblName="DS" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="DATE_TIME" ConditionFldType="3" SubCondition="" ParamType="1"/>
+  </TXMLCategoryNode>
+</TXMLParamNode>

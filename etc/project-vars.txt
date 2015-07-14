@@ -1,0 +1,41 @@
+call "C:\Program Files\Embarcadero\RAD Studio\7.0\bin\rsvars.bat"
+
+@set Name=mdo
+@set Version=1.0
+@set Root=%~dp0..
+@set DistrIDE=%Root%\..\3050IDE.GIT\user-distr
+@set DistrIDF=%Root%\..\3050IDF.GIT\user-distr
+@set Firebird=%Root%\..\_FB
+@set GoBin=C:\Go\bin
+@set Archiver=C:\Program Files\7-Zip
+@set InnoSetup=C:\Program Files\Inno Setup 5
+@set HelpMan=C:\Program Files\EC Software\HelpAndManual5
+@set SweepExtensions=*.~*;*.#*;*.bak;*.dsm;*.dcu;*.dcp;*.dsk;*.ddp;*.drc;*.map;*.rsm;*.o;*.ppu;*.rst;*.*_1;*.kof;*.obj;*.err;*.dpu;*.tds;*.hpp;*.identcache;*.local;Thumbs.db;*.exe;*.bpl;*.dll;*.conf
+
+@set BUILD_MODE=Debug
+
+
+rem Do Not Change!
+@set DistrKit=%Root%\user-distr
+@set SetupKit=%Root%\user-setup
+
+
+for /d %%i in ("%Root%") do (
+    set Root=%%~fi
+)
+
+for /d %%i in ("%DistrIDE%") do (
+    set DistrIDE=%%~fi
+)
+
+for /d %%i in ("%DistrIDF%") do (
+    set DistrIDF=%%~fi
+)
+
+for /d %%i in ("%Firebird%") do (
+    set Firebird=%%~fi
+)
+
+for /d %%i in ("%GoBin%") do (
+    set GoBin=%%~fi
+)

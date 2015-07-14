@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<TXMLParamNode IsDocElem="1" ID="" OwnerEntityIID="{E2893E90-F8BE-4CAC-88F3-28E72FEC9093}" MainTableName="M_DRUG" MainTableAlias="M" MainKeyFieldName="ID">
+	<TXMLCategoryNode ID="22" Visible="0" Name="NFCClassificationCode3" Caption="NFC классификация код" ParamType="0">
+		<TXMLAttrNode ID="23" Visible="0" Name="NFCClassificationCode1" Caption="NFC классификация код (1)" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0"/>
+		<TXMLAttrNode ID="24" Visible="0" Name="NFCClassificationCode2" Caption="NFC классификация код (2)" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0"/>
+		<TXMLAttrNode ID="25" Visible="0" Name="NFCClassificationCode3" Caption="NFC классификация код (3)" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0"/>
+	</TXMLCategoryNode>
+	<TXMLCategoryNode ID="26" Visible="1" Name="Production" Caption="Продукция" ParamType="0">
+		<TXMLAttrNode ID="27" Visible="1" Name="Category" Caption="Категория" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_CATEGORY" ConditionFldType="8" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="28" Visible="0" Name="NameRus" Caption="Русское наименование" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="29" Visible="0" Name="NameUkr" Caption="Украинское наименование" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="30" Visible="0" Name="NameEn" Caption="Латинское наименование" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="31" Visible="1" Name="UniqueCode" Caption="Код Морион" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_MORION" ConditionFldType="0" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>  <TXMLAttrNode ID="102" Visible="1" Name="name" Caption="Название" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="NAME" ConditionFldType="2" SubCondition="" TreeLike="0" DistinctNeeded="0" ParamType="1"/>
+  </TXMLCategoryNode>
+	<TXMLCategoryNode ID="32" Visible="1" Name="ProductProperty" Caption="Характеристики продукции" ParamType="0">
+		<TXMLAttrNode ID="33" Visible="1" Name="Classification" Caption="Классификация" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_CLASS_DRUG" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="6" SubCondition="" ParamType="1" TreeLike="1" DistinctNeeded="1">
+			<TXMLPropertyNode ID="64" Visible="1" Name="Classification" Caption="СВЯЗКА В M_CLASS" SrcTblName="" SrcFldName="ID_CLASS" TrgtTblName="M_CLASS" TrgtFldName="ID" ConditionFldName="NODE_CODE" ConditionFldType="2" SubCondition="" ParamType="2" TreeLike="0" DistinctNeeded=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="34" Visible="1" Name="Substance" Caption="Вещество" SrcTblName="M" SrcFldName="ID_FORM_REG" TrgtTblName="M_COMPOSITION" TrgtFldName="ID_FORM_REG" ConditionFldName="" ConditionFldType="7" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="65" Visible="1" Name="Substance" Caption="СВЯЗКА К M_SUBSTANCE" SrcTblName="" SrcFldName="ID_SUBSTANCE" TrgtTblName="M_SUBSTANCE" TrgtFldName="ID" ConditionFldName="ID" ConditionFldType="0" SubCondition="" ParamType="2" TreeLike="" DistinctNeeded=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="35" Visible="1" Name="SubstanceCount" Caption="Количество вещества" SrcTblName="M" SrcFldName="ID_FORM_REG" TrgtTblName="M_COMPOSITION" TrgtFldName="ID_FORM_REG" ConditionFldName="AMOUNT" ConditionFldType="1" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="36" Visible="0" Name="SubstanceUnit" Caption="Единица измерения вещества" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="9" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="37" Visible="1" Name="SubstanceActive" Caption="Признак активности вещества" SrcTblName="M" SrcFldName="ID_FORM_REG" TrgtTblName="M_COMPOSITION" TrgtFldName="ID_FORM_REG" ConditionFldName="IS_ACTIVE" ConditionFldType="4" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1"/>
+		<TXMLAttrNode ID="38" Visible="1" Name="ReleaseForm" Caption="Форма выпуска" SrcTblName="M" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="ID_ISSUE" ConditionFldType="12" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="39" Visible="0" Name="Packaging" Caption="Упаковка" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="40" Visible="0" Name="PackingVolume" Caption="Объем упаковки" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="41" Visible="0" Name="PackingVolumeUnit" Caption="Единица измерения объема упаковки" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+		<TXMLAttrNode ID="42" Visible="0" Name="PackagingInfo" Caption="Информация об упаковке" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0"/>
+		<TXMLAttrNode ID="43" Visible="0" Name="CountInPackage" Caption="Количество в упаковке" SrcTblName="" SrcFldName="" TrgtTblName="" TrgtFldName="" ConditionFldName="" ConditionFldType="255" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded=""/>
+	</TXMLCategoryNode>
+	<TXMLCategoryNode ID="44" Visible="1" Name="Registration" Caption="Регистрация" ParamType="0">
+		<TXMLAttrNode ID="45" Visible="1" Name="RegistrationData" Caption="Дата регистрации" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_REG_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="3" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="67" Visible="1" Name="RegistrationData" Caption="СВЯЗКА К M_REG" SrcTblName="" SrcFldName="ID_REG" TrgtTblName="M_REG" TrgtFldName="ID" ConditionFldName="DATE_START" ConditionFldType="3" SubCondition="" ParamType="2" TreeLike="0" DistinctNeeded=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="46" Visible="1" Name="RegistrationCloseDate" Caption="Дата окончания регистрации" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_REG_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="3" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="81" Visible="1" Name="RegistrationCloseDate" Caption="СВЯЗКА К M_REG" SrcTblName="" SrcFldName="ID_REG" TrgtTblName="M_REG" TrgtFldName="ID" ConditionFldName="DATE_CLOSE" ConditionFldType="3" SubCondition="" ParamType="2" TreeLike="" DistinctNeeded=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="47" Visible="1" Name="DateOfAppForRegistr" Caption="Дата подачи заявки на регистрацию" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_REG_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="3" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="68" Visible="1" Name="DateOfAppForRegistr" Caption="СВЯЗКА К M_REG" SrcTblName="" SrcFldName="ID_REG" TrgtTblName="M_REG" TrgtFldName="ID" ConditionFldName="DATE_FILING" ConditionFldType="3" SubCondition="" ParamType="2" TreeLike="" DistinctNeeded=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="48" Visible="1" Name="RegistrationNumber" Caption="Регистрационный номер" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_REG_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="69" Visible="1" Name="RegistrationNumber" Caption="СВЯЗКА К M_REG" SrcTblName="" SrcFldName="ID_REG" TrgtTblName="M_REG" TrgtFldName="ID" ConditionFldName="NAME" ConditionFldType="2" SubCondition="" ParamType="2" TreeLike="" DistinctNeeded=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="49" Visible="1" Name="RegistrationDeadline" Caption="Срок регистрации" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_REG_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="0" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="70" Visible="1" Name="RegistrationDeadline" Caption="СВЯЗКА К M_REG" SrcTblName="" SrcFldName="ID_REG" TrgtTblName="M_REG" TrgtFldName="ID" ConditionFldName="REG_TERM" ConditionFldType="1" SubCondition="" ParamType="2" TreeLike="" DistinctNeeded=""/>
+		</TXMLAttrNode>
+	</TXMLCategoryNode>
+	<TXMLCategoryNode ID="50" Visible="1" Name="LicenseOwner" Caption="Владелец лицензии" ParamType="0">
+		<TXMLAttrNode ID="52" Visible="1" Name="LicenseOwnerName" Caption="Наименование владельца лицензии" SrcTblName="M" SrcFldName="ID_OWNER" TrgtTblName="M_HOLDER" TrgtFldName="ID" ConditionFldName="ID_MORION" ConditionFldType="11" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0"/>
+		<TXMLAttrNode ID="53" Visible="1" Name="LicenseOwnerCorporateMembership" Caption="Корпоративная принадлежность" SrcTblName="M" SrcFldName="ID_OWNER" TrgtTblName="M_HOLDER" TrgtFldName="ID" ConditionFldName="NODE_CODE" ConditionFldType="11" SubCondition="" ParamType="1" TreeLike="1" DistinctNeeded="0"/>
+		<TXMLAttrNode ID="54" Visible="1" Name="LicenseOwnerCountry" Caption="Страна владельца лицензии" SrcTblName="M" SrcFldName="ID_OWNER" TrgtTblName="M_HOLDER" TrgtFldName="ID" ConditionFldName="" ConditionFldType="10" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="">
+			<TXMLPropertyNode ID="71" Visible="1" Name="LicenseOwnerCountry" Caption="СВЯЗКА К M_COUNTRY" SrcTblName="" SrcFldName="ID_COUNTRY" TrgtTblName="M_COUNTRY" TrgtFldName="ID" ConditionFldName="ID" ConditionFldType="0" SubCondition="" ParamType="2" TreeLike="" DistinctNeeded=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="55" Visible="1" Name="LicenseOwnerCity" Caption="Город владельца лицензии" SrcTblName="M" SrcFldName="ID_OWNER" TrgtTblName="M_HOLDER" TrgtFldName="ID" ConditionFldName="" ConditionFldType="5" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="">
+			<TXMLPropertyNode ID="72" Visible="1" Name="LicenseOwnerCity" Caption="СВЯЗКА К M_CITY" SrcTblName="" SrcFldName="ID_CITY" TrgtTblName="M_CITY" TrgtFldName="ID" ConditionFldName="ID" ConditionFldType="0" SubCondition="" ParamType="2"/>
+		</TXMLAttrNode>
+	</TXMLCategoryNode>
+	<TXMLCategoryNode ID="56" Visible="0" Name="Provider" Caption="Поставщик" ParamType="0">
+		<TXMLAttrNode ID="58" Visible="0" Name="ProviderName" Caption="Наименование поставщика" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_SELLER_CODE" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="13" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0">
+			<TXMLPropertyNode ID="73" Visible="0" Name="ProviderName" Caption="СВЯЗКА К M_SELLER" SrcTblName="" SrcFldName="ID_SELLER" TrgtTblName="M_SELLER" TrgtFldName="ID" ConditionFldName="ID" ConditionFldType="0" SubCondition="" ParamType="2" TreeLike="0" DistinctNeeded="0"/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="59" Visible="0" Name="ProviderCountry" Caption="Страна поставщика" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_SELLER_CODE" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="10" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0">
+			<TXMLPropertyNode ID="74" Visible="0" Name="ProviderCountry" Caption="СВЯЗКА К M_SELLER" SrcTblName="" SrcFldName="ID_SELLER" TrgtTblName="M_SELLER" TrgtFldName="ID" ConditionFldName="ID" ConditionFldType="0" SubCondition="" ParamType="2" TreeLike="0" DistinctNeeded="0"/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="60" Visible="0" Name="ProviderCity" Caption="Город поставщика" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_SELLER_CODE" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="5" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="0">
+			<TXMLPropertyNode ID="75" Visible="0" Name="ProviderCity" Caption="СВЯЗКА К M_SELLER" SrcTblName="" SrcFldName="ID_SELLER" TrgtTblName="M_SELLER" TrgtFldName="ID" ConditionFldName="ID" ConditionFldType="0" SubCondition="" ParamType="2" TreeLike="0" DistinctNeeded="0"/>
+		</TXMLAttrNode>
+	</TXMLCategoryNode>
+	<TXMLCategoryNode ID="61" Visible="1" Name="Series" Caption="Серии" ParamType="0">
+		<TXMLAttrNode ID="62" Visible="1" Name="SerieNumber" Caption="Номер серии" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_DOC_SERIES_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="NUMBER" ConditionFldType="2" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1"/>
+		<TXMLAttrNode ID="63" Visible="1" Name="DocumentType" Caption="Тип документа" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_DOC_SERIES_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="14" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="78" Visible="1" Name="DocumentType" Caption="СВЯЗКА К M_DOC_SERIES" SrcTblName="" SrcFldName="ID_DOC_SERIES" TrgtTblName="M_DOC_SERIES" TrgtFldName="ID" ConditionFldName="ID_DOC_SERIES_TYPE" ConditionFldType="0" SubCondition="" ParamType="2" TreeLike=""/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="76" Visible="1" Name="SeriesDocNumber" Caption="Номер документа" ParamType="1" SrcTblName="M" SrcFldName="ID" TrgtFldName="ID_DRUG" TrgtTblName="M_DOC_SERIES_ITEM" ConditionFldType="2" ConditionFldName="" SubCondition="" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="80" Visible="1" Name="SeriesDocNumber" Caption="СВЯЗКА К M_DOC_SERIES" SrcTblName="" SrcFldName="ID_DOC_SERIES" TrgtTblName="M_DOC_SERIES" TrgtFldName="ID" ConditionFldName="NUMBER" ConditionFldType="2" SubCondition="" ParamType="2"/>
+		</TXMLAttrNode>
+		<TXMLAttrNode ID="77" Visible="1" Name="SeriesDocDate" Caption="Дата документа" SrcTblName="M" SrcFldName="ID" TrgtTblName="M_DOC_SERIES_ITEM" TrgtFldName="ID_DRUG" ConditionFldName="" ConditionFldType="3" SubCondition="" ParamType="1" TreeLike="0" DistinctNeeded="1">
+			<TXMLPropertyNode ID="79" Visible="1" Name="SeriesDocDate" Caption="СВЯЗКА К M_DOC_SERIES" SrcTblName="" SrcFldName="ID_DOC_SERIES" TrgtTblName="M_DOC_SERIES" TrgtFldName="ID" ConditionFldName="DATE_TIME" ConditionFldType="3" SubCondition="" ParamType="2" TreeLike=""/>
+		</TXMLAttrNode>
+	</TXMLCategoryNode>
+</TXMLParamNode>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<mdo_test>
+  <tests>
+    <optimize_test Number="002" Description="Проверка оптимизации с двумя поставщиками">
+      
+      <import_demand>
+        <wnt LocationID="1001" FileName="tst\optimization\data\002\wnt\1001.wnt"/>
+        <wnt LocationID="1002" FileName="tst\optimization\data\002\wnt\1001.wnt"/>
+      </import_demand>
+
+      <import_supply>
+        <mvp SupplierID="90001" FileName="tst\optimization\data\002\mvp\90001_FULL.MVP"/>
+        <mvp SupplierID="90002" FileName="tst\optimization\data\002\mvp\90002_FULL.MVP"/>
+      </import_supply>
+
+      <filters>
+        <favorite>False</favorite>
+        <date_supply>False</date_supply>
+      </filters>
+
+      <optimize>
+        <by_supplier/>
+      </optimize>
+
+      <checks Number="01" Description="По поставщику без условий">
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1001"/>
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1002"/>
+          <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100007" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100007" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100008" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100008" SupplierID="90001" LocationID="1002"/>
+      </checks>
+           
+      <optimize>
+        <by_price/>
+      </optimize>
+          
+      <checks Number="02" Description="По цене без условий">
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1001"/>
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1002"/>
+          <drug_supplier DrugID="100002" SupplierID="90002" LocationID="1001"/>
+          <drug_supplier DrugID="100002" SupplierID="90002" LocationID="1002"/>
+          <drug_supplier DrugID="100003" SupplierID="90002" LocationID="1001"/>
+          <drug_supplier DrugID="100003" SupplierID="90002" LocationID="1002"/>
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100005" SupplierID="90002" LocationID="1001"/>
+          <drug_supplier DrugID="100005" SupplierID="90002" LocationID="1002"/>
+          <drug_supplier DrugID="100006" SupplierID="90002" LocationID="1001"/>
+          <drug_supplier DrugID="100006" SupplierID="90002" LocationID="1002"/>
+          <drug_supplier DrugID="100007" SupplierID="90002" LocationID="1001"/>
+          <drug_supplier DrugID="100007" SupplierID="90002" LocationID="1002"/>
+          <drug_supplier DrugID="100008" SupplierID="90002" LocationID="1001"/>
+          <drug_supplier DrugID="100008" SupplierID="90002" LocationID="1002"/>
+      </checks>
+           
+      <settings>
+        <supplier SupplierID="90001" LocationID="0" Setting="WEIGHT" Value="10"/>
+        <supplier SupplierID="90002" LocationID="0" Setting="WEIGHT" Value="5"/>
+      </settings>
+
+
+      <optimize>
+        <by_weight/>
+      </optimize>
+
+
+      <checks Number="03" Description="По весу(ставим больший приоритет на поставщика у которого выше цены)">
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1001"/>
+          <drug_supplier DrugID="100001" SupplierID="0" LocationID="1002"/>
+          <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100002" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100003" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100004" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100005" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100006" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100007" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100007" SupplierID="90001" LocationID="1002"/>
+          <drug_supplier DrugID="100008" SupplierID="90001" LocationID="1001"/>
+          <drug_supplier DrugID="100008" SupplierID="90001" LocationID="1002"/>
+      </checks>
+    </optimize_test>
+  </tests>
+</mdo_test>

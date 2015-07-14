@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+  version="1.1"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:elo="http://www.morion.ua/ELO">
+
+  <xsd:import namespace="http://www.morion.ua/ELO" schemaLocation="elorder_types.xsd"/> 
+
+  <xsd:element name="ElOrder">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="Document" type="Document"/>
+        </xsd:sequence>
+      </xsd:complexType>
+  </xsd:element>
+
+  <xsd:complexType name="Document">
+        <xsd:sequence>
+          <xsd:element name="Header" type="Header"/>
+          <xsd:element name="Body"   type="Body"/>
+        </xsd:sequence>
+        <xsd:attribute name="DocType" type="elo:DocType" fixed="Order" use="required"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Header" >
+    <xsd:all>
+      <xsd:element name="UID"                 type="elo:GUID"/>
+      <xsd:element name="Number"              type="xsd:string"/>
+      <xsd:element name="Date"                type="elo:DateTime"/>
+      <xsd:element name="Comment"             type="xsd:string"/>
+      <xsd:element name="Client"              type="Client"/>
+      <xsd:element name="DeliveryAddress"     type="DeliveryAddress"/>
+      <xsd:element name="IsSupplierExclusive" type="xsd:boolean"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="Client">
+    <xsd:all>
+      <xsd:element name="Name" type="xsd:string"/>
+      <xsd:element name="Okpo" type="elo:OKPO"/>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="DeliveryAddress">
+    <xsd:attribute name="UID"     type="elo:GUID"/>
+    <xsd:attribute name="Address" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="Body">
+    <xsd:sequence>
+      <xsd:element name="Items">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="i" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:attribute name="MorionID"    type="xsd:integer"     use="required"/>
+                <xsd:attribute name="SellerID"    type="xsd:string"/>
+                <xsd:attribute name="Amount"      type="xsd:int"         use="required"/>
+                <xsd:attribute name="PriceTypeID" type="elo:PriceTypeID" use="required"/>
+                <xsd:attribute name="IsBonus"     type="xsd:boolean"/>
+
+                <xsd:attribute name="DrugName"    type="xsd:string" use="optional"/>
+                <xsd:attribute name="Owner"       type="xsd:string" use="optional"/>
+                <xsd:attribute name="Price"       type="xsd:float " use="optional"/>
+                <xsd:attribute name="PriceSum"    type="xsd:float"  use="optional"/>
+                <xsd:attribute name="ProposeDate" type="elo:Date"   use="optional"/>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
