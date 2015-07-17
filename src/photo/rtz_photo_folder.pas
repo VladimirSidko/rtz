@@ -3,8 +3,8 @@ unit rtz_photo_folder;
 interface
 
 uses
-  Windows, Controls, Classes, DB, SysUtils, ExtDlgs, Forms, ComCtrls, Graphics, CommCtrl,
-  ide3050_intf,
+  Windows, Controls, Classes, DB, SysUtils, ExtDlgs, Forms, ComCtrls, Graphics, CommCtrl, ExtCtrls,
+  ide3050_intf, ide3050_core_level3,
   rtz_dev_cntr, rtz_const_sql;
 
 type
@@ -17,6 +17,7 @@ type
   protected
     procedure DesignData; override;
   public
+    function CanDestroy(CheckForClose: Boolean = False): Boolean; override;
     property FolderSet: TDataSet read FFolderSet;
   end;
 
@@ -44,6 +45,8 @@ type
     procedure ClearImages;
     procedure ListViewChange(Sender: TObject; Item: TListItem; Change: TItemChange);
     procedure SliderChange(Sender: TObject);
+    procedure SetListItemSelected(AItem: TListItem);
+    procedure EditKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   protected
     procedure DesignControls; override;
     function ActnVisible(Actn: TAction): Boolean; override;
@@ -93,6 +96,11 @@ implementation
 
 { TrtzPhotoFolderComp }
 
+function TrtzPhotoFolderComp.CanDestroy(CheckForClose: Boolean): Boolean;
+begin
+  Result := True;
+end;
+
 procedure TrtzPhotoFolderComp.DesignData;
 begin
   inherited DesignData;
@@ -105,6 +113,11 @@ end;
 procedure TrtzPhotoFolderForm.AfterConstruction;
 begin
   inherited AfterConstruction;
+  if Self.Parent is TIDELevel3 then
+  begin
+    TIDELevel3(Self.Parent).TBLeft.Items.Clear;
+    TIDELevel3(Self.Parent).TBRight.Items.Clear;
+  end;
   FThread := TrtzPhotoLoadThread.Create(True);
   if FolderSet.FieldByName('FOLDER').AsString <> '' then
     LoadPhotos;
@@ -149,6 +162,8 @@ begin
   //
   edDNZNumber   := CreateStringEdit('DNZ_NUMBER',   False, 100);
   edActualSpeed := CreateStringEdit('ACTUAL_SPEED', False, 100);
+  edDNZNumber.OnKeyUp := EditKeyUp;
+  edActualSpeed.OnKeyUp := EditKeyUp;
   //
   FParamPanel.Root.LayoutDirection := TmdoLayoutDirection.ldHorizontal;
   Group := FParamPanel.Root.AddGroup;
@@ -173,7 +188,6 @@ begin
   ListView.LargeImages := ImageList;
   ListView.HideSelection := False;
   ListView.IconOptions.AutoArrange := True;
-  ListView.OnChange := ListViewChange;
   // Splitter
   with TmdoSplitter.Create(Self) do
   begin
@@ -184,6 +198,12 @@ begin
   Slider := TmdoImageSlider.Create(Self);
   Slider.Align := alClient;
   Slider.OnChange := SliderChange;
+end;
+
+procedure TrtzPhotoFolderForm.EditKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+  edDNZNumber.PostEditValue;
+  edActualSpeed.PostEditValue;
 end;
 
 function TrtzPhotoFolderForm.ActnVisible(Actn: TAction): Boolean;
@@ -295,8 +315,10 @@ var
   bmp: TBitmap;
   pic: TPicture;
 begin
+  // add image to slider
   Slider.AddImage(AFileName);
 
+  // add image to listview
   Pic := TPicture.Create;
   Bmp := TBitmap.Create;
   try
@@ -304,12 +326,15 @@ begin
     Pic.LoadFromFile(AFileName);
     Bmp.SetSize(ImageList.Width, ImageList.Height);
     Bmp.Canvas.StretchDraw(Rect(0, 0, ImageList.Width, ImageList.Height), Pic.Graphic);
-
+    // create listitem
+    ListView.OnChange := nil;
     lv := ListView.Items.Add;
     lv.Caption := ExtractFileName(AFileName);
     lv.ImageIndex := ImageList_Add(ImageList.Handle, bmp.Handle, 0);
     lv.StateIndex := lv.ImageIndex;
-
+    if ListView.Items.Count = 1 then
+      SetListItemSelected(ListView.Items[0]);
+    ListView.OnChange := ListViewChange;
   finally
     Bmp.Free;
     Pic.Free;
@@ -324,11 +349,16 @@ begin
   ImageList.Clear;
 end;
 
+procedure TrtzPhotoFolderForm.SetListItemSelected(AItem: TListItem);
+begin
+  AItem.MakeVisible(False);
+  AItem.Selected := True;
+  AItem.Focused  := True;
+end;
+
 procedure TrtzPhotoFolderForm.SliderChange(Sender: TObject);
 begin
-  ListView.Items[Slider.ItemIndex].MakeVisible(False);
-  ListView.Items[Slider.ItemIndex].Selected := True;
-  ListView.Items[Slider.ItemIndex].Focused  := True;
+  SetListItemSelected(ListView.Items[Slider.ItemIndex]);
   ListView.SetFocus;
 end;
 

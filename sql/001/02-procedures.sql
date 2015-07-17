@@ -1,4 +1,5 @@
-INPUT '..\sql-mdo\001\02-procedures\ADD_SYS_COLUMN.sqlADD_SYS_COLUMN_2.sql';
+INPUT '..\sql-mdo\001\02-procedures\ADD_SYS_COLUMN.sql';
+INPUT '..\sql-mdo\001\02-procedures\ADD_SYS_COLUMN_2.sql';
 INPUT '..\sql-mdo\001\02-procedures\ADD_SYS_GRID.sql';
 INPUT '..\sql-mdo\001\02-procedures\ADD_SYS_GRID_COLUMN.sql';
 INPUT '..\sql-mdo\001\02-procedures\ADD_SYS_GRID_EDIT.sql';
