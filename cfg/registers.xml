@@ -28,20 +28,32 @@
   IrtzCompLogin = interface ['{C7E67918-80F6-4953-AE4F-728B64617752}'] end;
   IrtzFormLogin = interface ['{2E2FB2CD-1BF9-46C7-A842-C98C7BFE54C4}'] end;
 -->
-  <comp IID="{C7E67918-80F6-4953-AE4F-728B64617752}" Intf="IrtzCompLogin" Caption="11111" >
-	<form IID="{2E2FB2CD-1BF9-46C7-A842-C98C7BFE54C4}" Intf="IrtzFormLogin" Caption="11111" />
+  <comp IID="{C7E67918-80F6-4953-AE4F-728B64617752}" Intf="IrtzCompLogin" Caption="" >
+	<form IID="{2E2FB2CD-1BF9-46C7-A842-C98C7BFE54C4}" Intf="IrtzFormLogin" Caption="" />
   </comp>
 
 <!--
   IrtzCompCPanel = interface ['{D296AAE8-F15E-4D76-8D9C-AEAEDC7B589E}'] end;
   IrtzFormCPanel = interface ['{EC9A6414-0210-4B92-90DD-6E7D8C3F0804}'] end;
 -->
-  <comp IID="{D296AAE8-F15E-4D76-8D9C-AEAEDC7B589E}" Intf="IrtzCompCPanel" Caption="22222">
-	<form IID="{EC9A6414-0210-4B92-90DD-6E7D8C3F0804}" Intf="IrtzFormCPanel" Caption="22222">
+  <comp IID="{D296AAE8-F15E-4D76-8D9C-AEAEDC7B589E}" Intf="IrtzCompCPanel" Caption="Стартова сторінка">
+	<form IID="{EC9A6414-0210-4B92-90DD-6E7D8C3F0804}" Intf="IrtzFormCPanel" Caption="">
+	  <actn IID="{A1B768D6-6AC9-4591-9E79-B7631D2CBAD4}" Intf="IrtzPhotoFolderAction"   ImageName="ide_package2.bmp" Category="Фотофіксація" Caption="Фотокартки порушень" />
 	</form>
 	<actn IID="{FD8462D1-28FA-4F65-9096-5685BBEB0A25}" Intf="IIDEActnManual" />
 	<actn IID="{A1AC61DC-94CB-4AA7-A043-7B96495B41FB}" Intf="IIDEActnAboutHome" />
 	<actn IID="{51364001-C1B7-4521-A7C6-147757522331}" Intf="IIDEActnPreference" />
+  </comp>
+
+<!--
+  IrtzPhotoFolderComp = interface ['{89DDD507-3753-4893-95DA-793DC715924D}'] end;
+  IrtzPhotoFolderForm = interface ['{48FBCBDB-6C67-4A11-AE1E-9B8B121FCE21}'] end;
+-->
+  <comp IID="{89DDD507-3753-4893-95DA-793DC715924D}" Intf="IrtzPhotoFolderComp" Caption="Фотокартки порушень" >
+	<form IID="{48FBCBDB-6C67-4A11-AE1E-9B8B121FCE21}" Intf="IrtzPhotoFolderForm" Caption="" />
+	<actn IID="{0A3A7DCB-4D0D-4E49-9DAA-64D54F3BAE6C}" Intf="IrtzPhotoOpenFolderAction" Hint = "Вибір папки..." ImageName="mds_openfile.bmp" />
+	<actn IID="{4F4A3118-F3AD-428E-9E0F-69EC7E160E42}" Intf="IrtzPhotoUpdateDataAction" Hint = "Змінити дані..." ImageName="mds_update.bmp" />
+	<actn IID="{60CE0D07-2506-46BB-B92B-8A185CDAABCF}" Intf="IrtzPhotoCreateCardAction" Hint = "Створити постанову..." ImageName="mds_run.bmp" />
   </comp>
 
   <!-- Общая стартовая -->

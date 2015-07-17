@@ -14,7 +14,7 @@ uses
   cxGridCustomTableView,  dxLayoutControl, dxLayoutContainer, dxLayoutLookAndFeels,
   cxDBLookupComboBox,  cxGridTableView, cxGridCustomView, cxCheckListBox, cxLookAndFeels, cxScrollBox, dxBevel,
   cxGridExportLink, cxDBLabel, cxLabel, cxButtonEdit, dxPSCore, dxPScxGridLnk, cxCurrencyEdit,
-  dxTileControl, dxSkinsCore, dxCustomTileControl, dxCore,
+  dxTileControl, dxSkinsCore, dxCustomTileControl, dxCore, dxImageSlider,
   dxSkinOffice2010Silver,
   ide3050_intf, ide3050_intf_register, ide3050_core_register,
   idf3050_intf, idf3050_fibp, idf3050_core_comp, idf3050_core_form,
@@ -364,6 +364,7 @@ type
   end;
 
   TmdoControl = class(TcxControl);
+
   TmdoSplitter = class(TcxSplitter)
   private
     function GetAlign: TAlign;
@@ -405,6 +406,13 @@ type
   TmdoListView = class(TcxListView)
   public
     procedure AfterConstruction; override;
+  end;
+
+  TmdoImageSlider = class(TdxImageSlider)
+  public
+    procedure AfterConstruction; override;
+    procedure BeforeDestruction; override;
+    procedure AddImage(AFileName: string);
   end;
 
   TmdoPopupMenu = class(TIDEPopupMenu)
@@ -1072,6 +1080,7 @@ type
     property mdoItem[Index: Integer]: TmdoLayoutItem read GetmdoItem;
     property FirstItem: TmdoLayoutItem read GetFirstItem;
     property Caption: string read GetCaption write SetCaption;
+  published
     property LayoutDirection: TmdoLayoutDirection read GetMdoLayoutDirection write SetMdoLayoutDirection;
   end;
 
@@ -1195,7 +1204,7 @@ type
 
   function DefLookAndFeelSkinName: string;
   function DefLayoutLookAndFeel: TdxCustomLayoutLookAndFeel;
-  procedure SetObjectLookAndFeel(AObject: TObject);
+  function SetObjectLookAndFeel(AObject: TObject): Boolean;
 
 resourcestring
   DataType_String      = 'STRING';
@@ -1277,15 +1286,33 @@ begin
   Result := FLayoutLookAndFeel.LookAndFeel;
 end;
 
-procedure SetObjectLookAndFeel(AObject: TObject);
+function SetObjectLookAndFeel(AObject: TObject): Boolean;
 var
-  Style: TcxContainerStyle;
+  Style: TObject;
+  Lf: TcxLookAndFeel;
 begin
+  Result := False;
   if Assigned(AObject) then
   begin
-    Style := GetObjectProp(AObject, 'Style') as TcxContainerStyle;
-    if Assigned(Style) then
-      Style.LookAndFeel.SkinName := DefLookAndFeelSkinName;
+    if IsPublishedProp(AObject, 'Style') then
+    begin
+      Style := GetObjectProp(AObject, 'Style');
+      if Assigned(Style) and (Style is TcxContainerStyle) then
+      begin
+        TcxContainerStyle(Style).LookAndFeel.SkinName := DefLookAndFeelSkinName;
+        TcxContainerStyle(Style).LookAndFeel.NativeStyle := False;
+        Result := True;
+      end;
+    end;
+    if not Result and IsPublishedProp(AObject, 'LookAndFeel') then
+    begin
+      Lf := GetObjectProp(AObject, 'LookAndFeel') as TcxLookAndFeel;
+      if Assigned(Lf) then
+      begin
+        Lf.SkinName := DefLookAndFeelSkinName;
+        Lf.NativeStyle := False;
+      end;
+    end;
   end;
 end;
 
@@ -1371,9 +1398,10 @@ procedure SetControlEnabledByField(AEdit: TControl);
 const
   BackColors: array[Boolean]of TColor = (clBtnFace, clWindow);
 var
-  DataBinding: TObject;
+  Properties, DataBinding: TObject;
   DataSource: TDataSource;
   FieldName: string;
+  Enable: Boolean;
 begin
   if Assigned(AEdit) then
   begin
@@ -1383,7 +1411,7 @@ begin
       if IsPublishedProp(DataBinding, 'DataSource') and IsPublishedProp(DataBinding, 'DataField') then
       begin
         DataSource := GetObjectProp(DataBinding, 'DataSource') as TDataSource;
-        if DataSource.DataSet.Active then
+        if Assigned(DataSource) and Assigned(DataSource.DataSet) and DataSource.DataSet.Active then
         begin
           FieldName  := GetStrProp(DataBinding, 'DataField');
           AEdit.Enabled := not DataSource.DataSet.FieldByName(FieldName).ReadOnly;
@@ -1391,10 +1419,18 @@ begin
           AEdit.Enabled := False;
       end;
     end;
+    Enable := AEdit.Enabled;
+    //проверим еще свойство ReadOnly
+    if Enable and IsPublishedProp(AEdit, 'Properties') then
+    begin
+      Properties := GetObjectProp(AEdit, 'Properties');
+      if (Properties is TcxCustomEditProperties) and TcxCustomEditProperties(Properties).ReadOnly then
+        Enable := False;
+    end;
+    if AEdit is TcxContainer then
+      if Assigned((AEdit as TcxContainer).InnerControl) then
+        (AEdit as TcxContainer).InnerControl.Brush.Color := BackColors[Enable];
   end;
-  if AEdit is TcxContainer then
-    if Assigned((AEdit as TcxContainer).InnerControl) then
-      (AEdit as TcxContainer).InnerControl.Brush.Color := BackColors[AEdit.Enabled];
 end;
 
 { TmdoUIItem }
@@ -1718,7 +1754,7 @@ end;
 procedure TmdoForm.StayForeground;
 begin
   inherited StayForeground;
-  if FirstShow and ImmediatlyOpen then
+  if FirstShow and ImmediatlyOpen and Assigned(DataSet) then
     DataSet.Open;
 end;
 
@@ -2114,8 +2150,8 @@ procedure TmdoSplitter.AfterConstruction;
 begin
   inherited AfterConstruction;
   if Owner is TWinControl then
-    Parent := Owner as TWinControl ;
-  LookAndFeel.SkinName := DefLookAndFeelSkinName;
+    Parent := Owner as TWinControl;
+  SetObjectLookAndFeel(Self);
   HotZoneStyleClass := TcxMediaPlayer8Style;
 end;
 
@@ -4126,7 +4162,9 @@ end;
 procedure TmdoListView.AfterConstruction;
 begin
   inherited AfterConstruction;
-  Style.BorderStyle := cbsNone;
+  if Owner is TWinControl then
+    Parent := Owner as TWinControl;
+  SetObjectLookAndFeel(Self);
 end;
 
 {  TmdoLayoutItem }
@@ -5819,6 +5857,34 @@ procedure TmdoCustomDesigner.ExecDesign(AForm: TObject);
 begin
   if Assigned(AForm) and Assigned(FCustomDesignMethod) then
     FCustomDesignMethod(AForm);
+end;
+
+{ TmdoImageSlider }
+
+procedure TmdoImageSlider.AddImage(AFileName: string);
+var
+  Item: TcxImageCollectionItem;
+begin
+  Item := Images.Items.Add;
+  Item.Picture.LoadFromFile(AFileName);
+end;
+
+procedure TmdoImageSlider.AfterConstruction;
+begin
+  inherited AfterConstruction;
+  if Owner is TWinControl then
+    Parent := Owner as TWinControl;
+  SetObjectLookAndFeel(Self);
+  ImageFitMode := ifmProportionalStretch;
+  Images := TcxImageCollection.Create(nil);
+end;
+
+procedure TmdoImageSlider.BeforeDestruction;
+begin
+  Images.Items.Clear;
+  Images.Free;
+  Images := nil;
+  inherited BeforeDestruction;
 end;
 
 initialization

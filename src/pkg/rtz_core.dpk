@@ -59,7 +59,7 @@ contains
   rtz_const in '..\rtz_const.pas',
   rtz_dev_cntr in '..\rtz_dev_cntr.pas',
   rtz_cpanel in '..\rtz_cpanel.pas',
-  rtz_photo in '..\rtz_photo.pas',
-  rtz_connect in '..\rtz_connect.pas';
+  rtz_connect in '..\rtz_connect.pas',
+  rtz_photo_folder in '..\photo\rtz_photo_folder.pas';
 
 end.

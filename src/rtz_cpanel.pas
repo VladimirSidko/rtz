@@ -56,6 +56,7 @@ begin
 end;
 
 initialization
+
   IDEDesigner.RegisterClasses([
     TrtzActnCPanelOld,
     TrtzCompCPanel,
