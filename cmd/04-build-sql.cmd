@@ -1,2 +1,2 @@
 call setvariables.cmd
-%msbuild% /t:BuildSQL;StartApp
+%msbuild% /t:BuildSQL

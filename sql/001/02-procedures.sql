@@ -13,4 +13,7 @@ INPUT '..\sql-mdo\001\02-procedures\SYS_STATE_TRIGGER_ALL.sql';
 INPUT '..\sql-mdo\001\02-procedures\SYS_STATE_TRIGGER_TABLE.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_FOLDER$GET.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_FOLDER$UPD.sql';
+INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$CREATE.sql';
+INPUT '..\sql-mdo\001\02-procedures\C_OVS$GET_LIST.sql';
+INPUT '..\sql-mdo\001\02-procedures\TR_APPLICATIONS$CREATE.sql';
 COMMIT;

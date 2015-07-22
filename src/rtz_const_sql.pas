@@ -19,6 +19,8 @@ resourcestring
   sql_ap_photo_folder_get = 'SELECT * FROM AP_PHOTO_FOLDER$GET';
   sql_ap_photo_folder_upd = 'EXECUTE PROCEDURE AP_PHOTO_FOLDER$UPD(:FOLDER,:ADRESS,:DEVICE_NAME,:DEVICE_CODE,:DEVICE_DATE)';
 
+  sql_ap_photo_decision_create = 'EXECUTE PROCEDURE AP_PHOTO_DECISION$CREATE(:DNZ_NUMBER, :ACTUAL_SPEED, :LIMIT_SPEED, :PENALTY, :VIOLATION_DATE, :PHOTO)';
+
 implementation
 
 end.

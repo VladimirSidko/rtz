@@ -1,0 +1,25 @@
+SET TERM ^;
+
+CREATE OR ALTER PROCEDURE C_OVS$GET_LIST
+RETURNS (
+  ID   TSTRING,
+  NAME TSTRING
+  )
+AS
+BEGIN
+  FOR
+    SELECT
+       ID
+      ,NAME
+    FROM C_OVS
+    ORDER BY NAME
+    INTO
+       :ID
+      ,:NAME
+  DO
+  BEGIN
+    SUSPEND;
+  END
+END^
+
+SET TERM ;^

@@ -5,7 +5,8 @@ interface
 uses
   Windows, Controls, Classes, DB, SysUtils, ExtDlgs, Forms, ComCtrls, Graphics, CommCtrl, ExtCtrls,
   ide3050_intf, ide3050_core_level3,
-  rtz_dev_cntr, rtz_const_sql;
+  idf3050_fibp,
+  rtz_dev_cntr, rtz_const, rtz_const_sql;
 
 type
   TrtzPhotoLoadThread = class;
@@ -17,8 +18,31 @@ type
   protected
     procedure DesignData; override;
   public
+    procedure AfterConstruction; override;
     function CanDestroy(CheckForClose: Boolean = False): Boolean; override;
     property FolderSet: TDataSet read FFolderSet;
+  end;
+
+  TrtzListItem = class(TListItem)
+  private
+    FFileName: string;
+    FDateTime: TDateTime;
+    procedure SetFileName(AValue: string);
+  public
+    property FileName: string read FFileName write SetFileName;
+    property DateTime: TDateTime read FDateTime write FDateTime;
+  end;
+
+  TrtzImageSlider = class(TmdoImageSlider);
+
+  TrtzListView = class(TmdoListView)
+  private
+    function AddImageToList(AFileName: string): Integer;
+    procedure DoOnCreateItemClass(Sender: TCustomListView; var ItemClass: TListItemClass);
+  public
+    procedure AfterConstruction; override;
+    procedure AddImage(AFileName: string; ADateTime: TDateTime);
+    procedure SetListItemSelected(AItem: TListItem);
   end;
 
   IrtzPhotoFolderForm = interface ['{48FBCBDB-6C67-4A11-AE1E-9B8B121FCE21}'] end;
@@ -27,13 +51,16 @@ type
     FParamPanel: TmdoParamPanel;
     edFolder:      TmdoDBStringEdit;
     edAdress:      TmdoDBStringEdit;
+    edOVSName:     TmdoDBStringEdit;
+    edUserName:    TmdoDBStringEdit;
     edVisirName:   TmdoDBStringEdit;
-    edVisirDate:   TmdoDBDateEdit;
+    edVisirDate:   TmdoDBStringEdit;
     edDNZNumber:   TmdoDBStringEdit;
     edActualSpeed: TmdoDBStringEdit;
-    ImageList: TImageList;
-    ListView: TmdoListView;
-    Slider:   TmdoImageSlider;
+    edLimitSpeed:  TmdoDBStringEdit;
+    edPenalty:     TmdoDBStringEdit;
+    ListView: TrtzListView;
+    Slider:   TrtzImageSlider;
     FThread: TrtzPhotoLoadThread;
     function GetFolderSet: TDataSet;
     function GetFolderSrc: TDataSource;
@@ -45,8 +72,8 @@ type
     procedure ClearImages;
     procedure ListViewChange(Sender: TObject; Item: TListItem; Change: TItemChange);
     procedure SliderChange(Sender: TObject);
-    procedure SetListItemSelected(AItem: TListItem);
     procedure EditKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure OpenDocument(AID: Int64);
   protected
     procedure DesignControls; override;
     function ActnVisible(Actn: TAction): Boolean; override;
@@ -56,7 +83,7 @@ type
     procedure AfterConstruction; override;
     procedure BeforeDestruction; override;
 
-    procedure AddImage(AFileName: string);
+    procedure AddImage(AFileName: string; ADateTime: TDateTime);
 
     property FolderSet: TDataSet read GetFolderSet;
     property FolderSrc: TDataSource read GetFolderSrc;
@@ -68,6 +95,7 @@ type
     FForm: TrtzPhotoFolderForm;
     FPath: string;
     FFileName: string;
+    FDateTime: TDateTime;
     procedure AddImage;
   protected
     procedure Execute; override;
@@ -94,7 +122,29 @@ type
 
 implementation
 
+function FileTimeToDateTime(FileTime: TFileTime): TDateTime;
+var
+  ModifiedTime: TFileTime;
+  SystemTime: TSystemTime;
+begin
+  Result := 0;
+  if (FileTime.dwLowDateTime = 0) and (FileTime.dwHighDateTime = 0) then
+    Exit;
+  try
+    FileTimeToLocalFileTime(FileTime, ModifiedTime);
+    FileTimeToSystemTime(ModifiedTime, SystemTime);
+    Result := SystemTimeToDateTime(SystemTime);
+  except
+    Result := Now;  // Something to return in case of error
+  end;
+end;
+
 { TrtzPhotoFolderComp }
+
+procedure TrtzPhotoFolderComp.AfterConstruction;
+begin
+  inherited AfterConstruction;
+end;
 
 function TrtzPhotoFolderComp.CanDestroy(CheckForClose: Boolean): Boolean;
 begin
@@ -132,18 +182,9 @@ end;
 
 procedure TrtzPhotoFolderForm.DesignControls;
 
-  function CreateStringEdit(AFieldName: string; AReadOnly: Boolean = True; AWidth: Integer = 300): TmdoDBStringEdit;
+  function CreateStringEdit(AFieldName: string; AWidth: Integer; AReadOnly: Boolean = True): TmdoDBStringEdit;
   begin
     Result := TmdoDBStringEdit.Create(Self);
-    Result.DataBinding.DataSource := FolderSrc;
-    Result.DataBinding.DataField  := AFieldName;
-    Result.Properties.ReadOnly := AReadOnly;
-    Result.Width := AWidth;
-  end;
-
-  function CreateDateEdit(AFieldName: string; AReadOnly: Boolean = True; AWidth: Integer = 300): TmdoDBDateEdit;
-  begin
-    Result := TmdoDBDateEdit.Create(Self);
     Result.DataBinding.DataSource := FolderSrc;
     Result.DataBinding.DataField  := AFieldName;
     Result.Properties.ReadOnly := AReadOnly;
@@ -155,15 +196,20 @@ var
 begin
   inherited DesignControls;
   FParamPanel := TmdoParamPanel.Create(Self);
-  edFolder    := CreateStringEdit('FOLDER');
-  edAdress    := CreateStringEdit('ADRESS');
-  edVisirName := CreateStringEdit('DEVICE');
-  edVisirDate := CreateDateEdit('DEVICE_DATE');
+  edFolder    := CreateStringEdit('FOLDER', 200);
+  edAdress    := CreateStringEdit('ADRESS', 200);
+  edVisirName := CreateStringEdit('DEVICE',      100);
+  edVisirDate := CreateStringEdit('DEVICE_DATE', 100);
   //
-  edDNZNumber   := CreateStringEdit('DNZ_NUMBER',   False, 100);
-  edActualSpeed := CreateStringEdit('ACTUAL_SPEED', False, 100);
-  edDNZNumber.OnKeyUp := EditKeyUp;
+  edDNZNumber   := CreateStringEdit('DNZ_NUMBER',   70, False);
+  edActualSpeed := CreateStringEdit('ACTUAL_SPEED', 70, False);
+  edLimitSpeed  := CreateStringEdit('LIMIT_SPEED',  70, False);
+  edPenalty     := CreateStringEdit('PENALTY',      70, False);
+  edDNZNumber.OnKeyUp   := EditKeyUp;
+  edPenalty.OnKeyUp     := EditKeyUp;
+  edLimitSpeed.OnKeyUp  := EditKeyUp;
   edActualSpeed.OnKeyUp := EditKeyUp;
+  edDNZNumber.UpperCase := True;
   //
   FParamPanel.Root.LayoutDirection := TmdoLayoutDirection.ldHorizontal;
   Group := FParamPanel.Root.AddGroup;
@@ -172,22 +218,19 @@ begin
   //
   Group := FParamPanel.Root.AddGroup;
   Group.AddControl(edVisirName, alTop).Caption := 'Спеціальний технічний засіб';
-  Group.AddControl(edVisirDate, alTop).Caption := 'Метрологічна повірка дійсна до';
+  Group.AddControl(edVisirDate, alTop).Caption := 'Метрологічна повірка дійсна';
   //
   Group := FParamPanel.Root.AddGroup;
-  Group.AddControl(edDNZNumber,   alTop).Caption := 'ДНЗ';
-  Group.AddControl(edActualSpeed, alTop).Caption := 'Швидкість';
-  // ImageList
-  ImageList := TImageList.Create(Self);
-  ImageList.Height := 205;
-  ImageList.Width := 250;
+  Group.AddControl(edLimitSpeed,  alTop).Caption := 'Обмеження (км\ч)';
+  Group.AddControl(edActualSpeed, alTop).Caption := 'Швидкість (км\ч)';
+  //
+  Group := FParamPanel.Root.AddGroup;
+  Group.AddControl(edDNZNumber, alTop).Caption := 'ДНЗ';
+  Group.AddControl(edPenalty,   alTop).Caption := 'Штраф (грн.)';
   // ListView
-  ListView := TmdoListView.Create(Self);
+  ListView := TrtzListView.Create(Self);
   ListView.Align := alLeft;
-  ListView.Width := 310;
-  ListView.LargeImages := ImageList;
-  ListView.HideSelection := False;
-  ListView.IconOptions.AutoArrange := True;
+  ListView.OnChange := ListViewChange;
   // Splitter
   with TmdoSplitter.Create(Self) do
   begin
@@ -195,7 +238,7 @@ begin
     Control := ListView;
   end;
   // Slider
-  Slider := TmdoImageSlider.Create(Self);
+  Slider := TrtzImageSlider.Create(Self);
   Slider.Align := alClient;
   Slider.OnChange := SliderChange;
 end;
@@ -204,6 +247,8 @@ procedure TrtzPhotoFolderForm.EditKeyUp(Sender: TObject; var Key: Word; Shift: T
 begin
   edDNZNumber.PostEditValue;
   edActualSpeed.PostEditValue;
+  edLimitSpeed.PostEditValue;
+  edPenalty.PostEditValue;
 end;
 
 function TrtzPhotoFolderForm.ActnVisible(Actn: TAction): Boolean;
@@ -275,6 +320,23 @@ begin
 end;
 
 function TrtzPhotoFolderForm.ExecCreateCard: Boolean;
+var
+  ID: Int64;
+begin
+  ID := ExecWrite(MDO_DB_IID, sql_ap_photo_decision_create, procedure (const AParams: IQueryParams)
+    begin
+      AParams['DNZ_NUMBER'].AsVariant   := FolderSet.FieldByName('DNZ_NUMBER').AsVariant;
+      AParams['ACTUAL_SPEED'].AsVariant := FolderSet.FieldByName('ACTUAL_SPEED').AsVariant;
+      AParams['LIMIT_SPEED'].AsVariant  := FolderSet.FieldByName('LIMIT_SPEED').AsVariant;
+      AParams['PENALTY'].AsVariant      := FolderSet.FieldByName('PENALTY').AsVariant;
+      AParams['VIOLATION_DATE'].AsVariant := TrtzListItem(ListView.Selected).DateTime;
+      AParams['PHOTO'].LoadFromFile(TrtzListItem(ListView.Selected).FileName);
+    end).Fields[0].AsInt64;
+  if ID <> 0 then
+    OpenDocument(ID);
+end;
+
+procedure TrtzPhotoFolderForm.OpenDocument(AID: Int64);
 begin
 
 end;
@@ -309,56 +371,21 @@ begin
   FThread.Start;
 end;
 
-procedure TrtzPhotoFolderForm.AddImage(AFileName: string);
-var
-  lv: TListItem;
-  bmp: TBitmap;
-  pic: TPicture;
+procedure TrtzPhotoFolderForm.AddImage(AFileName: string; ADateTime: TDateTime);
 begin
-  // add image to slider
   Slider.AddImage(AFileName);
-
-  // add image to listview
-  Pic := TPicture.Create;
-  Bmp := TBitmap.Create;
-  try
-    // load image from the file and draw it in size of imagelist
-    Pic.LoadFromFile(AFileName);
-    Bmp.SetSize(ImageList.Width, ImageList.Height);
-    Bmp.Canvas.StretchDraw(Rect(0, 0, ImageList.Width, ImageList.Height), Pic.Graphic);
-    // create listitem
-    ListView.OnChange := nil;
-    lv := ListView.Items.Add;
-    lv.Caption := ExtractFileName(AFileName);
-    lv.ImageIndex := ImageList_Add(ImageList.Handle, bmp.Handle, 0);
-    lv.StateIndex := lv.ImageIndex;
-    if ListView.Items.Count = 1 then
-      SetListItemSelected(ListView.Items[0]);
-    ListView.OnChange := ListViewChange;
-  finally
-    Bmp.Free;
-    Pic.Free;
-  end;
-
+  ListView.AddImage(AFileName, ADateTime);
 end;
 
 procedure TrtzPhotoFolderForm.ClearImages;
 begin
   Slider.Images.Items.Clear;
   ListView.Items.Clear;
-  ImageList.Clear;
-end;
-
-procedure TrtzPhotoFolderForm.SetListItemSelected(AItem: TListItem);
-begin
-  AItem.MakeVisible(False);
-  AItem.Selected := True;
-  AItem.Focused  := True;
 end;
 
 procedure TrtzPhotoFolderForm.SliderChange(Sender: TObject);
 begin
-  SetListItemSelected(ListView.Items[Slider.ItemIndex]);
+  ListView.SetListItemSelected(ListView.Items[Slider.ItemIndex]);
   ListView.SetFocus;
 end;
 
@@ -377,7 +404,7 @@ end;
 
 procedure TrtzPhotoLoadThread.AddImage;
 begin
-  FForm.AddImage(FFileName);
+  FForm.AddImage(FFileName, FDateTime);
 end;
 
 procedure TrtzPhotoLoadThread.AfterConstruction;
@@ -407,6 +434,7 @@ begin
         repeat
           if Terminated then Break;
           FFileName := FPath + string(Data.cFileName);
+          FDateTime := FileTimeToDateTime(Data.ftLastWriteTime);
           if Terminated then Break;
           Synchronize(AddImage);
           if Terminated then Break;
@@ -417,6 +445,78 @@ begin
   finally
     FWorking := False;
   end;
+end;
+
+{ TrtzListItem }
+
+procedure TrtzListItem.SetFileName(AValue: string);
+begin
+  FFileName := AValue;
+  Caption := ExtractFileName(FFileName);
+end;
+
+{ TrtzListView }
+
+procedure TrtzListView.AddImage(AFileName: string; ADateTime: TDateTime);
+var
+  li: TrtzListItem;
+  oc: TLVChangeEvent;
+begin
+  // create listitem
+  oc := OnChange;
+  OnChange := nil;
+  //
+  li := TrtzListItem(Items.Add);
+  li.FileName := AFileName;
+  li.DateTime := ADateTime;
+  li.ImageIndex := AddImageToList(AFileName);
+  li.StateIndex := li.ImageIndex;
+  if Items.Count = 1 then
+    SetListItemSelected(li);
+  //
+  OnChange := oc;
+end;
+
+function TrtzListView.AddImageToList(AFileName: string): Integer;
+var
+  bmp: TBitmap;
+  pic: TPicture;
+begin
+  Pic := TPicture.Create;
+  Bmp := TBitmap.Create;
+  try
+    Pic.LoadFromFile(AFileName);
+    Bmp.SetSize(LargeImages.Width, LargeImages.Height);
+    Bmp.Canvas.StretchDraw(Rect(0, 0, LargeImages.Width, LargeImages.Height), Pic.Graphic);
+    Result := ImageList_Add(LargeImages.Handle, bmp.Handle, 0);
+  finally
+    Bmp.Free;
+    Pic.Free;
+  end;
+end;
+
+procedure TrtzListView.AfterConstruction;
+begin
+  inherited AfterConstruction;
+  Width := 310;
+  HideSelection := False;
+  IconOptions.AutoArrange := True;
+  LargeImages := TImageList.Create(Self);
+  LargeImages.Height := 205;
+  LargeImages.Width := 250;
+  OnCreateItemClass := DoOnCreateItemClass;
+end;
+
+procedure TrtzListView.DoOnCreateItemClass(Sender: TCustomListView; var ItemClass: TListItemClass);
+begin
+  ItemClass := TrtzListItem;
+end;
+
+procedure TrtzListView.SetListItemSelected(AItem: TListItem);
+begin
+  AItem.MakeVisible(False);
+  AItem.Selected := True;
+  AItem.Focused  := True;
 end;
 
 initialization

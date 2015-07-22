@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Dialogs, Graphics, Classes, Controls, ExtCtrls, Forms, DB, SysUtils, Menus,
-  ComCtrls, TypInfo, Generics.Collections, Variants, Messages, IniFiles,
+  ComCtrls, TypInfo, Generics.Collections, Variants, Messages, IniFiles, StdCtrls,
   TB2Item,
   pFIBProps, FIBDatabase,
   cxControls, cxGraphics, cxSplitter, dxdbtree, cxListView, cxCheckBox, cxLookAndFeelPainters, cxContainer,
@@ -797,8 +797,12 @@ type
   end;
 
   TmdoDBStringEdit = class(TcxDBTextEdit)
+  private
+    function GetUpperCase: Boolean;
+    procedure SetUpperCase(AValue: Boolean);
   public
     class function GetPropertiesClass: TcxCustomEditPropertiesClass; override;
+    property UpperCase: Boolean read GetUpperCase write SetUpperCase;
   end;
 
   TmdoDBStringEditProperties = class(TcxTextEditProperties)
@@ -1398,13 +1402,16 @@ procedure SetControlEnabledByField(AEdit: TControl);
 const
   BackColors: array[Boolean]of TColor = (clBtnFace, clWindow);
 var
-  Properties, DataBinding: TObject;
+  Properties,
+  DataBinding: TObject;
   DataSource: TDataSource;
   FieldName: string;
   Enable: Boolean;
 begin
   if Assigned(AEdit) then
   begin
+    Enable := False;
+    //
     DataBinding := GetObjectProp(AEdit, 'DataBinding');
     if Assigned(DataBinding) then
     begin
@@ -1414,18 +1421,18 @@ begin
         if Assigned(DataSource) and Assigned(DataSource.DataSet) and DataSource.DataSet.Active then
         begin
           FieldName  := GetStrProp(DataBinding, 'DataField');
-          AEdit.Enabled := not DataSource.DataSet.FieldByName(FieldName).ReadOnly;
+          Enable := not DataSource.DataSet.FieldByName(FieldName).ReadOnly;
         end else
-          AEdit.Enabled := False;
+          Enable := False;
+        AEdit.Enabled := Enable;
       end;
     end;
-    Enable := AEdit.Enabled;
     //проверим еще свойство ReadOnly
     if Enable and IsPublishedProp(AEdit, 'Properties') then
     begin
       Properties := GetObjectProp(AEdit, 'Properties');
-      if (Properties is TcxCustomEditProperties) and TcxCustomEditProperties(Properties).ReadOnly then
-        Enable := False;
+      if (Properties is TcxCustomEditProperties) then
+        Enable := not TcxCustomEditProperties(Properties).ReadOnly;
     end;
     if AEdit is TcxContainer then
       if Assigned((AEdit as TcxContainer).InnerControl) then
@@ -5243,6 +5250,19 @@ end;
 class function TmdoDBStringEdit.GetPropertiesClass: TcxCustomEditPropertiesClass;
 begin
   Result := TmdoDBStringEditProperties;
+end;
+
+function TmdoDBStringEdit.GetUpperCase: Boolean;
+begin
+  Result := Properties.CharCase = ecUpperCase;
+end;
+
+procedure TmdoDBStringEdit.SetUpperCase(AValue: Boolean);
+begin
+  if AValue then
+    Properties.CharCase := ecUpperCase
+  else
+    Properties.CharCase := ecNormal;
 end;
 
 { TmdoDBStringEditProperties }
