@@ -1214,6 +1214,7 @@ type
   function DefLookAndFeelSkinName: string;
   function DefLayoutLookAndFeel: TdxCustomLayoutLookAndFeel;
   function SetObjectLookAndFeel(AObject: TObject): Boolean;
+  procedure SetControlDataBindingProps(AControl: TControl; ADataSource: TDataSource; AFieldName: string);
 
 resourcestring
   DataType_String      = 'STRING';
@@ -1321,6 +1322,21 @@ begin
         Lf.SkinName := DefLookAndFeelSkinName;
         Lf.NativeStyle := False;
       end;
+    end;
+  end;
+end;
+
+procedure SetControlDataBindingProps(AControl: TControl; ADataSource: TDataSource; AFieldName: string);
+var
+  DataBinding: TcxDBEditDataBinding;
+begin
+  if IsPublishedProp(AControl, 'DataBinding') then
+  begin
+    DataBinding := GetObjectProp(AControl, 'DataBinding') as TcxDBEditDataBinding;
+    if Assigned(DataBinding) then
+    begin
+      DataBinding.DataField  := AFieldName;
+      DataBinding.DataSource := ADataSource;
     end;
   end;
 end;
@@ -4620,7 +4636,7 @@ begin
   FBtn.OptionsImage.ImageIndex := IDEDesigner.FindImg('mdo_search.bmp');
   FBtn.OnClick := OnBtnClick;
 
-  Root.AddControl(FBtn, alLeft).AlignVert := avBottom;
+  Root.AddControl(FBtn, alLeft).AlignVert := avTop;
   Result := FBtn;
 end;
 

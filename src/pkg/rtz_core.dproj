@@ -81,6 +81,7 @@
 			<DCCReference Include="..\rtz_cpanel.pas"/>
 			<DCCReference Include="..\rtz_connect.pas"/>
 			<DCCReference Include="..\photo\rtz_photo_folder.pas"/>
+			<DCCReference Include="..\photo\rtz_photo_find.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

@@ -60,6 +60,7 @@ contains
   rtz_dev_cntr in '..\rtz_dev_cntr.pas',
   rtz_cpanel in '..\rtz_cpanel.pas',
   rtz_connect in '..\rtz_connect.pas',
-  rtz_photo_folder in '..\photo\rtz_photo_folder.pas';
+  rtz_photo_folder in '..\photo\rtz_photo_folder.pas',
+  rtz_photo_find in '..\photo\rtz_photo_find.pas';
 
 end.
