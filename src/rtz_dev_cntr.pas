@@ -1130,14 +1130,19 @@ type
   public
     procedure AfterConstruction; override;
     procedure BeforeDestruction; override;
+
     procedure PostEditValue;
+    procedure DesignView(AViewInfo: TObject);
+    procedure DesignControls(AGridID: string; ADataSource: TDataSource; ABtnCkick: TNotifyEvent; AParamFieldChange: TFieldNotifyEvent);
+
     function AddControl(AControlInfo: TmdoControlInfo): TControl;
-    function AddButton(AControlInfoList: TmdoControlInfoList): TControl;
+    function AddButton(AControlInfoList: TmdoControlInfoList): TControl; overload;
+    function AddButton(AButtonClick: TNotifyEvent): TControl; overload;
+
     property DataSource: TDataSource read FDataSource write FDataSource;
     property ReplaceOnResize: Boolean read GetReplaceOnResize write SetReplaceOnResize;
     property Button: TmdoButton read FBtn;
-    procedure DesignView(AViewInfo: TObject);
-    procedure DesignControls(AGridID: string; ADataSource: TDataSource; ABtnCkick: TNotifyEvent; AParamFieldChange: TFieldNotifyEvent);
+    property ControlList: TObjectList<TControl> read FList;
   published
     property OnParamFieldChange: TFieldNotifyEvent read FOnParamFieldChange write FOnParamFieldChange;
     property OnButtonClick: TNotifyEvent read FOnButtonClick write FOnButtonClick;
@@ -1606,6 +1611,9 @@ var
   I: Integer;
 begin
   Result := False;
+  if not Assigned(MetaQuery) then
+    Exit;
+
   AFieldName := UpperCase(AFieldName);
   for I := 0 to MetaQuery.FieldCount - 1 do
     if UpperCase(MetaQuery.Fields[I].Name) = AFieldName then
@@ -2938,6 +2946,8 @@ var
   Query: IQueryProvider;
   Rec: TQueryRecord;
 begin
+  if AKey = '' then
+    Exit;
   Query := ExecRead(MDO_DB_IID, SGET_SYS_GRID_COLUMN, AKey);
   for Rec in Query do
     AddFromQuery(Rec);
@@ -3652,12 +3662,17 @@ procedure TmdoDBBandedTableView.DesignColumns(AGridID: string; ADataSource: TDat
 var
   ColumnInfos: TmdoDBGridColumnInfoList;
 begin
+  if AGridID = '' then
+    Exit;
   ColumnInfos := TmdoDBGridColumnInfoList.Create;
   try
     ColumnInfos.FillList(AGridID);
-    ColumnInfos.DataSource := ADataSource;
-    ColumnInfos.KeyField := 'ID';
-    DesignView(ColumnInfos);
+    if ColumnInfos.Count > 0 then
+    begin
+      ColumnInfos.DataSource := ADataSource;
+      ColumnInfos.KeyField := 'ID';
+      DesignView(ColumnInfos);
+    end;
   finally
     FreeAndNil(ColumnInfos);
   end;
@@ -4522,6 +4537,9 @@ procedure TmdoParamPanel.DesignControls(AGridID: string; ADataSource: TDataSourc
 var
   ControlInfos: TmdoControlInfoList;
 begin
+  if AGridID = '' then
+    Exit;
+
   ControlInfos := TmdoControlInfoList.Create;
   try
     ControlInfos.FillList(AGridID);
@@ -4589,7 +4607,12 @@ end;
 
 function TmdoParamPanel.AddButton(AControlInfoList: TmdoControlInfoList): TControl;
 begin
-  FOnButtonClick := AControlInfoList.ButtonClick;
+  Result := AddButton(AControlInfoList.ButtonClick);
+end;
+
+function TmdoParamPanel.AddButton(AButtonClick: TNotifyEvent): TControl;
+begin
+  FOnButtonClick := AButtonClick;
 
   FBtn := TmdoButton.Create(Self);
   FBtn.Caption := IDEDesigner.FindStr('SSearch');

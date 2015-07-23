@@ -16,4 +16,7 @@ INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_FOLDER$UPD.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$CREATE.sql';
 INPUT '..\sql-mdo\001\02-procedures\C_OVS$GET_LIST.sql';
 INPUT '..\sql-mdo\001\02-procedures\TR_APPLICATIONS$CREATE.sql';
+INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND.sql';
+INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND_ROW.sql';
+INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND_PARAMS.sql';
 COMMIT;

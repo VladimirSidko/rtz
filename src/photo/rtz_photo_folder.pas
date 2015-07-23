@@ -19,7 +19,6 @@ type
     procedure DesignData; override;
   public
     procedure AfterConstruction; override;
-    function CanDestroy(CheckForClose: Boolean = False): Boolean; override;
     property FolderSet: TDataSet read FFolderSet;
   end;
 
@@ -144,18 +143,13 @@ end;
 procedure TrtzPhotoFolderComp.AfterConstruction;
 begin
   inherited AfterConstruction;
-end;
-
-function TrtzPhotoFolderComp.CanDestroy(CheckForClose: Boolean): Boolean;
-begin
-  Result := True;
+  FFolderSet.Open;
 end;
 
 procedure TrtzPhotoFolderComp.DesignData;
 begin
   inherited DesignData;
   FFolderSet := Data.AddDataSet('FolderSet', [sql_ap_photo_folder_get, sql_ap_photo_folder_get, '', sql_ap_photo_folder_upd, '']);
-  FFolderSet.Open;
 end;
 
 { TrtzPhotoFolderForm }
