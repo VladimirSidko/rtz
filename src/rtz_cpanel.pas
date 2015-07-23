@@ -84,7 +84,6 @@ begin
   inherited AfterConstruction;
   if Self.Parent is TIDELevel3 then
   begin
-    TIDELevel3(Self.Parent).TBLeft.Parent.Visible := False;
     TIDELevel3(Self.Parent).TBLeft.Items.Clear;
     TIDELevel3(Self.Parent).TBRight.Items.Clear;
   end;

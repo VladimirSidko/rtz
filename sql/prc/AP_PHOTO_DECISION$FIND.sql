@@ -33,6 +33,16 @@ BEGIN
   A_FIRST_NAME  = UPPER(COALESCE(:A_FIRST_NAME,  ''));
   A_MIDDLE_NAME = UPPER(COALESCE(:A_MIDDLE_NAME, ''));
 
+  IF ((:A_VIOLATION_DATE_FROM IS NULL) AND
+     (:A_VIOLATION_DATE_TO   IS NULL) AND
+     (:A_DECISION_DATE_FROM  IS NULL) AND
+     (:A_DECISION_DATE_TO    IS NULL) AND
+     (:A_DNZ_NUMBER = '') AND
+     (:A_LAST_NAME  = '') AND
+     (:A_FIRST_NAME = '') AND
+     (:A_MIDDLE_NAME = '')) THEN
+    EXCEPTION EX_CUSTOM 'Ви не задали жодного параметру для пошуку';
+
   V_SQL = '
     SELECT
        D.ID

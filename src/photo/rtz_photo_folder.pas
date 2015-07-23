@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Controls, Classes, DB, SysUtils, ExtDlgs, Forms, ComCtrls, Graphics, CommCtrl, ExtCtrls,
-  ide3050_intf, ide3050_core_level3,
+  ide3050_intf,
   idf3050_fibp,
   rtz_dev_cntr, rtz_const, rtz_const_sql;
 
@@ -157,11 +157,6 @@ end;
 procedure TrtzPhotoFolderForm.AfterConstruction;
 begin
   inherited AfterConstruction;
-  if Self.Parent is TIDELevel3 then
-  begin
-    TIDELevel3(Self.Parent).TBLeft.Items.Clear;
-    TIDELevel3(Self.Parent).TBRight.Items.Clear;
-  end;
   FThread := TrtzPhotoLoadThread.Create(True);
   if FolderSet.FieldByName('FOLDER').AsString <> '' then
     LoadPhotos;

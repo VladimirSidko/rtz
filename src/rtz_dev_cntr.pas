@@ -16,7 +16,7 @@ uses
   cxGridExportLink, cxDBLabel, cxLabel, cxButtonEdit, dxPSCore, dxPScxGridLnk, cxCurrencyEdit,
   dxTileControl, dxSkinsCore, dxCustomTileControl, dxCore, dxImageSlider,
   dxSkinOffice2010Silver,
-  ide3050_intf, ide3050_intf_register, ide3050_core_register,
+  ide3050_intf, ide3050_intf_register, ide3050_core_register, ide3050_core_level3,
   idf3050_intf, idf3050_fibp, idf3050_core_comp, idf3050_core_form,
   rtz_const_sql, rtz_const;
 
@@ -1136,8 +1136,8 @@ type
     procedure DesignControls(AGridID: string; ADataSource: TDataSource; ABtnCkick: TNotifyEvent; AParamFieldChange: TFieldNotifyEvent);
 
     function AddControl(AControlInfo: TmdoControlInfo): TControl;
-    function AddButton(AControlInfoList: TmdoControlInfoList): TControl; overload;
-    function AddButton(AButtonClick: TNotifyEvent): TControl; overload;
+    function AddButton(AControlInfoList: TmdoControlInfoList): TmdoButton; overload;
+    function AddButton(AButtonClick: TNotifyEvent): TmdoButton; overload;
 
     property DataSource: TDataSource read FDataSource write FDataSource;
     property ReplaceOnResize: Boolean read GetReplaceOnResize write SetReplaceOnResize;
@@ -1771,6 +1771,11 @@ begin
   FDataSet := nil;
   FDataSource := nil;
   inherited AfterConstruction;
+  if Self.Parent is TIDELevel3 then
+  begin
+    TIDELevel3(Self.Parent).TBLeft.Items.Clear;
+    TIDELevel3(Self.Parent).TBRight.Items.Clear;
+  end;
 end;
 
 procedure TmdoForm.BeforeDestruction;
@@ -4027,7 +4032,7 @@ var
 begin
   Result := '';
 
-  if Assigned(DataSource.DataSet) then
+  if Assigned(DataSource) and Assigned(DataSource.DataSet) then
     Result := DataSource.DataSet.AsIDF.DatasetID;
 
   if Name <> '' then
@@ -4621,12 +4626,12 @@ begin
   Result := Control;
 end;
 
-function TmdoParamPanel.AddButton(AControlInfoList: TmdoControlInfoList): TControl;
+function TmdoParamPanel.AddButton(AControlInfoList: TmdoControlInfoList): TmdoButton;
 begin
   Result := AddButton(AControlInfoList.ButtonClick);
 end;
 
-function TmdoParamPanel.AddButton(AButtonClick: TNotifyEvent): TControl;
+function TmdoParamPanel.AddButton(AButtonClick: TNotifyEvent): TmdoButton;
 begin
   FOnButtonClick := AButtonClick;
 
@@ -5831,6 +5836,8 @@ var
   Stream: TMemoryStream;
 begin
   Result := False;
+  Exit;
+  {TODO - это на потом}
   List := TStringList.Create;
   Stream := TMemoryStream.Create;
   try

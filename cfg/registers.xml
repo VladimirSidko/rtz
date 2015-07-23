@@ -51,6 +51,8 @@
 -->
   <comp IID="{832F7044-830E-4BB9-AF5D-339F14839566}" Intf="IrtzPhotoFindComp" Caption="Пошук фотопостанов" >
 	<form IID="{FA23F31F-01F6-401A-A3A1-5318D856BCA3}" Intf="IrtzPhotoFindForm" Caption="" />
+	<actn IID="{25A87AEA-9385-48A5-BEFF-785E7E674416}" Intf="IrtzPhotoClearAction"  Hint = "Очистити параметри пошуку" ImageName="mdo_clear.bmp" ShortCut="F8"/>
+	<actn IID="{9EC1B569-E689-428E-9671-9B49D51EFD0A}" Intf="IrtzPhotoSearchAction" Hint = "Пошук" ImageName="mds_find.bmp" ShortCut="F9"/>
   </comp>
 
   <!-- Общая стартовая -->

@@ -24,3 +24,6 @@ EXECUTE PROCEDURE TR_APPLICATIONS$CREATE('АА0022АА', 'АУДИ', 'Q3', 'Забияка', 'И
 EXECUTE PROCEDURE TR_APPLICATIONS$CREATE('АА0023АА', 'АУДИ', 'Q5', 'Блохин', 'Иван', 'Иванович', 'СО010203', '01.03.1999', 'Киев', 'г.Киев', 'Печерская', '21', '', '123');
 EXECUTE PROCEDURE TR_APPLICATIONS$CREATE('АА0024АА', 'АУДИ', 'Q7', 'Харламов', 'Иван', 'Иванович', 'СО010203', '01.03.1999', 'Киев', 'г.Киев', 'Печерская', '21', '', '123');
 COMMIT;
+
+EXECUTE PROCEDURE SYS_LANG_RESOURCE$INS('SSearch', 'Пошук', 'Поиск', 'Поиск');
+COMMIT
