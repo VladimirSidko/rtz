@@ -26,4 +26,5 @@ EXECUTE PROCEDURE TR_APPLICATIONS$CREATE('АА0024АА', 'АУДИ', 'Q7', 'Харламов', '
 COMMIT;
 
 EXECUTE PROCEDURE SYS_LANG_RESOURCE$INS('SSearch', 'Пошук', 'Поиск', 'Поиск');
+EXECUTE PROCEDURE SYS_LANG_RESOURCE$INS('str_mdo_save_settings', 'Зберегти налаштування', 'Сохранить настройки', 'Сохранить настройки');
 COMMIT

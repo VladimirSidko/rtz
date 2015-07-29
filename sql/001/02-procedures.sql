@@ -22,4 +22,5 @@ INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND_ROW.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND_PARAMS.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$GET.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$PARAMS.sql';
+INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$PRINT.sql';
 COMMIT;

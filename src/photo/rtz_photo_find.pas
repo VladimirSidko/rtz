@@ -5,9 +5,9 @@ interface
 uses
   Windows, Controls, Classes, DB, SysUtils, ExtDlgs, Forms, ComCtrls, Graphics,
   CommCtrl, ExtCtrls, TypInfo, StrUtils, Variants,
-  ide3050_intf, ide3050_core_level3,
-  idf3050_fibp,
-  rtz_dev_cntr, rtz_const, rtz_const_sql;
+  ide3050_intf,
+  idf3050_intf, idf3050_fibp,
+  rtz_dev_cntr, rtz_const, rtz_const_sql, rtz_photo_card;
 
 type
   IrtzPhotoFindComp = interface ['{832F7044-830E-4BB9-AF5D-339F14839566}'] end;
@@ -16,6 +16,8 @@ type
     procedure DesignData; override;
   public
     procedure AfterConstruction; override;
+    procedure RptParamLst(List: TStrings); override;
+    function  RptParamVal(const Name: string): Variant; override;
   end;
 
   IrtzPhotoFindForm = interface ['{FA23F31F-01F6-401A-A3A1-5318D856BCA3}'] end;
@@ -25,6 +27,7 @@ type
     procedure DesignGrid;
     procedure FindClick(Sender: TObject);
     procedure ClearClick(Sender: TObject);
+    procedure GridDblClick(Sender: TObject; ACellViewInfo: TObject; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
   protected
     procedure DesignControls; override;
     function ImmediatlyOpen: Boolean; override;
@@ -56,16 +59,37 @@ begin
   DataSet  := Data.AddDataSet('rtzApFindSet', [sql_ap_photo_find_get, sql_ap_photo_find_get_row, '', '', ''], 'rtzApParamSet');
 end;
 
+procedure TrtzPhotoFindComp.RptParamLst(List: TStrings);
+begin
+  inherited RptParamLst(List);
+  List.Add('ID=ID');
+end;
+
+function TrtzPhotoFindComp.RptParamVal(const Name: string): Variant;
+begin
+  if Name = 'ID' then
+    Result := DataSet.FieldByName('PHOTO_DECISION_ID').AsLargeInt
+  else
+    Result := inherited RptParamVal(Name);
+end;
+
 { TrtzPhotoFindForm }
 
 function TrtzPhotoFindForm.ActnVisible(Actn: TAction): Boolean;
 begin
-  Result := True;
+  Result := SupportIID(Actn, [IIDFRptPrintProxyActn, IrtzPhotoSearchAction, IrtzPhotoClearAction]);
+  if not Result then
+    Result := inherited ActnVisible(Actn);
 end;
 
 function TrtzPhotoFindForm.ActnEnabled(Actn: TAction): Boolean;
 begin
-  Result := True;
+  Result := SupportIID(Actn, [IrtzPhotoSearchAction, IrtzPhotoClearAction]);
+  if not Result then
+    if SupportIID(Actn, IIDFRptPrintProxyActn) then
+      Result := DataSet.Active and DataSet.HasData
+    else
+      Result := inherited ActnEnabled(Actn);
 end;
 
 function TrtzPhotoFindForm.ActnExecute(Actn: TAction): Boolean;
@@ -105,8 +129,9 @@ var
 begin
   ColumnInfos := TmdoDBGridColumnInfoList.Create;
   try
-    ColumnInfos.KeyField := 'PHOTO_DECISION_ID';
     ColumnInfos.DataSource := DataSource;
+    ColumnInfos.KeyField := 'PHOTO_DECISION_ID';
+    ColumnInfos.AddNew('NUMBER',          'Номер постанови',  100);
     ColumnInfos.AddNew('DECISION_DATE',   'Дата постанови',   100);
     ColumnInfos.AddNew('INSPECTOR_NAME',  'Інспектор',        200);
     ColumnInfos.AddNew('OVS_NAME',        'ОВС',              200);
@@ -122,6 +147,7 @@ begin
   finally
     FreeAndNil(ColumnInfos);
   end;
+  Grid.View.CellDblClick := GridDblClick;
 end;
 
 procedure TrtzPhotoFindForm.DesignParamPanel;
@@ -141,10 +167,7 @@ procedure TrtzPhotoFindForm.DesignParamPanel;
     LayItem.Caption := ACaption;
     LayItem.CaptionOptions.AlignHorz := taRightJustify;
     if ACalcCaptiomWidth then
-    begin
       LayItem.CaptionOptions.Width := Canvas.TextWidth(ACaption) + 4;
-//      LayItem.CaptionOptions.Width := Canvas.TextWidth(DupeString('Z', Length(ACaption))) + 5;
-    end;
     ParamPanel.ControlList.Add(Control);
   end;
 
@@ -169,7 +192,11 @@ begin
   CreateParamControl(TmdoDBStringEdit, Group, 'Ім''я',       'FIRST_NAME',  100, False);
   CreateParamControl(TmdoDBStringEdit, Group, 'По батькові', 'MIDDLE_NAME', 100, True);
 
-   ParamPanel.AddButton(FindClick).Caption := 'Пошук';
+  with ParamPanel.AddButton(FindClick) do
+  begin
+    Caption := 'Пошук';
+    Default := True;
+  end;
 
 end;
 
@@ -178,6 +205,11 @@ begin
   ParamPanel.PostEditValue;
   DataSet.Close;
   DataSet.Open;
+end;
+
+procedure TrtzPhotoFindForm.GridDblClick(Sender, ACellViewInfo: TObject; AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
+begin
+  OpenDocumentCard(IrtzPhotoCardComp, DataSet.FieldByName('PHOTO_DECISION_ID').AsLargeInt);
 end;
 
 function TrtzPhotoFindForm.ImmediatlyOpen: Boolean;

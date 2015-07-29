@@ -1247,7 +1247,30 @@ function StrToDataType(ADataTypeStr: string): TmdoDataType;
 procedure SetFieldDisplayFormat(AField: TField; ADisplayFormat: string);
 procedure SetFieldMoneyFormat(AField: TField);
 
+procedure OpenDocumentCard(AIID: TGUID; ADocID: Int64);
+
 implementation
+
+procedure OpenDocumentCard(AIID: TGUID; ADocID: Int64);
+var
+  NewComp, OldComp: TmdoComp;
+  Caption: string;
+begin
+  NewComp := IDEDesigner.CreateComp(AIID, nil, '') as TmdoComp;
+  if IsPublishedProp(NewComp, 'ID') then
+  begin
+    SetInt64Prop(NewComp, 'ID', ADocID);
+    Caption := NewComp.Caption;
+    OldComp := IDEDesigner.FindComp(AIID, Caption) as TmdoComp;
+    if (not Assigned(OldComp)) or (OldComp.Caption <> NewComp.Caption) then
+      OldComp := NewComp
+    else
+      NewComp.Free;
+    IDEDesigner.ShowComp(OldComp);
+  end else
+    NewComp.Free;
+end;
+
 
 procedure SetFieldDisplayFormat(AField: TField; ADisplayFormat: string);
 begin
@@ -1733,6 +1756,8 @@ end;
 function TmdoForm.ActnVisible(Actn: TAction): Boolean;
 begin
   Result := SupportIID(Actn, [IIDFActnDBInsert, IIDFActnDBUpdate, IIDFActnDBDelete, IIDFActnDBRefreshAll, IIDFActnDBRefreshOne, IIDFActnDBPrint]);
+  if not Result then
+    Result := inherited ActnVisible(Actn);
 end;
 
 function TmdoForm.ActnEnabled(Actn: TAction): Boolean;
@@ -3779,21 +3804,7 @@ begin
     begin
       Info := nil;
       FKeyFieldName := InfoList.KeyField;
-      {$IFDEF DEBUG}
-      try
-        Info := TmdoDBGridColumnInfo.Create;
-        Info.FieldName := InfoList.KeyField;
-        Info.Caption := 'Key Field|' + FKeyFieldName;
-        Info.ReadOnly := True;
-        Info.Visible := True;
-        Info.Width := 65;
-        AddColumn(Info);
-      finally
-        FreeAndNil(Info);
-      end;
-      {$ELSE}
-        Column := AddKeyColumn(FKeyFieldName);
-      {$ENDIF}
+      Column := AddKeyColumn(FKeyFieldName);
     end;
 
     for Info in InfoList do

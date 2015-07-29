@@ -5,8 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics,
   Controls, Forms, Dialogs, DB, ExtCtrls, Jpeg, StdCtrls,
-  ide3050_intf, ide3050_core_level3,
-  idf3050_fibp,
+  ide3050_intf,
+  idf3050_intf, idf3050_fibp,
   rtz_dev_cntr, rtz_const, rtz_const_sql;
 
 type
@@ -17,6 +17,10 @@ type
     procedure SetID(Value: Int64);
   protected
     procedure DesignData; override;
+  public
+    procedure RptParamLst(List: TStrings); override;
+    function  RptParamVal(const Name: string): Variant; override;
+  published
     property ID: Int64 read GetID write SetID;
   end;
 
@@ -28,6 +32,9 @@ type
   protected
     procedure DesignData; override;
     procedure DesignControls; override;
+    function ActnVisible(Actn: TAction): Boolean; override;
+    function ActnEnabled(Actn: TAction): Boolean; override;
+    function ActnExecute(Actn: TAction): Boolean; override;
   public
     property DataSource: TDataSource read GetDataSource;
     property ControlPanel: TmdoLayoutControl read FControlPanel;
@@ -39,9 +46,12 @@ type
     FPicture: TmdoDBImage;
   protected
     procedure DesignControls; override;
+    function ActnVisible(Actn: TAction): Boolean; override;
+    function ActnEnabled(Actn: TAction): Boolean; override;
+    function ActnExecute(Actn: TAction): Boolean; override;
   end;
 
-  IrtzPhotoCardAction = interface(IIDEActn) ['{5AAB2E51-D843-4F69-B4B0-AA0F05D2347C}']end;
+  IrtzPhotoCardAction = interface(IIDEActn) ['{5AAB2E51-D843-4F69-B4B0-AA0F05D2347C}'] end;
   TrtzPhotoCardAction = class(TmdoActnCPanelGeneric<TrtzPhotoCardComp>, IrtzPhotoCardAction) end;
 
 implementation
@@ -68,9 +78,42 @@ begin
     ParamSet.Edit;
   ParamSet.FieldByName('ID').AsVariant := Value;
   DataSet.Open;
+  Caption := Caption + ': ' + DataSet.FieldByName('NUMBER').AsString;
+
+end;
+
+procedure TrtzPhotoCardComp.RptParamLst(List: TStrings);
+begin
+  inherited RptParamLst(List);
+  List.Add('ID=ID');
+end;
+
+function TrtzPhotoCardComp.RptParamVal(const Name: string): Variant;
+begin
+  if Name = 'ID' then
+    Result := ID
+  else
+    Result := inherited RptParamVal(Name);
 end;
 
 { TrtzPhotoPictureForm }
+
+function TrtzPhotoPictureForm.ActnVisible(Actn: TAction): Boolean;
+begin
+  Result := SupportIID(Actn, IIDFRptPrintProxyActn);
+  if not Result then
+    Result := inherited ActnVisible(Actn);
+end;
+
+function TrtzPhotoPictureForm.ActnEnabled(Actn: TAction): Boolean;
+begin
+  Result := inherited ActnEnabled(Actn);
+end;
+
+function TrtzPhotoPictureForm.ActnExecute(Actn: TAction): Boolean;
+begin
+  Result := inherited ActnExecute(Actn);
+end;
 
 procedure TrtzPhotoPictureForm.DesignControls;
 begin
@@ -93,31 +136,44 @@ end;
 
 { TrtzPhotoCardForm }
 
+function TrtzPhotoCardForm.ActnVisible(Actn: TAction): Boolean;
+begin
+  Result := SupportIID(Actn, IIDFRptPrintProxyActn);
+  if not Result then
+    Result := inherited ActnVisible(Actn);
+end;
+
+function TrtzPhotoCardForm.ActnEnabled(Actn: TAction): Boolean;
+begin
+  Result := inherited ActnEnabled(Actn);
+end;
+
+function TrtzPhotoCardForm.ActnExecute(Actn: TAction): Boolean;
+begin
+  Result := inherited ActnExecute(Actn);
+end;
+
 procedure TrtzPhotoCardForm.DesignControls;
 
-  function NewGroup(ACaption: string = ''): TmdoLayoutGroup;
-  var
-    ControlPanel: TmdoLayoutControl;
+  function NewGroup(ACaption: string = ''; ADirection: TmdoLayoutDirection = TmdoLayoutDirection.ldHorizontal): TmdoLayoutGroup;
   begin
-//    ControlPanel := TmdoLayoutControl.Create(Self);
-//    ControlPanel.Align := alTop;
-//    ControlPanel.Root.LayoutDirection := TmdoLayoutDirection.ldVertical;
-//    ControlPanel.Top := MaxInt;
     Result := FControlPanel.Root.AddGroup;
-    Result.LayoutDirection := TmdoLayoutDirection.ldHorizontal;
+    Result.LayoutDirection := ADirection;
+    Result.ShowBorder  := ACaption <> '';
+    Result.ShowCaption := ACaption <> '';
     Result.Caption := ACaption;
   end;
 
-  function NewSubGroup(AParent: TmdoLayoutGroup): TmdoLayoutGroup;
+  function NewSubGroup(AParent: TmdoLayoutGroup; ACaption: string = ''; ADirection: TmdoLayoutDirection = TmdoLayoutDirection.ldHorizontal): TmdoLayoutGroup;
   begin
-    AParent.LayoutDirection := TmdoLayoutDirection.ldVertical;
     Result := AParent.AddGroup;
-    Result.LayoutDirection := TmdoLayoutDirection.ldHorizontal;
-    Result.ShowBorder  := False;
-    Result.ShowCaption := False;
+    Result.LayoutDirection := ADirection;
+    Result.ShowBorder  := ACaption <> '';
+    Result.ShowCaption := ACaption <> '';
+    Result.Caption := ACaption;
   end;
 
-  procedure CreateParamControl(AClass: TControlClass; AGroup: TmdoLayoutGroup; ACaption: string; AFieldName: string; AWidth: Integer);
+  procedure CreateParamControl(AClass: TControlClass; AGroup: TmdoLayoutGroup; ACaption: string; AFieldName: string; AWidth: Integer; ACaptionWidth: Integer = 0);
   var
     Control: TControl;
     LayItem: TmdoLayoutItem;
@@ -127,76 +183,112 @@ procedure TrtzPhotoCardForm.DesignControls;
     Control.Width := AWidth;
     LayItem := AGroup.AddControl(Control, alLeft);
     LayItem.Caption := ACaption;
-    LayItem.CaptionOptions.Width := Canvas.TextWidth(ACaption) + 4;
+    if ACaptionWidth = 0 then
+      LayItem.CaptionOptions.Width := Canvas.TextWidth(ACaption) + 4
+    else
+      LayItem.CaptionOptions.Width := ACaptionWidth;
     LayItem.CaptionOptions.AlignHorz := taLeftJustify;
   end;
 
+  function GetCaptionWidth(ACaption: string): Integer;
+  begin
+    Result := Canvas.TextWidth(ACaption) + 4;
+  end;
+
 var
-  Group, SubGroup: TmdoLayoutGroup;
+  Group, SubGroup, SubGroup2: TmdoLayoutGroup;
+  CaptionWidth: Integer;
 begin
   inherited DesignControls;
-
+  //
   FControlPanel := TmdoLayoutControl.Create(Self);
   FControlPanel.Align := alClient;
   FControlPanel.Root.LayoutDirection := TmdoLayoutDirection.ldVertical;
-//  FControlPanel.OptionsItem.AutoControlAreaAlignment := False;
-  FControlPanel.OptionsItem.ShowLockedGroupChildren := False;
-
+  FControlPanel.OptionsItem.AutoControlAreaAlignment := False;
   //
-  Group := NewGroup;
-  CreateParamControl(TmdoDBStringEdit, Group, 'ОВС',       'OVS_NAME',       300);
-  CreateParamControl(TmdoDBStringEdit, Group, 'Інспектор', 'INSPECTOR_NAME', 100);
-  CreateParamControl(TmdoDBStringEdit, Group, 'Дата',      'DECISION_DATE',  100);
+  Group := NewGroup('', TmdoLayoutDirection.ldHorizontal);
   //
-  Group := NewGroup('Спеціальний технічний засіб');
-  CreateParamControl(TmdoDBStringEdit, Group, 'Назва', 'DEVICE_NAME', 100);
-  CreateParamControl(TmdoDBStringEdit, Group, 'Номер', 'DEVICE_NO',   100);
-  CreateParamControl(TmdoDBStringEdit, Group, 'Метрологічна повірка дійсна до', 'DEVICE_VALID_DATE', 100);
+  SubGroup := NewSubGroup(Group, '  ', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Інспектор');
   //
-  Group := NewGroup('Анкета правопорушника');
+  SubGroup2 := NewSubGroup(SubGroup, '', TmdoLayoutDirection.ldHorizontal);
+  CreateParamControl(TmdoDBStringEdit, SubGroup2, 'Номер',     'NUMBER',         120, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup2, 'Дата',      'DECISION_DATE',  120, 50);
   //
-  SubGroup := NewSubGroup(Group);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'ДНЗ',    'DNZ_NUMBER', 100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Марка',  'MARK',       100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Модель', 'MODEL',      100);
+  SubGroup2 := NewSubGroup(SubGroup, '', TmdoLayoutDirection.ldVertical);
+  CreateParamControl(TmdoDBStringEdit, SubGroup2, 'ОВС',       'OVS_NAME',       300, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup2, 'Інспектор', 'INSPECTOR_NAME', 300, CaptionWidth);
   //
-  SubGroup := NewSubGroup(Group);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Прізвище',  'LAST_NAME',   100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Ім''я',     'FIRST_NAME',  100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'По батьк.', 'MIDDLE_NAME', 100);
+  SubGroup := NewSubGroup(Group, 'Спеціальний технічний засіб', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Метрологічна повірка дійсна до');
   //
-  SubGroup := NewSubGroup(Group);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Паспорт',    'PASS_NO',     100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Дата нар.',  'BIRTHDAY',    100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Місце нар.', 'BIRTH_PLACE', 100);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Назва', 'DEVICE_NAME', 100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Номер', 'DEVICE_NO',   100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Метрологічна повірка дійсна до', 'DEVICE_VALID_DATE', 100, CaptionWidth);
   //
-  SubGroup := NewSubGroup(Group);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Місто',  'REGION_NAME', 100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Вулиця', 'STREET_NAME', 100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'буд.',   'HOUSE_NO',    100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'кв.',    'FLAT_NO',     100);
+  Group := NewGroup('', TmdoLayoutDirection.ldHorizontal);
+  Group := NewSubGroup(Group, 'Анкета правопорушника', TmdoLayoutDirection.ldHorizontal);
   //
-  Group := NewGroup('Порушення');
+  SubGroup := NewSubGroup(Group, '', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Модель');
   //
-  SubGroup := NewSubGroup(Group);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Дата',   'VIOLATION_DATE',  100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Адреса', 'VIOLATION_PLACE', 100);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'ДНЗ',    'DNZ_NUMBER', 100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Марка',  'MARK',       100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Модель', 'MODEL',      100, CaptionWidth);
   //
-  SubGroup := NewSubGroup(Group);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Дорожній знак', 'TRAFFIC_SIGN', 100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Пункт ПДР',     'ROADRULE_NO',  100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Стаття',        'ARTICLE_NO',   100);
+  SubGroup := NewSubGroup(Group, '', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('По батьк.');
   //
-  SubGroup := NewSubGroup(Group);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Обмеження швидкості', 'LIMIT_SPEED',  100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Швидкість',           'ACTUAL_SPEED', 100);
-  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Штраф',               'PENALTY',      100);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Прізвище',  'LAST_NAME',   100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Ім''я',     'FIRST_NAME',  100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'По батьк.', 'MIDDLE_NAME', 100, CaptionWidth);
   //
-  Group := NewGroup('Реквізити платежу');
-  CreateParamControl(TmdoDBStringEdit, Group, 'Отримувач', 'RECIPIENT_NAME', 100);
-  CreateParamControl(TmdoDBStringEdit, Group, 'Код',       'RECIPIENT_OKPO', 100);
-  CreateParamControl(TmdoDBStringEdit, Group, 'Р/Р',       'BANK_ACCOUNT',   100);
-  CreateParamControl(TmdoDBStringEdit, Group, 'МФО',       'BANK_MFO',       100);
+  SubGroup := NewSubGroup(Group, '', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Місце нар.');
+  //
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Паспорт',    'PASS_NO',     100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Дата нар.',  'BIRTHDAY',    100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Місце нар.', 'BIRTH_PLACE', 100, CaptionWidth);
+  //
+  SubGroup := NewSubGroup(Group, '', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Вулиця');
+  //
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Місто',  'REGION_NAME', 127, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Вулиця', 'STREET_NAME', 127, CaptionWidth);
+  SubGroup2 := NewSubGroup(SubGroup, '', TmdoLayoutDirection.ldHorizontal);
+  CreateParamControl(TmdoDBStringEdit, SubGroup2, 'буд.',   'HOUSE_NO',    50, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup2, 'кв.',    'FLAT_NO',     50, 17);
+  //
+  Group := NewGroup('', TmdoLayoutDirection.ldHorizontal);
+  Group := NewSubGroup(Group, 'Порушення', TmdoLayoutDirection.ldHorizontal);
+  //
+  SubGroup := NewSubGroup(Group, '', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Адреса');
+  //
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Дата',   'VIOLATION_DATE',  100, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Адреса', 'VIOLATION_PLACE', 100, CaptionWidth);
+  //
+  SubGroup := NewSubGroup(Group, '', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Дорожній знак');
+  //
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Дорожній знак', 'TRAFFIC_SIGN', 254, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Пункт ПДР',     'ROADRULE_NO',  254, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Стаття',        'ARTICLE_NO',   254, CaptionWidth);
+  //
+  SubGroup := NewSubGroup(Group, '', TmdoLayoutDirection.ldVertical);
+  CaptionWidth := GetCaptionWidth('Обмеження швидкості');
+  //
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Обмеження швидкості', 'LIMIT_SPEED',  40, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Швидкість',           'ACTUAL_SPEED', 40, CaptionWidth);
+  CreateParamControl(TmdoDBStringEdit, SubGroup, 'Штраф',               'PENALTY',      40, CaptionWidth);
+  //
+  Group := NewGroup('', TmdoLayoutDirection.ldHorizontal);
+  Group := NewSubGroup(Group, 'Реквізити платежу', TmdoLayoutDirection.ldHorizontal);
+  //
+  CreateParamControl(TmdoDBStringEdit, Group, 'Отримувач', 'RECIPIENT_NAME', 188, 0);
+  CreateParamControl(TmdoDBStringEdit, Group, 'Код',       'RECIPIENT_OKPO', 100, 0);
+  CreateParamControl(TmdoDBStringEdit, Group, 'Р/Р',       'BANK_ACCOUNT',   100, 0);
+  CreateParamControl(TmdoDBStringEdit, Group, 'МФО',       'BANK_MFO',       100, 0);
   //
 end;
 

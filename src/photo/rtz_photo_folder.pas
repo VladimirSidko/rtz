@@ -6,7 +6,7 @@ uses
   Windows, Controls, Classes, DB, SysUtils, ExtDlgs, Forms, ComCtrls, Graphics, CommCtrl, ExtCtrls,
   ide3050_intf,
   idf3050_fibp,
-  rtz_dev_cntr, rtz_const, rtz_const_sql;
+  rtz_dev_cntr, rtz_const, rtz_const_sql, rtz_photo_card;
 
 type
   TrtzPhotoLoadThread = class;
@@ -337,7 +337,7 @@ end;
 
 procedure TrtzPhotoFolderForm.OpenDocument(AID: Int64);
 begin
-
+  OpenDocumentCard(IrtzPhotoCardComp, AID);
 end;
 
 function TrtzPhotoFolderForm.GetFolderSet: TDataSet;
