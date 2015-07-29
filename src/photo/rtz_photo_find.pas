@@ -48,7 +48,6 @@ implementation
 procedure TrtzPhotoFindComp.AfterConstruction;
 begin
   inherited AfterConstruction;
-  ParamSet.Open;
 end;
 
 procedure TrtzPhotoFindComp.DesignData;

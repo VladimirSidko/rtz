@@ -30,6 +30,7 @@
 	<form IID="{EC9A6414-0210-4B92-90DD-6E7D8C3F0804}" Intf="IrtzFormCPanel" Caption="">
 	  <actn IID="{A1B768D6-6AC9-4591-9E79-B7631D2CBAD4}" Intf="IrtzPhotoFolderAction" ImageName="ide_package2.bmp" Category="Фотофіксація" Caption="Фотокартки порушень" />
 	  <actn IID="{A3D232BD-5DFA-4FBE-9796-EF792C3FF238}" Intf="IrtzPhotoFindAction"   ImageName="ide_package2.bmp" Category="Фотофіксація" Caption="Пошук фотопостанов" />
+	  <actn IID="{5AAB2E51-D843-4F69-B4B0-AA0F05D2347C}" Intf="IrtzPhotoCardAction"   ImageName="ide_package2.bmp" Category="Фотофіксація" Caption="Фотопостанова" />
 	</form>
 	<actn IID="{51364001-C1B7-4521-A7C6-147757522331}" Intf="IIDEActnPreference" />
   </comp>
@@ -53,6 +54,15 @@
 	<form IID="{FA23F31F-01F6-401A-A3A1-5318D856BCA3}" Intf="IrtzPhotoFindForm" Caption="" />
 	<actn IID="{25A87AEA-9385-48A5-BEFF-785E7E674416}" Intf="IrtzPhotoClearAction"  Hint = "Очистити параметри пошуку" ImageName="mdo_clear.bmp" ShortCut="F8"/>
 	<actn IID="{9EC1B569-E689-428E-9671-9B49D51EFD0A}" Intf="IrtzPhotoSearchAction" Hint = "Пошук" ImageName="mds_find.bmp" ShortCut="F9"/>
+  </comp>
+
+<!--
+  IrtzPhotoCardComp = interface ['{43BFAA1E-1553-46B0-BFA3-63C55890529B}'] end;
+  IrtzPhotoCardForm = interface ['{792D1B47-02FF-4420-AE49-07363B683935}'] end;
+-->
+  <comp IID="{43BFAA1E-1553-46B0-BFA3-63C55890529B}" Intf="IrtzPhotoCardComp" Caption="Фотопостанова" >
+	<form IID="{792D1B47-02FF-4420-AE49-07363B683935}" Intf="IrtzPhotoCardForm" Caption="Постанова" />
+	<form IID="{24B680AB-D773-4F5C-936F-F372BEA8BF08}" Intf="IrtzPhotoPictureForm" Caption="Фотокартка" />
   </comp>
 
   <!-- Общая стартовая -->

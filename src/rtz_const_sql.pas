@@ -25,6 +25,9 @@ resourcestring
   sql_ap_photo_find_get = 'SELECT * FROM AP_PHOTO_DECISION$FIND(:VIOLATION_DATE_FROM,:VIOLATION_DATE_TO,:DECISION_DATE_FROM,:DECISION_DATE_TO,:DNZ_NUMBER,:LAST_NAME,:FIRST_NAME,:MIDDLE_NAME)';
   sql_ap_photo_find_get_row = 'SELECT * FROM AP_PHOTO_DECISION$FIND(:ID)';
 
+  sql_ap_photo_decision_params = 'SELECT * FROM AP_PHOTO_DECISION$PARAMS';
+  sql_ap_photo_decision_get = 'SELECT * FROM AP_PHOTO_DECISION$GET(:ID)';
+
 implementation
 
 end.

@@ -311,18 +311,28 @@ end;
 function TrtzPhotoFolderForm.ExecCreateCard: Boolean;
 var
   ID: Int64;
+  St: TMemoryStream;
+  FileName: string;
 begin
-  ID := ExecWrite(MDO_DB_IID, sql_ap_photo_decision_create, procedure (const AParams: IQueryParams)
-    begin
-      AParams['DNZ_NUMBER'].AsVariant   := FolderSet.FieldByName('DNZ_NUMBER').AsVariant;
-      AParams['ACTUAL_SPEED'].AsVariant := FolderSet.FieldByName('ACTUAL_SPEED').AsVariant;
-      AParams['LIMIT_SPEED'].AsVariant  := FolderSet.FieldByName('LIMIT_SPEED').AsVariant;
-      AParams['PENALTY'].AsVariant      := FolderSet.FieldByName('PENALTY').AsVariant;
-      AParams['VIOLATION_DATE'].AsVariant := TrtzListItem(ListView.Selected).DateTime;
-      AParams['PHOTO'].LoadFromFile(TrtzListItem(ListView.Selected).FileName);
-    end).Fields[0].AsInt64;
-  if ID <> 0 then
-    OpenDocument(ID);
+  St := TMemoryStream.Create;
+  try
+    FileName := TrtzListItem(ListView.Selected).FileName;
+    St.LoadFromFile(FileName);
+    St.Position := 0;
+    ID := ExecWrite(MDO_DB_IID, sql_ap_photo_decision_create, procedure (const AParams: IQueryParams)
+      begin
+        AParams['DNZ_NUMBER'].AsVariant   := FolderSet.FieldByName('DNZ_NUMBER').AsVariant;
+        AParams['ACTUAL_SPEED'].AsVariant := FolderSet.FieldByName('ACTUAL_SPEED').AsVariant;
+        AParams['LIMIT_SPEED'].AsVariant  := FolderSet.FieldByName('LIMIT_SPEED').AsVariant;
+        AParams['PENALTY'].AsVariant      := FolderSet.FieldByName('PENALTY').AsVariant;
+        AParams['VIOLATION_DATE'].AsVariant := TrtzListItem(ListView.Selected).DateTime;
+        AParams['PHOTO'].LoadFromStream(St);
+      end).Fields[0].AsInt64;
+    if ID <> 0 then
+      OpenDocument(ID);
+  finally
+    St.Free;
+  end;
 end;
 
 procedure TrtzPhotoFolderForm.OpenDocument(AID: Int64);

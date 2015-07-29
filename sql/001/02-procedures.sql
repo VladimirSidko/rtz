@@ -20,4 +20,6 @@ INPUT '..\sql-mdo\001\02-procedures\TR_APPLICATIONS$CREATE.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND_ROW.sql';
 INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$FIND_PARAMS.sql';
+INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$GET.sql';
+INPUT '..\sql-mdo\001\02-procedures\AP_PHOTO_DECISION$PARAMS.sql';
 COMMIT;

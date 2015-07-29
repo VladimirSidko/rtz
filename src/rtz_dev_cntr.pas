@@ -59,6 +59,7 @@ type
   private
     FMetaQuery: IQueryProvider;
     FDataSet: TDataSet;
+    function GetDataSrc: TDataSource;
   protected
     function GetFDB_IID: TGUID; override;
     function GetMetaProc: string; virtual;
@@ -72,6 +73,7 @@ type
 
     property MetaQuery: IQueryProvider read FMetaQuery;
     property DataSet: TDataSet read FDataSet write FDataSet;
+    property DataSource: TDataSource read GetDataSrc;
 
     function MetaQueryFieldExists(AFieldName: string): Boolean;
     function CanLive(const ACaption: string): Boolean; override;
@@ -84,9 +86,10 @@ type
   protected
     procedure DesignData; override;
   public
-    property ParamSet: TDataSet read FParamSet write FParamSet;
+    procedure AfterConstruction; override;
     procedure RptParamLst(List: TStrings); override;
     function  RptParamVal(const Name: string): Variant; override;
+    property ParamSet: TDataSet read FParamSet write FParamSet;
   end;
 
   TmdoForm = class(TIDEForm, IIDFFormDB)
@@ -404,6 +407,11 @@ type
   end;
 
   TmdoListView = class(TcxListView)
+  public
+    procedure AfterConstruction; override;
+  end;
+
+  TmdoDBImage = class(TcxDBImage)
   public
     procedure AfterConstruction; override;
   end;
@@ -1612,6 +1620,11 @@ begin
     Result := Action.Execute;
 end;
 
+function TmdoComp.GetDataSrc: TDataSource;
+begin
+  Result := Data.FindDataSrc(FDataSet);
+end;
+
 function TmdoComp.GetFDB_IID: TGUID;
 begin
   Result := MDO_DB_IID;
@@ -1627,7 +1640,7 @@ var
   I: Integer;
 begin
   Result := False;
-  if not Assigned(MetaQuery) then
+  if MetaQuery = nil then
     Exit;
 
   AFieldName := UpperCase(AFieldName);
@@ -1675,13 +1688,24 @@ end;
 
 procedure TmdoComp.DesignData;
 begin
+  if MetaQuery = nil then
+    Exit;
   FDataSet := AddDataSet(MetaQuery, 'DATA', nil, False);
 end;
 
 { TmdoCompWithParams }
 
+procedure TmdoCompWithParams.AfterConstruction;
+begin
+  inherited AfterConstruction;
+  if Assigned(FParamSet) then
+    FParamSet.Open;
+end;
+
 procedure TmdoCompWithParams.DesignData;
 begin
+  if MetaQuery = nil then
+    Exit;
   FParamSet := AddDataSet(MetaQuery, 'PARAM', nil, False);
   FDataSet  := AddDataSet(MetaQuery, 'DATA', Data.FindDataSrc(FParamSet), False);
   FParamSet.Open;
@@ -2100,7 +2124,7 @@ end;
 function TmdoForm.GetMetaID(APrefix: string): string;
 begin
   Result := '';
-  if Assigned(Comp) then
+  if Assigned(Comp) and Assigned(Comp.MetaQuery) then
     if Comp.MetaQueryFieldExists(APrefix + '_ID') then
       Result := Comp.MetaQuery.FieldByName(APrefix + '_ID').AsString;
 end;
@@ -4232,20 +4256,20 @@ procedure TmdoLayoutItem.SetAlign(Value: TAlign);
 begin
   case Value of
     alTop: begin
-      AlignHorz := ahClient;
+      AlignHorz := ahParentManaged;
       AlignVert := avTop;
     end;
     alBottom: begin
-      AlignHorz := ahClient;
+      AlignHorz := ahParentManaged;
       AlignVert := avBottom;
     end;
     alLeft: begin;
       AlignHorz := ahLeft;
-      AlignVert := avClient;
+      AlignVert := avParentManaged;
     end;
     alRight: begin;
       AlignHorz := ahRight;
-      AlignVert := avClient;
+      AlignVert := avParentManaged;
     end;
     alClient: begin;
       AlignHorz := ahClient;
@@ -4337,20 +4361,20 @@ procedure TmdoLayoutGroup.SetAlign(Value: TAlign);
 begin
   case Value of
     alTop: begin
-      AlignHorz := ahClient;
+      AlignHorz := ahParentManaged;
       AlignVert := avTop;
     end;
     alBottom: begin
-      AlignHorz := ahClient;
+      AlignHorz := ahParentManaged;
       AlignVert := avBottom;
     end;
     alLeft: begin;
       AlignHorz := ahLeft;
-      AlignVert := avClient;
+      AlignVert := avParentManaged;
     end;
     alRight: begin;
       AlignHorz := ahRight;
-      AlignVert := avClient;
+      AlignVert := avParentManaged;
     end;
     alClient: begin;
       AlignHorz := ahClient;
@@ -4386,6 +4410,8 @@ end;
 procedure TmdoLayoutControl.AfterConstruction;
 begin
   inherited AfterConstruction;
+  if Assigned(Owner) and (Owner is TWinControl) then
+    Parent := Owner as TWinControl;
   LookAndFeel := DefLayoutLookAndFeel;
   Root.AlignHorz := ahClient;
   Root.AlignVert := avClient;
@@ -4467,8 +4493,6 @@ end;
 procedure TmdoParamPanel.AfterConstruction;
 begin
   inherited AfterConstruction;
-  if Assigned(Owner) and (Owner is TWinControl) then
-    Parent := Owner as TWinControl;
   Align := alTop;
   Root.AlignVert := avTop;
   AutoSize := True;
@@ -5951,6 +5975,14 @@ begin
   Images.Free;
   Images := nil;
   inherited BeforeDestruction;
+end;
+
+{ TmdoDBImage }
+
+procedure TmdoDBImage.AfterConstruction;
+begin
+  inherited AfterConstruction;
+  Style.BorderStyle := ebsNone;
 end;
 
 initialization
